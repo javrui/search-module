@@ -5,10 +5,10 @@
 
 Ejemplos de uso:
 
-- [maze.py](https://github.com/javrui/search-maze-puzzle/blob/main/maze.py):  Script que resuelve laberintos.
+- [maze](https://github.com/javrui/search-maze-puzzle/blob/main/maze.md):  Script que resuelve laberintos.
 Utiliza módulo 'search'.
 
-- [puzzle.py](https://github.com/javrui/search-maze-puzzle/blob/main/puzzle.py): Script de resolución de puzzles.
+- [puzzle](https://github.com/javrui/search-maze-puzzle/blob/main/puzzle.md): Script de resolución de puzzles.
 Utiliza módulo 'search'.
 
 Créditos:
