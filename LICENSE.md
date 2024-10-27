@@ -25,7 +25,7 @@ which is licensed under a Creative Commons <a href="https://creativecommons.org/
 <ul class="fa-ul">
 <li>
 <span class="fa-li fab fa-creative-commons-by"></span>
-<div><strong>Attribution</strong> — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</div>
+<strong>Attribution</strong> — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 </li>
 <li>
 <span class="fa-li fab fa-creative-commons-nc"></span>
