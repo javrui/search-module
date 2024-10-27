@@ -29,13 +29,13 @@ which is licensed under a Creative Commons <a href="https://creativecommons.org/
 </li>
 <li>
 <span class="fa-li fab fa-creative-commons-nc"></span>
-<div><strong>NonCommercial</strong> — You may not use the material for commercial purposes.</div>
+<strong>NonCommercial</strong> — You may not use the material for commercial purposes.
 </li>
 <li>
 <span class="fa-li fab fa-creative-commons-sa"></span>
-<div><strong>ShareAlike</strong> — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</div>
+<strong>ShareAlike</strong> — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 </li>
 <li class="mt-3">
-<div><strong>No additional restrictions</strong> — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</div>
+<strong>No additional restrictions</strong> — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 </li>
 </ul>
