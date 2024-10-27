@@ -1,5 +1,5 @@
-# My Module Name
-A brief, catchy one-line description.
+# search
+Python module to solve search problems with BFS y DSF algorithms.
 
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -21,8 +21,15 @@ print(result)
 
 This module includes the following example scripts:
 
-    example1.py: Explanation of what this example shows.
-    example2.py: Explanation of what this example shows.
+- [maze](https://github.com/javrui/search-maze-puzzle/blob/main/maze.md):  Script que resuelve laberintos.
+
+
+- [puzzle](https://github.com/javrui/search-maze-puzzle/blob/main/puzzle.md): Script de resolución de puzzles.
+
+
+## Credits:
+
+El código es una adaptación y refactorización (orientando a objeto) del código de algunos ejemplos del curso [HarvardX:CS50’s Introduction to Artificial Intelligence with Python](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python)
 
 ## 🧪 Testing
 
