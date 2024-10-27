@@ -1,7 +1,10 @@
 # search
 Python module to solve search problems with BFS y DSF algorithms.
 
-![Python](https://img.shields.io/badge/python-3.8%2B-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg)
+![Dependencies](https://img.shields.io/librariesio/github/username/repo-name)
+![GitHub issues](https://img.shields.io/github/issues/username/repo-name)
 
 ## 📖 Overview
 A brief description of what this module does, how it fits into the AI/ML workflow, and its purpose. Mention any key algorithms, models, or techniques used.
