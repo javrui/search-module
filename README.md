@@ -57,7 +57,9 @@ Specific instructions are available in documentation.
 
 
 ## 📚 Documentation
-(readthedocs link)
+📌 TO DO: readthedocs link
+
+[search documentation](docs/search_docs.md)
 
 
 
