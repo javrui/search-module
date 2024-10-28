@@ -1,38 +1,77 @@
 # search
-Python module to solve search problems with BFS y DSF algorithms.
+Python module that implements Breadth-First Search and Depth-First Search algorithms to be used in pathfinding and many problem-solving contexts.
 
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg)
 ![Dependencies](https://img.shields.io/librariesio/github/username/repo-name)
 ![GitHub issues](https://img.shields.io/github/issues/username/repo-name)
 
-## 📖 Overview
-A brief description of what this module does, how it fits into the AI/ML workflow, and its purpose. Mention any key algorithms, models, or techniques used.
+📌 TO DO: links in badges
 
-## 📋 Usage
-Examples of how to use the module. Link to the examples/ directory for more detailed scripts.
+## ✨Overview
+**search** provides two interface classes:
 
-```bash
-from my_module.core import SomeFunction
+- class Node
+- class SearchProblem
 
-# Example usage
-result = SomeFunction(parameters)
-print(result)
-```
+User needs to define a derived class from each one, to implement specific details of problem context.  Precisely, needs to write these methods:
 
-## 💼 Examples
+- SearchProblem.__init__()
+- SearchProblem.show_solution()
 
-This module includes the following example scripts:
+and
 
-- [maze](https://github.com/javrui/search-maze-puzzle/blob/main/maze.md):  Script que resuelve laberintos.
+- Node.__init__()
+- Node.actions()
+- Node.result()
 
-
-- [puzzle](https://github.com/javrui/search-maze-puzzle/blob/main/puzzle.md): Script de resolución de puzzles.
+Specific instructions are available in documentation.
 
 
-## Credits:
+## 🚀 Basic usage
 
-El código es una adaptación y refactorización (orientando a objeto) del código de algunos ejemplos del curso [HarvardX:CS50’s Introduction to Artificial Intelligence with Python](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python)
+    from search import Node, SearchProblem
+
+    # Create derived classes/methods
+    class Maze(SearchProblem):
+        __init__()
+        ...
+
+        show_solution()
+        ...
+
+    class MazeNode(Node)
+        __init__()
+        ...
+
+        actions()
+        ...
+
+        result()
+        ...
+
+
+    maze = Maze(<maze_file_path>)         # create problem instance
+    maze.solve(search_algorithm='DSF')    # solve it
+    maze.show_solution()                  # print solution
+
+
+## 📚 Documentation
+(readthedocs link)
+
+
+
+## 💼 Usage complete examples
+
+The following example scripts use **search** to solve these problems:
+
+📌 TO DO: below links to GitHub directory, that shoul have a readme ¿refering to readthedocs or just explaining in README.md?
+
+- [maze](https://github.com/javrui/search-maze-puzzle/blob/main/maze.md): Maze solver.
+
+
+- [puzzle](https://github.com/javrui/search-maze-puzzle/blob/main/puzzle.md): puzzle solver.
+
 
 ## 🧪 Testing
 
@@ -41,12 +80,17 @@ Instructions for running the test
     pytest tests/
 
 
-## 📜 License
+## ⚖️ License
 
-This project is licensed under the MIT License.
+This project is based on code under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) [license](LICENSE.md)
 
 
-## 🚀 Installation
+##  🙏 Credits:
+
+El código es una adaptación y refactorización (orientando a objeto) del código de algunos ejemplos del curso [HarvardX:CS50’s Introduction to Artificial Intelligence with Python](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python)
+
+
+## 📥 Installation
 Step-by-step guide to install your module.
 
 ```bash

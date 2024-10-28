@@ -5,7 +5,7 @@ Module that defines classes to be used for solving search problems.
 
 ***
 TODO: AuditTrail parece que debería unirse de alguna forma a la clase Solution,
-no tiene sentido que estén seaparados.
+no tiene sentido que estén seaparados. ¿O Solution no es publica?
 ***
 TODO:
 En GitHub, una acprta explicando con markdown este proyecto de Search:
@@ -126,7 +126,7 @@ Example of derived classes for a maze problem:
 
     show_solution() in SearchProblem() derived class:
 
-        * CAN be USED AS SI, or OVERRIDDEN to modify output format.
+        * CAN be USED AS IS, or OVERRIDDEN to modify output format.
         Shows the solution to the problem.
 
 
