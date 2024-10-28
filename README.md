@@ -80,14 +80,14 @@ Instructions for running the test
     pytest tests/
 
 
-## ⚖️ License
-
-This project is based on code under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) [license](LICENSE.md)
-
-
 ##  🙏 Credits:
 
-El código es una adaptación y refactorización (orientando a objeto) del código de algunos ejemplos del curso [HarvardX:CS50’s Introduction to Artificial Intelligence with Python](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python)
+This project is a based on code from [HarvardX:CS50’s Introduction to Artificial Intelligence with Python course](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python) refactored to use object-oriented design.
+
+
+## ⚖️ License
+
+Mentioned Harvard course code is published under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) [license](LICENSE.md)
 
 
 ## 📥 Installation
