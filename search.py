@@ -332,7 +332,8 @@ class SearchProblem():
             #------------------------------------------------------------------
 
             for child in child_nodes:
-                if not child in self.frontier and not child in self.explored_nodes:
+                if not child in self.frontier and not child in
+                    self.explored_nodes:
                     self.frontier.add(child)
 
             #------------------------------------------------------------------

@@ -1,5 +1,94 @@
-# search
-Module that defines classes to be used to solve search problems applying Breadth-First Search and Depth-First Search uninformed algorithms.
+# "search" module documentation
+
+
+# Introduction to search problem
+
+<details> <summary><h2>Search problem and AI</h2></summary>
+
+A search problem refers to a class of problems in the field of Artificial Intelligence (AI) and computer science where the objective is to find a sequence of **actions** or steps that lead from an **initial state** to a **goal state**  within a problem space. The problem space consists of various states, transitions (actions), and constraints that define the problem environment.
+
+</details>
+
+## Generic uninformed search algorithm
+A generic uninformed search algorithm is a strategy for exploring a problem space without prior knowledge of the goal's location. Instead of relying on domain-specific information, uninformed search uses only the structure of the problem to navigate through the state space.
+
+Algorithms like Breadth-First Search (BFS) and Depth-First Search (DFS) are classic examples fo uninformed searching algorithms. **search** module implements both of them.
+
+
+## Key concepts
+
+Search module implements these key concepts of uninformed search algorithm:
+
+* **State**: Represents a specific configuration or condition within the problem space. For example, in a maze, each position within the maze could be considered a unique state.
+
+* **Node**: A data structure representing a state in the search process, including additional information such as its parent node (where it came from) and the path cost to reach it.
+
+* **Initial State**: The starting point or beginning configuration of the search. The algorithm starts exploring from this state to find a path to the goal state.
+
+* **Goal State**: The desired target state that satisfies the conditions of the problem. The search algorithm stops when it reaches this state.
+
+* **Actions** (from Node): These are the possible moves or steps that can be taken from a given node to transition into neighboring states. For example, in a grid, actions might be moving up, down, left, or right.
+
+* **Expand** (node): The process of exploring a node's neighboring states by generating its successors based on possible actions. Expanding a node involves creating new nodes for each resulting state from an action.
+
+* **Frontier**: A collection of all nodes available to be explored. It contains the nodes that have been generated but not yet expanded. The frontier controls the order in which nodes are expanded and determines the search strategy, such as Breadth-First Search (BFS) or Depth-First Search (DFS).
+
+* **Explored Set**: A set of nodes that have already been expanded. It helps prevent redundant exploration by keeping track of visited nodes to avoid loops and repeated states.
+
+
+## Algorithm steps
+Search algorithm in **search** module follows this pseudocode:
+
+- Start with a 'frontier' that contains the initial state.
+- Start with an empty 'explored set'.
+
+- Repeat:
+    - If the frontier is empty, then no solution.
+    - If node contains goal state, return the solution.
+    - Remove a node from the frontier.
+    - Add the node to the explored set.
+    - Expand node. For each expanded node:
+        - If node is not already in the frontier or the explored set:
+            Add node to frontier
+
+
+# search module
+
+## How search module
+
+**search** provides two interface classes:
+
+- class Node
+- class SearchProblem
+
+User needs to define a derived class from each one, to implement specific details of problem context.  Precisely, needs to override these abstract methods to define an actual search problem:
+
+
+- SearchProblem.__init__()
+- SearchProblem.**show_solution()**
+
+and
+
+- Node.__init__()
+- Node.**actions()**
+- Node.**result()**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+“raise NotImplementedError()” is a way to specify that this is an abstract method that needs to be overridden to define an actual search problem
 
 
 ## Overview
@@ -62,35 +151,6 @@ no tiene sentido que estén seaparados.
 
 
 
-## Understanding search problems
-
-A 'search problem' in the field of Artificial Intelligence (AI) and computer science, are problems where the objective is to find a sequence of actions or steps  that lead from an initial state to a goal state within a problem space. In a search problem, the problem space consists of various states, transitions  (actions), and constraints that define the problem environment.
-
-Formally, a search problem is defined by:
-
- - Initial State: The starting configuration or condition of the problem space
-   from which the search process begins.
-
- - Goal State: The desired outcome or target configuration that the search
-   algorithm aims to reach. The goal state represents the solution to the
-   problem.
-
- - Actions: Possible moves or transitions that can be taken from one state to
-   another in the problem environment. Each action defines a valid path in the
-   search space.
-
- - State Space: The set of all possible states that can be reached from the
-   initial state through a sequence of actions. The state space represents the
-   entire problem domain that the search algorithm explores.
-
-
-These concepts are also relevant:
-
- - Node: represents a specific state within the state space. Each node contains information about the state it represents, as well as other relevant attributes as parent node and action that leads to node from parent.
-
- - Solution: a sequence of actions or steps that lead from the initial state to the goal state, satisfying the problem's requirements or constraints. It represents the desired outcome or resolution of the problem..
-
-
 
 ## How this module implement search algorithms
 
@@ -99,15 +159,15 @@ The search process algorithm implemented involves the following steps (where
 'frontier' and 'explored set' are containers of nodes considered in each
 algorithm iteration):
 
-    • Start with a 'frontier' that contains the initial state.
-    • Start with an empty 'explored set'.
-    • Repeat:
-        • If the frontier is empty, then no solution.
-        • If node contains goal state, return the solution.
-        • Remove a node from the frontier.
-    • Add the node to the explored set.
-    • Expand node. For each expanded node:
-        • If node is not already in the frontier or the explored set:
+    - Start with a 'frontier' that contains the initial state.
+    - Start with an empty 'explored set'.
+    - Repeat:
+        - If the frontier is empty, then no solution.
+        - If node contains goal state, return the solution.
+        - Remove a node from the frontier.
+    - Add the node to the explored set.
+    - Expand node. For each expanded node:
+        - If node is not already in the frontier or the explored set:
             Add node to frontier
 
 This code implements two uninformed search algorithms (BSF and DSF).The kind of
@@ -187,40 +247,3 @@ Example of derived classes for a maze problem:
     it can be used as is, or overridden or enhanced in derived classes to
     modify the output format.
 
-
-------------------------------------------------------------------------------
-Basic usage examples:
-------------------------------------------------------------------------------
-
-Basic usage (example with maze problem):
-
-    1.- Import module
-
-            from search import Node, SearchProblem
-
-    2.- Declare 'SearchProblem' and 'Node' subclasses for specific problem, and
-        implement methods in those subclasses. For example, for a maze problem:
-
-            class Maze(SearchProblem):
-                __init__()
-                show_solution()
-
-            class MazeNode(Node)
-                __init__()     (only if specific attributes needed)
-                actions()
-                result()
-
-        See 'SearchProblem' and 'Node' classes docstring for details on methods
-
-
-    3.- Example of basic code for maze problem:
-
-            maze = Maze(maze_file_path)           # create problem instance
-            maze.solve(search_algorithm='DSF')    # solve it
-            maze.show_solution()                  # print solution
-
-
-
-
-
-============================================================================"""

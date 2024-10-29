@@ -9,30 +9,21 @@ Python module that implements Breadth-First Search and Depth-First Search algori
 📌 TO DO: links in badges
 
 ## ✨Overview
-**search** provides two interface classes:
+**search** defines two interface classes that provide Breadth-First Search and Depth-First Search algorithm implementations.
 
 - class Node
 - class SearchProblem
 
-User needs to define a derived class from each one, to implement specific details of problem context.  Precisely, needs to write these methods:
+ User needs to override some abstract methods of those classes, to implement specific problem context details.
 
-- SearchProblem.__init__()
-- SearchProblem.show_solution()
-
-and
-
-- Node.__init__()
-- Node.actions()
-- Node.result()
-
-Specific instructions are available in documentation.
+See [📚 Documentation](#-documentation) for details.
 
 
 ## 🚀 Basic usage
 
     from search import Node, SearchProblem
 
-    # Create derived classes/methods
+    # Create derived classes and override 'search' abstract methods
     class Maze(SearchProblem):
         __init__()
         ...
