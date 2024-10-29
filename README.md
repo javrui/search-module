@@ -1,5 +1,5 @@
 # search
-Python module that implements Breadth-First Search and Depth-First Search algorithms to be used in pathfinding and many problem-solving contexts.
+Python module to be used in pathfinding and other problem-solving contexts.
 
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg)
@@ -9,42 +9,44 @@ Python module that implements Breadth-First Search and Depth-First Search algori
 📌 TO DO: links in badges
 
 ## ✨Overview
-**search** defines two interface classes that provide Breadth-First Search and Depth-First Search algorithm implementations.
+**search** implements Breadth-First Search and Depth-First Search algorithms as a solve() method of base classes
 
-- class Node
-- class SearchProblem
+two interface classes implementing Breadth-First Search and Depth-First Search algorithms.
 
- User needs to override some abstract methods of those classes, to implement specific problem context details.
+User just needs to override some abstract methods in her/his derived classes, to implement specific problem context details
 
 See [📚 Documentation](#-documentation) for details.
 
 
 ## 🚀 Basic usage
+Example of maze solving: user creates 2 derived classes from 2 **search** module base classes, overrides 5 methods, and solves maze just calling **solve()**:
 
     from search import Node, SearchProblem
 
-    # Create derived classes and override 'search' abstract methods
+    # Create derived classes and override base class abstract methods
+
     class Maze(SearchProblem):
-        __init__()
+        def __init__():
         ...
 
-        show_solution()
+        def show_solution():
         ...
 
     class MazeNode(Node)
-        __init__()
+        def __init__():
         ...
 
-        actions()
+        def actions():
         ...
 
-        result()
+        def result():
         ...
 
+    # create problem instance, solve it and show solution:
 
-    maze = Maze(<maze_file_path>)         # create problem instance
-    maze.solve(search_algorithm='DSF')    # solve it
-    maze.show_solution()                  # print solution
+    maze = Maze(<maze_file_path>)
+    maze.solve(search_algorithm='DSF')
+    maze.show_solution()
 
 
 ## 📚 Documentation
