@@ -58,7 +58,7 @@ Methods to be written by you to override base class ones, when and how:
 
 You need to:
 
-### 1.- import 'Node' and 'SearchProblem' module interface clases
+### 1.-  import 'Node' and 'SearchProblem' module interface clases
 
 ```python
     from search import Node, SearchProblem
@@ -81,7 +81,7 @@ Example for maze search problem, where:
         def show_solution():
             ...
 
-    class MazeNode(Node)
+    class MazeNode(Node):
         def __init__():
             ...
         def actions():
@@ -91,10 +91,19 @@ Example for maze search problem, where:
 ```
 
 
-### 4.- Use these user subclass methods:
+### 3.- Basic usage:
+
+📌 TO DO: REVISAR parametros de metodos, cambian:
+REVISAR el resultado en real!!
+
 
 ```python
-    solve()           #to solve the problem
-    show_solution()   #to print the solution
-```
+maze = Maze(<maze_file_path>)
 
+try:
+    maze.solve('BSF')
+except ValueError as e:
+    print(e)
+    sys.exit(1)
+else:
+    maze.show_solution()
