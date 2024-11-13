@@ -87,4 +87,4 @@ else:
     maze.show_solution()
 ```
 
-To see complete code of maze solving example, please visit [maze](maze/maze.py)
+To see complete code of maze solving example, please visit [maze](../maze/maze.py)
