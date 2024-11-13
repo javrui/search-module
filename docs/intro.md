@@ -33,7 +33,7 @@ Search module implements these key concepts of uninformed search algorithm:
 
 
 ## Algorithm steps
-Search algorithm in **search** module follows this pseudocode:
+Search algorithm in **search** module follows this steps:
 
 - Start with a 'frontier' that contains the initial state.
 - Start with an empty 'explored set'.

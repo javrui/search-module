@@ -385,25 +385,21 @@ class Node():
     def __init__(self, state=None, parent=None, action=None):
         """Initializes a node in the search tree.
 
-        May need to be subclassed to define attributes specific to search problem.
+        This method should be overridden in a subclass to define attributes specific to the search problem.
+
+        If the 'actions()' and 'results()' methods require additional attributes, they should be defined in the subclass, and initialized in subclass __init__() method.
+
+        When overriding this method in a subclass, make sure to call super().__init__(state, parent, action) to properly initialize the base class attributes.
+
+        Args:
+            state: The state represented by the node.
+            parent: The parent node of this node.
+            action: The action that led to this node.
+
         """
         self.state = state
         self.parent = parent
         self.action = action
-
-
-    def expand(self, search_problem: SearchProblem):
-        """Return list of expanded (children) nodes of (self) node."""
-
-        # print(f"\n> Expanding:\n{self}") #DBG
-        child_nodes = []
-        valid_actions = self.actions(search_problem)
-        for action in valid_actions:
-            expanded = self.result(action, search_problem)
-            child_nodes.append(expanded)
-
-        return child_nodes
-
 
     def actions(self, search_problem: SearchProblem):
         """Returns the list of valid actions that can be performed from a given node.
@@ -419,6 +415,21 @@ class Node():
         Virtual: needs to be subclassed to define actions in specific search problem.
         """
         raise NotImplementedError
+
+
+    def expand(self, search_problem: SearchProblem):
+        """Return list of expanded (children) nodes of (self) node."""
+
+        # print(f"\n> Expanding:\n{self}") #DBG
+        child_nodes = []
+        valid_actions = self.actions(search_problem)
+        for action in valid_actions:
+            expanded = self.result(action, search_problem)
+            child_nodes.append(expanded)
+
+        return child_nodes
+
+
 
 
 class AuditTrail():

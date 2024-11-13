@@ -9,13 +9,11 @@ Python module to be used in pathfinding and other problem-solving contexts.
 📌 TO DO: links in badges
 
 ## ✨Overview
-**search** implements Breadth-First Search and Depth-First Search algorithms as a solve() method of base classes
+📌 TO DO: esto no me gusta como queda:
+**search** implements Breadth-First Search and Depth-First Search algorithms ...
 
-two interface classes implementing Breadth-First Search and Depth-First Search algorithms.
-
+two interface classes
 User just needs to override some abstract methods in her/his derived classes, to implement specific problem context details
-
-See [📚 Documentation](#-documentation) for details.
 
 
 ## 🚀 Basic usage
@@ -27,20 +25,20 @@ Example of maze solving: user creates 2 derived classes from 2 **search** module
 
     class Maze(SearchProblem):
         def __init__():
-        ...
+           ...
 
         def show_solution():
-        ...
+           ...
 
     class MazeNode(Node)
         def __init__():
-        ...
+           ...
 
         def actions():
-        ...
+           ...
 
         def result():
-        ...
+           ...
 
     # create problem instance, solve it and show solution:
 
