@@ -168,9 +168,11 @@ class MazeNode(Node):
 
         valid_actions = []      # directions blank cell can 'move' to
 
+        # these are all possible movements regardless of actual position
         initial_row, initial_col = self.state
         moved = {action: search_problem.offset [action] for action in search_problem.offset.keys()}
 
+        # we choose the ones really possible considering position
         for action, (row_offset, col_offset) in moved.items():
             new_row = initial_row + row_offset
             new_col = initial_col + col_offset

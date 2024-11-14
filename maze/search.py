@@ -4,8 +4,8 @@ Module that defines classes to be used for solving search problems.
 ==============================================================================
 
 ***
-TODO: AuditTrail parece que debería unirse de alguna forma a la clase Solution, 
-no tiene sentido que estén seaparados.
+TODO: AuditTrail parece que debería unirse de alguna forma a la clase Solution,
+no tiene sentido que estén seaparados. ¿O Solution no es publica?
 ***
 TODO:
 En GitHub, una acprta explicando con markdown este proyecto de Search:
@@ -13,7 +13,7 @@ En GitHub, una acprta explicando con markdown este proyecto de Search:
 - codigo original del curso (copiarlo)
 - mi codigo de search
 - explicación de codigo search
-- ejemplos de uso: 
+- ejemplos de uso:
     maze
     puzzle
     ¿sokoban?
@@ -28,36 +28,43 @@ using uninformed search algorithms Breadth-First Search and Depth-First Search.
 ------------------------------------------------------------------------------
 Introduction: search problems
 ------------------------------------------------------------------------------
-A "search problem" refers to a class of problems in the field of Artificial 
-Intelligence (AI) and computer science where the objective is to find a 
-sequence of actions or steps that lead from an initial state to a goal state 
-within a problem space. In a search problem, the problem space consists of 
+A "search problem" refers to a class of problems in the field of Artificial
+Intelligence (AI) and computer science where the objective is to find a
+sequence of actions or steps that lead from an initial state to a goal state
+within a problem space. In a search problem, the problem space consists of
 various states, transitions (actions), and constraints that define the problem
 environment.
 
 Formally, a search problem is defined by:
 
-    Initial State: The starting configuration or condition of the problem space from which the search process begins.
+ - Initial State: The starting configuration or condition of the problem space
+   from which the search process begins.
 
-    Goal State: The desired outcome or target configuration that the search algorithm aims to reach. The goal state represents the solution to the problem.
+ - Goal State: The desired outcome or target configuration that the search
+   algorithm aims to reach. The goal state represents the solution to the
+   problem.
 
-    Actions: Possible moves or transitions that can be taken from one state to another in the problem environment. Each action defines a valid path in the search space.
+ - Actions: Possible moves or transitions that can be taken from one state to
+   another in the problem environment. Each action defines a valid path in the
+   search space.
 
-    State Space: The set of all possible states that can be reached from the initial state through a sequence of actions. The state space represents the entire problem domain that the search algorithm explores.
+ - State Space: The set of all possible states that can be reached from the
+   initial state through a sequence of actions. The state space represents the
+   entire problem domain that the search algorithm explores.
 
 
 These concepts are also relevant:
 
-    Node: represents a specific state within the state space. Each node contains information about the state it represents, as well as other relevant attributes as parent node and action that leads to node from parent node.
+ - Node: represents a specific state within the state space. Each node contains information about the state it represents, as well as other relevant attributes as parent node and action that leads to node from parent.
 
-    Solution: a sequence of actions or steps that lead from the initial state to the goal state, satisfying the problem's requirements or constraints. It represents the desired outcome or resolution of the problem being solved.
+ - Solution: a sequence of actions or steps that lead from the initial state to the goal state, satisfying the problem's requirements or constraints. It represents the desired outcome or resolution of the problem being solved.
 
 
 ------------------------------------------------------------------------------
 Search implementation details
 ------------------------------------------------------------------------------
-The search process algorithm implemented involves the following steps (where 
-'frontier' and 'explored set' are containers of nodes considered in each 
+The search process algorithm implemented involves the following steps (where
+'frontier' and 'explored set' are containers of nodes considered in each
 algorithm iteration):
 
     • Start with a 'frontier' that contains the initial state.
@@ -83,14 +90,14 @@ data structures used as frontier, defines the search algorithm:
 ------------------------------------------------------------------------------
 Using the search module
 ------------------------------------------------------------------------------
- 
-To use this module to solve a search problem, the user needs to follow these 
+
+To use this module to solve a search problem, the user needs to follow these
 steps:
- 
+
 1) Derive a class from module base classes 'SearchProblem' and 'Node':
 ------------------------------------------------------------------------------
 
-User has to define a subclass specific to search problem, derived from each of 
+User has to define a subclass specific to search problem, derived from each of
 these module base classes:
 
     SearchProblem()
@@ -100,56 +107,56 @@ Example of derived classes for a maze problem:
 
     class Maze(SearchProblem):
         ...
-        
+
     class MazeNode(Node):
         ...
 
 2) Implement methods in derived classes:
 ------------------------------------------------------------------------------
 
-    __init__() in SearchProblem() derived class: 
+    __init__() in SearchProblem() derived class:
 
         * Method TO BE IMPLEMENTED with specific initialization code
         * Must call super().__init__()
         * Has to define, according to specific search problem:
             start_node
-            goal_node            
+            goal_node
         * May need to define other relevant attributes specific to problem
-    
-    
-    show_solution() in SearchProblem() derived class: 
-    
-        * CAN be USED AS SI, or OVERRIDDEN to modify output format. 
-        Shows the solution to the problem.
-        
-        
-    __init__() in Node() derived class: 
-        * MAY need to be implemented to define attributes necessary for 
-        actions() and results() methods.
-        
 
-    actions() in Node() derived class: 
-        * TO BE implemented to define possible actions from a node that lead 
+
+    show_solution() in SearchProblem() derived class:
+
+        * CAN be USED AS IS, or OVERRIDDEN to modify output format.
+        Shows the solution to the problem.
+
+
+    __init__() in Node() derived class:
+        * MAY need to be implemented to define attributes necessary for
+        actions() and results() methods.
+
+
+    actions() in Node() derived class:
+        * TO BE implemented to define possible actions from a node that lead
         to other nodes in the search tree. Example: possible movements in a maze.
-    
-    
-    result() in Node() derived class: 
-        * TO BE IMPLEMENTED to return the node that results from performing 
+
+
+    result() in Node() derived class:
+        * TO BE IMPLEMENTED to return the node that results from performing
         an 'action' on self (provided by 'actions()'). Example: new position
         in a maze after a possible movement provided by 'actions()'.
-        
+
 
 3) Use this methods
 ------------------------------------------------------------------------------
 
     SearchProblem.solve()           to solve the problem
     SearchProblem.show_solution()   to show the solution
-      
-      
+
+
     show_solution() prints the solution to the problem, if it has been found.
-    it can be used as is, or overridden or enhanced in derived classes to 
+    it can be used as is, or overridden or enhanced in derived classes to
     modify the output format.
-        
+
 
 ------------------------------------------------------------------------------
 Basic usage examples:
@@ -163,21 +170,21 @@ Basic usage (example with maze problem):
 
     2.- Declare 'SearchProblem' and 'Node' subclasses for specific problem, and
         implement methods in those subclasses. For example, for a maze problem:
-    
+
             class Maze(SearchProblem):
                 __init__()
                 show_solution()
-            
+
             class MazeNode(Node)
                 __init__()     (only if specific attributes needed)
                 actions()
                 result()
-                
+
         See 'SearchProblem' and 'Node' classes docstring for details on methods
 
 
     3.- Example of basic code for maze problem:
- 
+
             maze = Maze(maze_file_path)             # create problem instance
             puzzle.solve(search_algorithm='DSF')    # solve it
             puzzle.show_solution()                  # print solution
@@ -188,24 +195,27 @@ Basic usage (example with maze problem):
 
 ============================================================================"""
 
-class SearchProblem():
+from abc import ABC, abstractmethod
+
+class SearchProblem(ABC):
     """Base class to be used as parent for specific classes representing a
     problem that can be solved by a search algorithm.
 
-    These are the implementations to be done by user in subclasses: 
-    
-        Method to be IMPLEMENTED in subclass with specific initialization code:    
+    These are the implementations to be done by user in subclasses:
+
+        Method to be IMPLEMENTED in subclass with specific initialization code:
             __init__()
 
         Method to be USED as is, OR IMPLEMENTED in subclasses with different style:
             show_solution()
-        
+
         Method to be USED in subclasses (no need of further implementation)
             solve(search_algorithm)
 
     (See description of each method for details.)
     """
 
+    @abstractmethod
     def __init__(self):
         """ Defines common attributes for search problems.
 
@@ -325,7 +335,8 @@ class SearchProblem():
             #------------------------------------------------------------------
 
             for child in child_nodes:
-                if not child in self.frontier and not child in self.explored_nodes:
+                if not child in self.frontier and \
+                   not child in self.explored_nodes:
                     self.frontier.add(child)
 
             #------------------------------------------------------------------
@@ -358,30 +369,56 @@ class SearchProblem():
             print("\nNo Solution found!")
 
 
-class Node():
+class Node(ABC):
     """Base class to be used as parent for specific classes representing a node
     in the search tree.
-    
-    These are the implementations to be done by user in subclasses: 
+
+    These are the implementations to be done by user in subclasses:
 
         Method that MAY need to be IMPLEMENTED to define attributes specific
         to search problem to be solved:
             __init__()
 
-        Methods to be IMPLEMENTED in subclass to define issues specific to 
+        Methods to be IMPLEMENTED in subclass to define issues specific to
         search problem to be solved:
             actions()
             result()
     """
 
     def __init__(self, state=None, parent=None, action=None):
-        """Initializes a node in the search tree. 
+        """Initializes a node in the search tree.
 
-        May need to be subclassed to define attributes specific to search problem.
+        This method should be overridden in a subclass to define attributes specific to the search problem.
+
+        If the 'actions()' and 'results()' methods require additional attributes, they should be defined in the subclass, and initialized in subclass __init__() method.
+
+        When overriding this method in a subclass, make sure to call super().__init__(state, parent, action) to properly initialize the base class attributes.
+
+        Args:
+            state: The state represented by the node.
+            parent: The parent node of this node.
+            action: The action that led to this node.
+
         """
         self.state = state
         self.parent = parent
         self.action = action
+
+    @abstractmethod
+    def actions(self, search_problem: SearchProblem):
+        """Returns the list of valid actions that can be performed from a given node.
+
+        Virtual: needs to be subclassed to define actions in specific search problem.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def result(self, action, search_problem: SearchProblem):
+        """Returns the node that results from performing 'action' on (self) node.
+
+        Virtual: needs to be subclassed to define actions in specific search problem.
+        """
+        raise NotImplementedError
 
 
     def expand(self, search_problem: SearchProblem):
@@ -397,25 +434,11 @@ class Node():
         return child_nodes
 
 
-    def actions(self, search_problem: SearchProblem):
-        """Returns the list of valid actions that can be performed from a given node.
-
-        Virtual: needs to be subclassed to define actions in specific search problem.
-        """
-        raise NotImplementedError
-
-
-    def result(self, action, search_problem: SearchProblem):
-        """Returns the node that results from performing 'action' on (self) node.
-        
-        Virtual: needs to be subclassed to define actions in specific search problem.
-        """
-        raise NotImplementedError
 
 
 class AuditTrail():
     """ Keeps track of every step taken in in algorithm, so that it can be shown.
-    
+
         - frontier
         - explored
         - extracted_node
@@ -430,8 +453,8 @@ class AuditTrail():
     def add_record(self, frontier, explored, extracted, expanded):
         """ Adds a record to the audit trail"""
         record = {  'frontier': frontier,
-                    'explored': explored, 
-                    'extracted': extracted, 
+                    'explored': explored,
+                    'extracted': extracted,
                     'expanded': expanded}
 
         self.audit_trail.append(record)

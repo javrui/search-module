@@ -195,7 +195,9 @@ Basic usage (example with maze problem):
 
 ============================================================================"""
 
-class SearchProblem():
+from abc import ABC, abstractmethod
+
+class SearchProblem(ABC):
     """Base class to be used as parent for specific classes representing a
     problem that can be solved by a search algorithm.
 
@@ -213,6 +215,7 @@ class SearchProblem():
     (See description of each method for details.)
     """
 
+    @abstractmethod
     def __init__(self):
         """ Defines common attributes for search problems.
 
@@ -332,8 +335,8 @@ class SearchProblem():
             #------------------------------------------------------------------
 
             for child in child_nodes:
-                if not child in self.frontier and not child in
-                    self.explored_nodes:
+                if not child in self.frontier and \
+                   not child in self.explored_nodes:
                     self.frontier.add(child)
 
             #------------------------------------------------------------------
@@ -366,7 +369,7 @@ class SearchProblem():
             print("\nNo Solution found!")
 
 
-class Node():
+class Node(ABC):
     """Base class to be used as parent for specific classes representing a node
     in the search tree.
 
@@ -401,6 +404,7 @@ class Node():
         self.parent = parent
         self.action = action
 
+    @abstractmethod
     def actions(self, search_problem: SearchProblem):
         """Returns the list of valid actions that can be performed from a given node.
 
@@ -408,7 +412,7 @@ class Node():
         """
         raise NotImplementedError
 
-
+    @abstractmethod
     def result(self, action, search_problem: SearchProblem):
         """Returns the node that results from performing 'action' on (self) node.
 

@@ -25,7 +25,9 @@ Search module implements these key concepts of uninformed search algorithm:
 
 * **Actions** (from Node): These are the possible moves or steps that can be taken from a given node to transition into neighboring states. For example, in a grid, actions might be moving up, down, left, or right.
 
-* **Expand** (node): The process of exploring a node's neighboring states by generating its successors based on possible actions. Expanding a node involves creating new nodes for each resulting state from an action.
+* **Result** (node): The node resulting from an action on a given node.
+
+* **Expand** (node): The process of exploring a node's neighboring states by generating its successors based on possible actions. Expanding a node involves creating all possible new 'Result' nodes.
 
 * **Frontier**: A collection of all nodes available to be explored. It contains the nodes that have been generated but not yet expanded. The frontier controls the order in which nodes are expanded and determines the search strategy, such as Breadth-First Search (BFS) or Depth-First Search (DFS).
 
@@ -46,3 +48,16 @@ Search algorithm in **search** module follows this steps:
     - Expand node. For each expanded node:
         - If node is not already in the frontier or the explored set:
             Add node to frontier
+
+
+## Methods in *search* module related to key concepts
+
+User of *search* module has to write these 2 methods, related to **Actions** and **Result** concepts explained above, to adapt them to the specific search problem to be solved.
+
+- **actions()**:
+Method that returns the list of valid actions that can be performed on a given node.
+
+
+- **result()**: Returns the node that results from performing 'action' on (self) node.
+
+See  [how to use search module](howto.md) for details.
