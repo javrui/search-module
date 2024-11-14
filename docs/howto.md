@@ -63,6 +63,9 @@ Example for maze search problem, where:
 
 
 ```python
+📌!!!! COPIAR DE LA INTRODUCCION AL MODULO en README.md
+
+
 from search import Node, SearchProblem
 
 class Maze(SearchProblem):
