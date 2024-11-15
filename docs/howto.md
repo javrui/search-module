@@ -1,93 +1,61 @@
 
-📌 TO DO:
-* AuditTrail parece que debería unirse de alguna forma a la clase Solution,no tiene sentido que estén seaparados.
-* Usar ABC !
+
+# How to use *search* module
+
+📌 TO DO: AuditTrail parece que debería unirse de alguna forma a la clase Solution,no tiene sentido que estén seaparados.
+
+*search* module interface consists of two base classes:
+- **SearchProblem**
+- **Node**
+
+Both have:
+- abstract methods that you have to create in derived class
+- methods that you may want to override in derived class
+
+So, you have to derive a class from each base, to:
+- **write abstract methods** to implement your problem specific details
+- **optionally override some methods** to achieve specific behavior beyond default implementation.
 
 
-## *search* module
-*search* module provides an interface of two base classes that implement  breadth-first search (BFS) and depth-first search (DFS) algorithms.
+### *SearchProblem* class interface methods:
 
-To use module, you have to create a derived class from each of those base ones and override some methods, in order to implement your problem specific details, e.g.: solving a maze, a puzzle, ..
+* **\_\_init\_\_()**
 
-## How to use *search* module
-
-Methods to be written by you to override base class ones specification:
-
-#### SearchProblem() derived class methods
-
-* **__init__()**
-
-    * MUST be implemented by you.
-    * Initializes values relevant to the specific search problem for these **attributes**:
+    * MUST be written by you in derived class (is abstract)
+    * MUST initialize values (relevant to the specific search problem) for these **attributes**:
       - **start_node**
       - **goal_node**
-    * MAY define other attributes if needed by **Node** derived class methods:
+    * MAY define other attributes if needed by **Node** abstract  methods:
       - actions()
       - result()
-    * MUST call super().__init__(), generally as first method statement.
+    * MUST call super().\_\_init\_\_(), generally as first method statement.
 
 
 * **show_solution()**
 
-    * MAY be defined, if *search* module default format for solution print needs modification, otherwise there is no need to override parent class method.
+    * MAY be written by you, if *search* module default format for solution print needs modification. Otherwise there is no need to override parent class method.
 
-#### Node() derived class methods:
+### *Node* class interface methods:
 
-* **__init__()**
+* **\_\_init\_\_()**
 
-    * Needed only in case it is necessary to initialize attributes needed by Node derived class methods:
+    * MAY be written by you, if problem specific attributes need to be initialized to be used by *Node* abstract methods:
         - actions()
         - result()
-    * if defined, MUST call super().init(), generally as first method statement.
+    * if defined, MUST call super().\_\_init\_\_(), generally as first statement in this method.
 
 
 * **actions()**
-    * MUST be implemented by you.
-    * Defines possible actions from a node that lead to other nodes in the search tree. (Example: possible movements in a maze.)
+    * This method MUST be written by you.
+    * returns the list of valid actions that can be performed on a given node.
+    * Example: movements available in a maze from a given node.
 
 
 * **result()**
-    * MUST be implemented by you.
-    * Returns the node that results from performing an 'action' on self (provided by 'actions()'). Example: new position in a maze after a possible movement provided by 'actions()'.
+    * This method MUST be written by you.
+    * Returns the node that results from performing 'action' on (self) node.
+    * Example: new position in a maze after a movement provided by 'actions()'.
 
 
-### 3.- Basic usage example
-
-📌 TO DO: REVISAR parametros de metodos, cambian:
-REVISAR el resultado en real!!
-
-
-Example for maze search problem, where:
-  - *SearchProblem* derived user class is named *Maze*
-  - *Node* derived user class is named *MazeNode*
-
-
-```python
-📌!!!! COPIAR DE LA INTRODUCCION AL MODULO en README.md
-
-
-from search import Node, SearchProblem
-
-class Maze(SearchProblem):
-    def __init__():
-        ...
-    def show_solution():
-        ...
-
-class MazeNode(Node):
-    def actions():
-        ...
-    def result():
-        ...
-
-maze = Maze(<maze_file_path>)
-
-try:
-    maze.solve('BSF')
-except ValueError as e:
-    print(e)
-else:
-    maze.show_solution()
-```
 
 To see complete code of maze solving example, please visit [maze](../maze/maze.py)

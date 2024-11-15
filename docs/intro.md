@@ -8,12 +8,14 @@ A search problem refers to a class of problems in the field of Artificial Intell
 ## Generic uninformed search algorithm
 A generic uninformed search algorithm is a strategy for exploring a problem space without prior knowledge of the goal's location. Instead of relying on domain-specific information, uninformed search uses only the structure of the problem to navigate through the state space.
 
-Algorithms like Breadth-First Search (BFS) and Depth-First Search (DFS) are classic examples fo uninformed searching algorithms. **search** module implements both of them.
+Algorithms like Breadth-First Search (BFS) and Depth-First Search (DFS) are classic examples fo uninformed searching algorithms. *search* module implements both of them.
 
 
-## Key concepts
+## search algorithm key concepts
+The following concepts are key to define search algorithms.
+All of them are implemented in *search* module for you, except for **actions** and **result**, which you will have to code in order to set constraints that define the problem environment.
 
-Search module implements these key concepts of uninformed search algorithm:
+Key concepts:
 
 * **State**: Represents a specific configuration or condition within the problem space. For example, in a maze, each position within the maze could be considered a unique state.
 
@@ -35,7 +37,7 @@ Search module implements these key concepts of uninformed search algorithm:
 
 
 ## Algorithm steps
-Search algorithm in **search** module follows this steps:
+Search algorithms im plemented in **search** module follow this steps:
 
 - Start with a 'frontier' that contains the initial state.
 - Start with an empty 'explored set'.
@@ -48,16 +50,3 @@ Search algorithm in **search** module follows this steps:
     - Expand node. For each expanded node:
         - If node is not already in the frontier or the explored set:
             Add node to frontier
-
-
-## Methods in *search* module related to key concepts
-
-User of *search* module has to write these 2 methods, related to **Actions** and **Result** concepts explained above, to adapt them to the specific search problem to be solved.
-
-- **actions()**:
-Method that returns the list of valid actions that can be performed on a given node.
-
-
-- **result()**: Returns the node that results from performing 'action' on (self) node.
-
-See  [how to use search module](howto.md) for details.

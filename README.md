@@ -11,40 +11,36 @@ Python module for search problems solving
 ## ✨Overview
 📌 TO DO: esto no me gusta como queda:
 
-This module provides two abstract base classes to solve search problems using Breadth-First Search and Depth-First Search algorithms.
+This module provides two abstract base classes to be used for search problems solving, using Breadth-First or Depth-First Search algorithms.
 
-Users of this module are expected to subclass those base classes and implement its abstract methods to create specific problem logic.
+Users of this module are expected to subclass those base classes to write its abstract methods according to the search problem specific logic.
 
-
- ...
 
 
 
 ## 🚀 Basic usage
-Example of maze solving: user creates 2 derived classes to implement 5 abstract methods, and solves maze just calling **solve()**:
+Example of maze problem solving. User writes abstract methods of derived classes (Maze and MazeNode), and solves maze just calling **solve()**:
 
     from search import Node, SearchProblem
 
-    # Create subclasses and write abstract methods logic:
     class Maze(SearchProblem):
-        def __init__():
-           # Custom implementation here
+         def __init__():
+            # Maze specific implementation here
 
-        def show_solution():
-           # Custom implementation here
+         def show_solution():
+            # Maze specific implementation here
 
     class MazeNode(Node)
-        def __init__():
-           # Custom implementation here
+         def __init__():
+            # Maze specific implementation here
 
-        def actions():
-           # Custom implementation here
+         def actions():
+            # Maze specific implementation here
 
-        def result():
-           # Custom implementation here
+         def result():
+            # Maze specific implementation here
 
 
-    # create problem instance, solve it and show solution:
     maze = Maze(<maze_file_path>)
     maze.solve(search_algorithm='DSF')
     maze.show_solution()
@@ -100,12 +96,12 @@ Instructions for running the test
     pytest tests/
 
 
-##  🙏 Credits:
-
-This project is a based on code from [HarvardX:CS50’s Introduction to Artificial Intelligence with Python course](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python) refactored to use object-oriented design.
-
-
 ## ⚖️ License
 
 Mentioned Harvard course code is published under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) [license](LICENSE.md)
 
+
+
+##  🙏 Credits:
+
+This project is a based on code from [HarvardX:CS50’s Introduction to Artificial Intelligence with Python course](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python) refactored to use object-oriented design and abstract base clases.
