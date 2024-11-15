@@ -423,8 +423,6 @@ class Node(ABC):
         return child_nodes
 
 
-
-
 class AuditTrail():
     """ Keeps track of every step taken in in algorithm, so that it can be shown.
 
