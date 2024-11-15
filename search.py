@@ -1,24 +1,13 @@
 """================================================================ JRM 2024.02
 Module: search
-Module that defines classes to be used for solving search problems.
+Provides foundational classes to solve search problems using uninformed search
+algorithms BFS and DFS
 ==============================================================================
 
 ***
 TODO: AuditTrail parece que debería unirse de alguna forma a la clase Solution,
 no tiene sentido que estén seaparados. ¿O Solution no es publica?
 ***
-TODO:
-En GitHub, una acprta explicando con markdown este proyecto de Search:
-- origen (curso)
-- codigo original del curso (copiarlo)
-- mi codigo de search
-- explicación de codigo search
-- ejemplos de uso:
-    maze
-    puzzle
-    ¿sokoban?
-***
-
 ------------------------------------------------------------------------------
 This module
 ------------------------------------------------------------------------------
@@ -78,11 +67,11 @@ algorithm iteration):
         • If node is not already in the frontier or the explored set:
             Add node to frontier
 
-This code implements two uninformed search algorithms (BSF and DSF).The kind of
+This code implements two uninformed search algorithms: BFS and DFS.The kind of
 data structures used as frontier, defines the search algorithm:
 
-    stack for Breadth-First Search (BSF)
-    queue for Depth-First Search (DSF).
+    stack for Breadth-First Search (BFS)
+    queue for Depth-First Search (DFS).
 
 
 
@@ -186,7 +175,7 @@ Basic usage (example with maze problem):
     3.- Example of basic code for maze problem:
 
             maze = Maze(maze_file_path)             # create problem instance
-            puzzle.solve(search_algorithm='DSF')    # solve it
+            puzzle.solve(search_algorithm='DFS')    # solve it
             puzzle.show_solution()                  # print solution
 
 
@@ -244,7 +233,7 @@ class SearchProblem(ABC):
 
         Args:
             search_algorithm (str): The search algorithm to use.
-                                    Defaults to 'BSF'. 'DSF' also available.
+                                    Defaults to 'BFS'. 'DFS' also available.
             audit_trail (bool): If True, keeps track of state changes steps
         Raises:
             Exception: If an unknown search algorithm is specified.
@@ -270,9 +259,9 @@ class SearchProblem(ABC):
         # defines (empty) frontier according to search_algorithm
         #----------------------------------------------------------------------
         match search_algorithm:
-            case 'BSF':
+            case 'BFS':
                 self.frontier = _StackFrontier()
-            case 'DSF':
+            case 'DFS':
                 self.frontier = _QueueFrontier()
             case _:
                 raise ValueError(f"Unknown search algorithm: {search_algorithm}")
@@ -608,7 +597,7 @@ class _QueueFrontier(_Frontier):
     """Defines a frontier for Depth First Search, using a queue (FIFO)"""
 
     def add(self, node):
-        """ insert a node in the (first place of) frontier (DSF)"""
+        """ insert a node in the (first place of) frontier (DFS)"""
 
         self.frontier.append(node)
 

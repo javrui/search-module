@@ -5,7 +5,7 @@
 - [Introduction to AI search problem](intro.md)
   * Search problem and AI
   * Generic uninformed search algorithm
-  * Key concepts
+  * Search algorithm key concepts
   * Algorithm steps
 
 

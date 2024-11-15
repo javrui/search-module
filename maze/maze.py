@@ -221,7 +221,7 @@ if __name__ == '__main__':
 
     maze = Maze(maze_file_path, explain=False)
 
-    for algorithm in ['BSF', 'DSF', ]:
+    for algorithm in ['BFS', 'DFS', ]:
         try:
             maze.solve(algorithm, audit_trail=True)
         except ValueError as e:

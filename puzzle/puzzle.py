@@ -241,7 +241,7 @@ if __name__ == '__main__':
 
     puzzle = SlidingPuzzle(initial_grid_filename_arg, goal_grid_filename_arg)
 
-    for algorithm in ['BSF', 'DSF', ]:
+    for algorithm in ['BFS', 'DFS', ]:
         try:
             puzzle.solve(algorithm, audit_trail=True)
         except ValueError as e:

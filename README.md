@@ -41,7 +41,7 @@ Once abstract methods of derived classes (Maze and MazeNode) are defined, maze s
 
 
     maze = Maze(<maze_file_path>)
-    maze.solve(search_algorithm='DSF')
+    maze.solve(search_algorithm='DFS')
     maze.show_solution()
 
 

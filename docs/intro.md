@@ -12,7 +12,7 @@ A generic uninformed search algorithm is a strategy for exploring a problem spac
 Algorithms like Breadth-First Search (BFS) and Depth-First Search (DFS) are classic examples fo uninformed searching algorithms. *search* module implements both of them.
 
 
-## search algorithm key concepts
+## Search algorithm key concepts
 The following concepts are key to define search algorithms.
 All of them are implemented in *search* module for you, except for **actions** and **result**, which you will have to code in order to set constraints that define the problem environment.
 
@@ -51,3 +51,9 @@ Search algorithms im plemented in **search** module follow this steps:
     - Expand node. For each expanded node:
         - If node is not already in the frontier or the explored set:
             Add node to frontier
+
+
+This code implements two uninformed search algorithms (BFS and DFS).The kind of data structures used as frontier, defines the search algorithm:
+
+- stack: Breadth-First Search (BFS)
+- queue: Depth-First Search (DFS).
