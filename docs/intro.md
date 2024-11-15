@@ -20,7 +20,7 @@ Key concepts:
 
 * **State**: Represents a specific configuration or condition within the problem space. For example, in a maze, each position within the maze could be considered a unique state.
 
-* **Node**: A data structure representing a state in the search process, including additional information such as its parent node (where it came from) and the path cost to reach it.
+* **Node**: A data structure representing a state in the search process, including additional information such as its parent node (where it came from).
 
 * **Initial State**: The starting point or beginning configuration of the search. The algorithm starts exploring from this state to find a path to the goal state.
 
@@ -30,7 +30,7 @@ Key concepts:
 
 * **Result** (node): The node resulting from an action on a given node.
 
-* **Expand** (node): The process of exploring a node's neighboring states by generating its successors based on possible actions. Expanding a node involves creating all possible new 'Result' nodes.
+* **Expand** (node): The process of exploring a node's neighboring states by generating its successors (*'Result'*) based on possible *'Actions'*.
 
 * **Frontier**: A collection of all nodes available to be explored. It contains the nodes that have been generated but not yet expanded. The frontier controls the order in which nodes are expanded and determines the search strategy, such as Breadth-First Search (BFS) or Depth-First Search (DFS).
 
