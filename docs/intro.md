@@ -1,5 +1,6 @@
 # Introduction to search problem
 
+This section explains key concepts implemented in *search* module. You will have to write the methods that implement 'Actions' and 'Result' concepts, adapted to your particular problem environment.
 
 ## Search problem and AI
 A search problem refers to a class of problems in the field of Artificial Intelligence (AI) and computer science where the objective is to find a sequence of **actions** or steps that lead from an **initial state** to a **goal state**  within a problem space. The problem space consists of various states, transitions (actions), and constraints that define the problem environment.

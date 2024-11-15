@@ -1,5 +1,6 @@
 # search
-Python module for search problems solving
+
+This Python module provides foundational classes to solve search problems using uninformed search algorithms, specifically Breadth-First Search (BFS) and Depth-First Search (DFS).
 
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg)
@@ -11,15 +12,13 @@ Python module for search problems solving
 ## ✨Overview
 📌 TO DO: esto no me gusta como queda:
 
-This module provides two abstract base classes to be used for search problems solving, using Breadth-First or Depth-First Search algorithms.
-
-Users of this module are expected to subclass those base classes to write its abstract methods according to the search problem specific logic.
-
+This module interface is two abstract base classes. You have to write a problem-specific class derived from each, to write its abstract methods according to the search problem specific logic.
 
 
 
 ## 🚀 Basic usage
-Example of maze problem solving. User writes abstract methods of derived classes (Maze and MazeNode), and solves maze just calling **solve()**:
+Example of basic maze solving script.
+Once abstract methods of derived classes (Maze and MazeNode) are defined, maze solving is just calling **solve()** and showing result with **show_solution()** methods:
 
     from search import Node, SearchProblem
 

@@ -9,7 +9,7 @@
   * Algorithm steps
 
 
-- [how to use search module](howto.md)
+- [how to use search module](howtouse.md)
   * Methods in *search* module related to key concepts
 
 - [API specification](api.md)
