@@ -163,12 +163,9 @@ class Node(ABC):
         return child_nodes
 
 
-
-
 class AuditTrail():
 
     def __init__(self):
-        """ Implemented as list (of dictionaries)"""
         self.audit_trail = []
 
 
@@ -251,7 +248,6 @@ class _ExploredNodes():
 
 
 class _Frontier():
-
 
     def __init__(self):
 
