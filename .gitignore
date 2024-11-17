@@ -3,6 +3,12 @@ old/
 Original code/
 __pycache__/
 
+# Para los temporales/backup del editor:
+*~
+
+.vscode/
+.venv/
+
 # Los incluyo de momento por si hay textos útiles:
 docs/algorithm.md
 docs/README_cd50.md

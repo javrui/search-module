@@ -3,10 +3,15 @@ old/
 Original code/
 __pycache__/
 
+*.py~
+*~
+
+.vscode/
+.venv/
+
 # Los incluyo de momento por si hay textos útiles:
 docs/algorithm.md
 docs/README_cd50.md
-
 
 
 # En este directorio voy a depurar search.py

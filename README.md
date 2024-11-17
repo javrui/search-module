@@ -46,7 +46,7 @@ Once abstract methods of derived classes (Maze and MazeNode) are defined, maze s
 
 
 ## features
-Object-Oriented Design, Interface Methods and Encapsulation, Abstract Base Classes (ABC), Modularity and Extensibility to add search algorithms (e.g.: informed search algorithms), debug mode to trace solving steps.
+Object-Oriented Design, Interface Methods and Encapsulation, Abstract Base Classes (ABC),  type hinting using *typing* module, Modularity and Extensibility to add search algorithms (e.g.: informed search algorithms), debug mode to trace solving steps.
 [enhanced in documentation](docs/features.md)
 
 

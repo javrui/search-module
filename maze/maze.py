@@ -1,29 +1,11 @@
 """================================================================ JRM 2024.02
-Python script that finds maze exit using search algorithms
-
+Python script that finds maze exit using 'search' module
 
 Usage:
     python3 maze.py <maze .txt file path>
 
 Dependencies:
     search module
-
-
-
-
-
-Algorithm implemented:
-
-• Start with a frontier that contains the initial state.
-• Start with an empty explored set.
-• Repeat:
-    • If the frontier is empty, then no solution.
-    • Remove a node from the frontier.
-    • If node contains goal state, return the solution.
-    • Add the node to the explored set.
-    • Expand node
-    • Add resulting nodes to the frontier if they aren't already in the frontier or the explored set.
-
 
 ===============================================================================
 Maze layout must be utf-8 text file (.txt) to be supplied as argument, where:
@@ -41,8 +23,7 @@ class Maze(SearchProblem):
     """Defines a maze object to be solved by search algorithms."""
 
     def __init__(self, filename, start_char='A', goal_char='B',
-                 path_char=' ', solution_char='*', frontier_char='F',
-                 explain=False):
+                 path_char=' ', solution_char='*', explored_char = '·'):
         """Reads maze definition (including and initial and goal states) from
         utf-8 file 'filename' to initialize a maze object.
 
@@ -51,10 +32,8 @@ class Maze(SearchProblem):
         """
         super().__init__()
 
-        #----------------------------------------------------------------------
+        self.filename = filename
         # Attributes specific to Maze:
-        #----------------------------------------------------------------------
-
         self.height = None      # Number of rows in the maze
         self.width = None       # Number of columns in the maze
         self.walls = None       # walls in the maze as boolean list of lists
@@ -72,14 +51,12 @@ class Maze(SearchProblem):
         self.goal_char = goal_char  # goal_char = end point character in file
         self.path_char = path_char # path_char = open path character in file
 
-        self.solution_char = solution_char  # solution_char = character to mark solution path
-        self.frontier_char = frontier_char  # goal_char = end point character in file
+        # Solution path and explored nodes
+        self.solution_char = solution_char  # character to mark solution path
+        self.explored_char = explored_char  # character to mark explored nodes
 
-        self.explain = explain  # Print explanations of the search process
 
-        #----------------------------------------------------------------------
         # Read file and check start and goal points exist
-        #----------------------------------------------------------------------
         try:
             with open(filename, encoding="utf-8") as f:
                 contents = f.read()
@@ -91,20 +68,12 @@ class Maze(SearchProblem):
         if contents.count(self.goal_char) != 1:
             raise ValueError("maze must have exactly one goal")
 
-
-        #----------------------------------------------------------------------
         # Define height and width of maze (ignores empty lines)
-        #----------------------------------------------------------------------
         contents = [line for line in contents.splitlines() if line.strip('\n')]
-
         self.height = len(contents)
         self.width = max(len(line) for line in contents)
 
-        #----------------------------------------------------------------------
-        # Define
-        #   - walls (list of lists of booleans (wall present -0 True)
-        #   - start_node and goal_node
-        #----------------------------------------------------------------------
+        # walls is a list of lists of booleans (wall present == True)
         self.walls = []
         for i in range(self.height):
             row = []
@@ -127,12 +96,12 @@ class Maze(SearchProblem):
 
 
     def show_solution(self):
-        """Prints the maze and its solution. Also returns it as string"""
+        """Prints the maze and its solution.
+        Returns:
+            Maze layout and solution as string.
+        """
 
-        if self.solution is None:
-            print("No Solution found!")
-
-
+        # Generate maze layout, with solution path if exists
         string = "\n"
         for i, row in enumerate(self.walls):
             for j, col in enumerate(row):
@@ -146,16 +115,30 @@ class Maze(SearchProblem):
                 elif self.solution and position in self.solution:
                     string += self.solution_char
                 elif self.solution and position in self.explored_nodes:
-                    string += '·'
+                    string += self.explored_char
                 else:
                     string += self.path_char
             string += '\n'
 
-        print("Nodes Explored: ", self.nodes_explored)
+        print(30*'-')
+        print(f"- Solving: {self.filename}")
+        print(f"- Algorithm: {self.algorithm}")
+        print(f"- Nodes explored: {len(self.explored_nodes)}")
+        print(f"- Solution steps: {len(self.solution) if self.solution else '-'}")
+
+        if self.solution is None:
+            print("- Solution: No Solution found!")
+        else:
+            print("- Solution:")
         print(string)
 
         return string # in case we want to use it in a GUI
 
+
+    def show_algorithm_steps(self):
+        if self.algorithm_steps_record.not_empty():
+            print("- Algorithm steps:")
+            self.algorithm_steps_record.show()
 
 class MazeNode(Node):
     """ Node is mainly the position in the maze. Also previous position +
@@ -199,7 +182,6 @@ class MazeNode(Node):
 
         return MazeNode(state=new_position, parent=self, action=action)
 
-
     def __repr__(self) -> str:
         """Simple view omitting details"""
         return f"{self.state}'{self.action}'"
@@ -209,28 +191,20 @@ if __name__ == '__main__':
     # Test for maze.py
 
     if len(sys.argv) != 2:
-        sys.exit("Usage: python maze.py <utf-8 maze file (.txt)>")
+        sys.exit("Usage: python maze.py <path to utf-8 .txt maze layout file>")
 
     maze_filename = sys.argv[1]
-    MAZE_DIRECTORY = "mazes"
-    maze_file_path = os.path.join(MAZE_DIRECTORY, maze_filename)
 
-    if not os.path.exists(maze_file_path):
-        print(f"File '{maze_filename}' not found in directory '{MAZE_DIRECTORY}'")
+    if not os.path.exists(maze_filename):
+        print(f"File '{maze_filename}' not found")
         sys.exit(1)
 
-    maze = Maze(maze_file_path, explain=False)
+    maze = Maze(maze_filename)
 
-    for algorithm in ['BFS', 'DFS', ]:
-        try:
-            maze.solve(algorithm, audit_trail=True)
-        except ValueError as e:
-            print(e)
-            sys.exit(1)
-        else:
-            print(f"\nSolving maze '{maze_filename}' with {algorithm} algorithm:")
-            maze.show_solution()
+    maze.solve('BFS', record_algorithm_steps=False)
+    maze.show_solution()
+    maze.show_algorithm_steps()
 
-            print(100*'=')
-            print("Algorithm steps:")
-            maze.audit_trail.show()
+    maze.solve('DFS', record_algorithm_steps=True)
+    maze.show_solution()
+    maze.show_algorithm_steps()
