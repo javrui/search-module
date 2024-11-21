@@ -3,7 +3,6 @@ old/
 Original code/
 __pycache__/
 aux_notes/
-Not_In_GitHub/
 
 # Para los temporales/backup del editor:
 *~
@@ -18,6 +17,9 @@ docs/README_cd50.md
 
 # En este directorio voy a depurar search.py
 search_depuration/
+
+
+maze/dinamic_maze.py
 
 
 

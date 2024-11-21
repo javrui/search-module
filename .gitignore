@@ -18,6 +18,9 @@ docs/README_cd50.md
 # En este directorio voy a depurar search.py
 search_depuration/
 
+# Programa para mostrar laberinto dinamicamente
+maze/dinamic_maze.py
+
 
 
 

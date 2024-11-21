@@ -17,7 +17,6 @@ Maze layout must be utf-8 text file (.txt) to be supplied as argument, where:
 import sys
 from search import Node, SearchProblem
 
-
 class Maze(SearchProblem):
     """Defines a maze object to be solved by search algorithms."""
 
@@ -31,7 +30,23 @@ class Maze(SearchProblem):
         """
         super().__init__()
 
-        self.filename = filename    # name of utf-8 text file defining maze
+        # name of utf-8 text file defining maze
+        self.filename = filename
+
+        # Characters thar define maze in file.txt
+        # (wall_character = any other character in file)
+        self.start_char = start_char # start_char = start point character in file
+        self.goal_char = goal_char  # goal_char = end point character in file
+
+        self.path_char = path_char # path_char = open path character in file
+
+        # Solution path and explored nodes
+        self.solution_char = solution_char  # character to mark solution path
+        self.explored_char = explored_char  # character to mark explored nodes
+
+        # Maze layout: (True value -> wall, False value -> open path))
+        self.walls = []
+
         self.height = None      # Number of rows in the maze
         self.width = None       # Number of columns in the maze
         self.walls = None       # walls in the maze as boolean list of lists
@@ -43,24 +58,16 @@ class Maze(SearchProblem):
                         "left": (0, -1) # left
         }
 
-        # Characters thar define maze in file.txt
-        # wall_character = any other character in file
-        self.start_char = start_char # start_char = start point character in file
-        self.goal_char = goal_char  # goal_char = end point character in file
+        self._load_maze_from_file()
 
-        self.path_char = path_char # path_char = open path character in file
-
-        # Solution path and explored nodes
-        self.solution_char = solution_char  # character to mark solution path
-        self.explored_char = explored_char  # character to mark explored nodes
-
-
+    def _load_maze_from_file(self):
+        """."""
         # Read file and check start and goal points exist
         try:
-            with open(filename, encoding="utf-8") as f:
+            with open(self.filename, encoding="utf-8") as f:
                 contents = f.read()
         except FileNotFoundError:
-            sys.exit(f"File '{filename}' not found.")
+            sys.exit(f"File '{self.filename}' not found.")
 
         if contents.count(self.start_char) != 1:
             raise ValueError("maze must have exactly one start point")
@@ -68,12 +75,13 @@ class Maze(SearchProblem):
             raise ValueError("maze must have exactly one goal")
 
         # Define height and width of maze (ignores empty lines)
-        contents = [line for line in contents.splitlines() if line.strip('\n')]
+        contents = [line for line in contents.splitlines()
+                    if line.strip('\n')]
         self.height = len(contents)
         self.width = max(len(line) for line in contents)
 
-        # walls is a list of lists of booleans (wall present == True)
         self.walls = []
+        # Creates wall values
         for i in range(self.height):
             row = []
             for j in range(self.width):
@@ -88,7 +96,7 @@ class Maze(SearchProblem):
                         row.append(False)
                     else:
                         row.append(True)
-                except IndexError:      # Admits lines shorter than the longest
+                except IndexError:
                     row.append(False)
 
             self.walls.append(row)
@@ -138,7 +146,6 @@ class Maze(SearchProblem):
         print(string)
 
         return string # in case we want to use it in a GUI
-
 
     def show_algorithm_steps(self):
         if self.algorithm_log.not_empty():
