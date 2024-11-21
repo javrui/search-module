@@ -22,30 +22,24 @@ class SearchProblem(ABC):
         self.start_node: Optional[Node] = None
         self.goal_node: Optional[Node] = None
 
-        self._initialize_search_components()
-
-    def _initialize_search_components(self):
         self.algorithm = None
         self.frontier = _Frontier()
         self.explored_nodes = _ExploredNodes()
         self.solution = _Solution()
-        self.algorithm_log = _LogHandler()
+        self.algorithm_steps_record = None
 
-    def solve(self, search_algorithm='BFS', keep_algorithm_log=False):
+
+    def solve(self, search_algorithm='BFS', record_algorithm_steps=False):
         """
         Solve the search problem using BFS or DFS algorithms.
 
-        This method initializes the search components (frontier, explored
-        nodes, solution) And executes either Breadth-First Search (BFS) or
-        Depth-First Search (DFS) to find a path from the initial state to
-        the goal state.
+        This method initializes the search components (frontier, explored nodes, solution) And executes either Breadth-First Search (BFS) or Depth-First Search (DFS) to find a path from the initial state to the goal state.
 
         Args:
             search_algorithm (str, optional): The search strategy to use.
                 Must be either 'BFS' or 'DFS'. Defaults to 'BFS'.
-            keep_algorithm_log (bool, optional): If True, maintains
-            detailed algorithm execution log including frontier state,
-            explored nodes, and node expansion sequence BEFORE each node expansion.
+            record_algorithm_steps (bool, optional): If True, maintains detailed algorithm execution log including frontier state, explored nodes,
+            and node expansion sequence BEFORE each node expansion.
 
         Returns:
             bool: True if a solution is found, False otherwise.
@@ -55,12 +49,17 @@ class SearchProblem(ABC):
 
         """
         # New solution needs initialization:
-
-        self._initialize_search_components()
         self.algorithm = search_algorithm
+        self.frontier = _Frontier()
+        self.explored_nodes = _ExploredNodes()
+        self.solution = _Solution()
+        self.algorithm_steps_record = _AlgorithmLog()
 
-        if keep_algorithm_log is True:
-            self.algorithm_log = _LogHandler()
+        if record_algorithm_steps is True:
+            frontier_record = None
+            explored_record = None
+            extracted_record = None
+            expanded_record = None
 
         # Initialize the frontier based on the search algorithm type
         if search_algorithm == 'BFS':
@@ -76,20 +75,23 @@ class SearchProblem(ABC):
         # Keep searching until solution is found or frontier is empty
         while self.frontier.not_empty():
 
-            self.algorithm_log.add_to_record(keep_algorithm_log,
-                frontier=self.frontier.copy(),
-                explored=self.explored_nodes.copy()
-            )
+            if record_algorithm_steps is True:
+                # records values BEFORE node extraction
+                frontier_record = self.frontier.copy()
+                explored_record = self.explored_nodes.copy()
 
             # Extract node from frontier
             extracted_node = self.frontier.extract()
-            self.algorithm_log.add_to_record(keep_algorithm_log,
-                extracted=extracted_node)
+            if record_algorithm_steps is True:
+                extracted_record = extracted_node
 
-            # Finished?
+            # If node is the goal, trace back the solution an return
             if extracted_node.state == self.goal_node.state:
-                self.solution.build(extracted_node)
-                self.algorithm_log.save_record(keep_algorithm_log)
+                node = extracted_node
+                while node.parent is not None:
+                    self.solution.add_node(node)
+                    node = node.parent
+                self.solution.reverse_nodes()
                 return True
 
             # Mark the node as explored
@@ -98,13 +100,17 @@ class SearchProblem(ABC):
             # Expand node and add children to the frontier
             # if not already in frontier or explored set
             child_nodes = extracted_node.expand(self)
-            self.algorithm_log.add_to_record(keep_algorithm_log,
-                expanded=child_nodes)
+            if record_algorithm_steps is True:
+                expanded_record = child_nodes
             for child in child_nodes:
                 if child not in self.frontier and child not in self.explored_nodes:
                     self.frontier.add_node(child)
 
-            self.algorithm_log.save_record(keep_algorithm_log)
+            if record_algorithm_steps is True:
+                self.algorithm_steps_record.add_record(
+                    frontier_record, explored_record,
+                    extracted_record, expanded_record
+                )
 
         # If no solution found
         self.solution = None
@@ -183,11 +189,6 @@ class Node(ABC):
             Node: The resulting node after the action.
         """
 
-    def node_action(self):
-        return self.action
-
-    def node_state(self):
-        return self.state
 
     def expand(self, search_problem: SearchProblem):
         """
@@ -212,71 +213,72 @@ class Node(ABC):
             child_nodes.append(expanded)
         return child_nodes
 
-    def __eq__(self, other):
-        if not isinstance(other, Node):
-            return NotImplemented
-        return self.state == other.state
 
-    def __hash__(self):
-        return hash(self.state)
-
-
-class _NodeContainer(ABC):
-
-    def __init__(self):
-        self.nodes = None
-
-    def __contains__(self, element):
-        if isinstance(element, Node):
-            return element in self.nodes
-        elif isinstance(element, tuple):
-            return any(element == nd.state for nd in self.nodes)
-        else:
-            raise ValueError("Element must be a Node or a tuple (state)")
-
-    def __iter__(self):
-        return iter(self.nodes)
-
-    def __repr__(self) -> str:
-        return f"{[node.state for node in self.nodes]}"
-
-    def __len__(self):
-        return len(self.nodes)
-
-    def not_empty(self):
-        return len(self.nodes) > 0
-
-    def copy(self):
-        copied = self.__class__()  # Create a new instance of the same class
-        copied.nodes = self.nodes.copy()  # Copy the nodes
-        return copied
-
-
-
-class _ExploredNodes(_NodeContainer):
+class _ExploredNodes:
     """
     Represents the set of explored nodes in the search.
     """
 
     def __init__(self):
-        self.nodes = set()
+        self.explored_nodes = set()
+
+    def __contains__(self, element):
+        if isinstance(element, Node):
+            return any(element.state == nd.state for nd in self.explored_nodes)
+        elif isinstance(element, tuple):
+            return any(element == nd.state for nd in self.explored_nodes)
+        else:
+            raise ValueError("Element must be a Node or a tuple (state)")
+
+    def __iter__(self):
+        return iter(self.explored_nodes)
+
+    def __repr__(self) -> str:
+        return f"{[node.state for node in self.explored_nodes]}"
+
+    def __len__(self):
+        return len(self.explored_nodes)
 
     def add_node(self, node):
-        self.nodes.add(node)
+        self.explored_nodes.add(node)
 
-class _Frontier(_NodeContainer):
+    def copy(self):
+        return self.explored_nodes.copy()
+
+
+class _Frontier():
     """
     Represents the frontier in a search, i.e., nodes yet to be explored.
     """
 
     def __init__(self):
-        self.nodes = []
+        self.frontier = []
+
+    def __iter__(self):
+        return iter(self.frontier)
+
+    def __contains__(self, element):
+        if isinstance(element, Node):
+            return any(element.state == nd.state for nd in self.frontier)
+        elif isinstance(element, tuple):
+            return any(element == nd.state for nd in self.frontier)
+        else:
+            raise ValueError("Element must be a Node or a tuple (state)")
+
+    def __repr__(self) -> str:
+        return f"{[node.state for node in self.frontier]}"
 
     def add_node(self, node):
-        self.nodes.append(node)
+        self.frontier.append(node)
+
+    def not_empty(self):
+        return len(self.frontier) > 0
 
     def extract(self):
         raise NotImplementedError
+
+    def copy(self):
+        return self.frontier.copy()
 
 
 class _StackFrontier(_Frontier):
@@ -285,7 +287,7 @@ class _StackFrontier(_Frontier):
     """
     def extract(self):
         if self.not_empty():
-            return self.nodes.pop()
+            return self.frontier.pop()
         else:
             raise RuntimeError("Trying to extract node from an empty frontier")
 
@@ -297,96 +299,95 @@ class _QueueFrontier(_Frontier):
 
     def extract(self):
         if self.not_empty():
-            return self.nodes.pop(0)
+            return self.frontier.pop(0)
         else:
             raise RuntimeError("Trying to extract node from an empty frontier")
 
 
-class _Solution (_NodeContainer):
+class _Solution:
     """
-    List of nodes that form the solution path.
+    Represents the solution found by the search algorithm.
     """
 
     def __init__(self):
-        self.nodes = []
+        self.solution = []
 
-    def build (self, goal_node):
-        """Builds the solution path from the goal node back to the start node.
-        Args:
-            goal_node (_type_): _description_
+    def __contains__(self, state):
+        return any(state == nd.state for nd in self.solution)
+
+    def __repr__(self) -> str:
+        return f"{[node.state for node in self.solution]}"
+
+    def __iter__(self):
+        return iter(self.solution)
+
+    def __len__(self):
+        return len(self.solution)
+
+    def add_node(self, node):
+        self.solution.append(node)
+
+    def reverse_nodes(self):
+        self.solution.reverse()
+
+
+class _AlgorithmLog:
+    """
+    Keeps a record of frontier, explored set, node extracted and nodes
+    generated when expanded in algorithm solving, for didactic purposes.
+
+    Generated every time solve() method is called with record_algorithm_steps=True.
+    """
+
+    def __init__(self):
+        self.algorithm_steps = []
+
+    def add_record(self, frontier, explored, extracted, expanded):
         """
-        node = goal_node
-        while node is not None:
-            self.nodes.append(node)
-            node = node.parent
-        self.nodes.reverse()
+        Add a record to algorithm steps log.
 
-
-class _LogHandler():
-
-    def __init__(self):
-        # Initialize an empty log and a temporary record for staging entries
-        self.log = []
-        self.current_record = {}
-
-    def add_to_record(self, generate_logs, frontier=None, explored=None, extracted=None, expanded=None):
-
-        if generate_logs is False:
-            return
-
-        # Define a dictionary mapping parameter names to expected types
-        params = {
-            'frontier': (frontier, _Frontier),
-            'explored': (explored, _ExploredNodes),
-            'extracted': (extracted, Node),
-            'expanded': (expanded, list)
-        }
-
-        # Iterate over each parameter to validate and update the record
-        for key, (value, expected_type) in params.items():
-            if value is not None:
-                if isinstance(value, expected_type):
-                    self.current_record[key] = value
-                else:
-                    raise ValueError(f"Invalid {key}: {value}. "
-                        f"Must be an instance of {expected_type.__name__}.")
-
-    def save_record(self, generate_logs):
-
-        if generate_logs is False:
-            return
-        # Add a copy of the current record to the log
-        self.log.append(self.current_record.copy())
-
-        # Clear the current record for the next set of entries
-        self.current_record.clear()
-
-    def get_log(self):
-        # Optional: Provide a method to access the entire log
-        return self.log
+        Args:
+            frontier: The state of the frontier.
+            explored: The state of the explored nodes.
+            extracted: The node extracted from the frontier.
+            expanded: The nodes expanded from the extracted node.
+        """
+        record = {'frontier': frontier, 'explored': explored,
+                  'extracted': extracted, 'expanded': expanded}
+        self.algorithm_steps.append(record)
 
     def not_empty(self):
-        return len(self.log) > 0
+        """
+        Check if there are any records in the Algorithm Log.
 
-    def show_log(self):
-        for step_nr, record in enumerate(self.log, start=1):
-            print(f"[{step_nr}]")
+        This method checks if the Algorithm Log contains any records.
+        It is used to determine if there are any steps in the algorithm steps log.
+        Returns:
+            bool: True if there are records in the Algorithm Log, False otherwise.
+        """
+        return len(self.algorithm_steps) > 0
+
+    def show(self):
+        """
+        Print the algorithm steps log.
+        """
+        for step, record in enumerate(self.algorithm_steps, start=1):
+            print(f"\n[{step}]")
             # Shows explored set:
             print("  > Explored nodes:")
             if record.get('explored'):
                 for nd in record['explored']:
-                    print(f"      {nd.node_state()}")
+                    print(f"      {nd}")
             # Shows frontier:
             print("  > Frontier:")
             for nd in record.get('frontier', []):
-                print(f"      {nd.node_state()}")
+                print(f"      {nd}")
 
             # Shows extracted node:
             if record.get('extracted'):
-                print(f"  > Extracted node:\n      {record['extracted'].node_state()}")
+                print(f"  > Extracted node:\n      {record['extracted']}")
 
             # Shows nodes expanded from extracted node:
             print("  > Node expands to:")
             for nd in record.get('expanded', []):
-                print(f"      {nd.node_state()}")
-
+                print(f"      {nd}")

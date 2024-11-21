@@ -1,8 +1,8 @@
 # search
 
-This Python module provides foundational classes to solve search problems using uninformed search algorithms, specifically Breadth-First Search (BFS) and Depth-First Search (DFS).
+Solves search (path finding) problems using uninformed search algorithms Breadth-First Search (BFS) and Depth-First Search (DFS). Allows algorithm internal data structures state trace.
 
-![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![Python](https://img.shields.io/badge/python-3.6%2B-blue)
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg)
 ![Dependencies](https://img.shields.io/librariesio/github/username/repo-name)
 ![GitHub issues](https://img.shields.io/github/issues/username/repo-name)
@@ -12,8 +12,9 @@ This Python module provides foundational classes to solve search problems using 
 ## ✨Overview
 📌 TO DO: esto no me gusta como queda:
 
-This module interface is two abstract base classes. You have to write a problem-specific class derived from each, to write its abstract methods according to the search problem specific logic.
+This Python module provides two foundational classes. You have to write derived classes to code its abstract methods according to your search problem specific logic.
 
+Module can optionally show frontier, explored nodes and expanded nodes at each algorithm step, allowing a complete understanding of algorithm.
 
 
 ## 🚀 Basic usage
@@ -41,12 +42,22 @@ Once abstract methods of derived classes (Maze and MazeNode) are defined, maze s
 
 
     maze = Maze(<maze_file_path>)
-    maze.solve(search_algorithm='DFS')
+    maze.solve('BFS', record_algorithm_steps=True)
     maze.show_solution()
+    maze.show_algorithm_steps()
 
 
 ## features
-Object-Oriented Design, Interface Methods and Encapsulation, Abstract Base Classes (ABC),  type hinting using *typing* module, Modularity and Extensibility to add search algorithms (e.g.: informed search algorithms), debug mode to trace solving steps.
+- Object-Oriented Design
+- Interface Methods and Encapsulation
+- Abstract Base Classes (ABC)
+- Modularity and Extensibility to add search algorithms (e.g.: informed search algorithms)
+- Didactic approach allowing trace of algorithm steps.
+- Type hints and documentation
+- Container implementations
+
+
+
 [enhanced in documentation](docs/features.md)
 
 
@@ -66,7 +77,7 @@ The following example scripts use **search** to solve these problems:
 - [maze](https://github.com/javrui/search-maze-puzzle/blob/main/maze.md): Maze solver.
 
 
-- [puzzle](https://github.com/javrui/search-maze-puzzle/blob/main/puzzle.md): puzzle solver.
+- [puzzle](https://github.com/javrui/search-maze-puzzle/blob/main/puzzle.md): Puzzle solver.
 
 ## dependencies
 none

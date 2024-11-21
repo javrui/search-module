@@ -2,8 +2,10 @@ explaining search/
 old/
 Original code/
 __pycache__/
+aux_notes/
+Not_In_GitHub/
 
-*.py~
+# Para los temporales/backup del editor:
 *~
 
 .vscode/

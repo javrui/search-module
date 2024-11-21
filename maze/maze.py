@@ -15,7 +15,6 @@ Maze layout must be utf-8 text file (.txt) to be supplied as argument, where:
 ============================================================================"""
 
 import sys
-import os
 from search import Node, SearchProblem
 
 
@@ -32,8 +31,7 @@ class Maze(SearchProblem):
         """
         super().__init__()
 
-        self.filename = filename
-        # Attributes specific to Maze:
+        self.filename = filename    # name of utf-8 text file defining maze
         self.height = None      # Number of rows in the maze
         self.width = None       # Number of columns in the maze
         self.walls = None       # walls in the maze as boolean list of lists
@@ -49,6 +47,7 @@ class Maze(SearchProblem):
         # wall_character = any other character in file
         self.start_char = start_char # start_char = start point character in file
         self.goal_char = goal_char  # goal_char = end point character in file
+
         self.path_char = path_char # path_char = open path character in file
 
         # Solution path and explored nodes
@@ -123,8 +122,14 @@ class Maze(SearchProblem):
         print(30*'-')
         print(f"- Solving: {self.filename}")
         print(f"- Algorithm: {self.algorithm}")
-        print(f"- Nodes explored: {len(self.explored_nodes)}")
-        print(f"- Solution steps: {len(self.solution) if self.solution else '-'}")
+        print(
+            f"- Explored nodes ({self.explored_char}, {self.solution_char}): "
+            f"{len(self.explored_nodes)}"
+        )
+        print(
+            f"- Solution nodes ({self.solution_char}): "
+            f"{len(self.solution) if self.solution else '-'}"
+        )
 
         if self.solution is None:
             print("- Solution: No Solution found!")
@@ -136,9 +141,9 @@ class Maze(SearchProblem):
 
 
     def show_algorithm_steps(self):
-        if self.algorithm_steps_record.not_empty():
+        if self.algorithm_log.not_empty():
             print("- Algorithm steps:")
-            self.algorithm_steps_record.show()
+            self.algorithm_log.show_log()
 
 class MazeNode(Node):
     """ Node is mainly the position in the maze. Also previous position +
@@ -194,17 +199,12 @@ if __name__ == '__main__':
         sys.exit("Usage: python maze.py <path to utf-8 .txt maze layout file>")
 
     maze_filename = sys.argv[1]
-
-    if not os.path.exists(maze_filename):
-        print(f"File '{maze_filename}' not found")
-        sys.exit(1)
-
     maze = Maze(maze_filename)
 
-    maze.solve('BFS', record_algorithm_steps=False)
+    maze.solve('BFS', keep_algorithm_log=False)
     maze.show_solution()
     maze.show_algorithm_steps()
 
-    maze.solve('DFS', record_algorithm_steps=True)
+    maze.solve('DFS', keep_algorithm_log=True)
     maze.show_solution()
     maze.show_algorithm_steps()
