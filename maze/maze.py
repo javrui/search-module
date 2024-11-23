@@ -101,7 +101,6 @@ class Maze(SearchProblem):
 
             self.walls.append(row)
 
-
     def show_solution(self):
         """Prints the maze and its solution.
         Returns:
@@ -152,11 +151,11 @@ class Maze(SearchProblem):
             print("- Algorithm steps:")
             self.algorithm_log.show_log()
 
+
 class MazeNode(Node):
     """ Node is mainly the position in the maze. Also previous position +
     direction taken to get there (those last 2 only used sparsely)
     """
-
 
     def actions(self, search_problem:SearchProblem):
         """List of valid movements (actions) to occupy contiguous cells."""
@@ -177,7 +176,6 @@ class MazeNode(Node):
                 valid_actions.append(action)
 
         return valid_actions
-
 
     def result (self, action, search_problem:SearchProblem):
         """Returns the node that results from performing 'action' on self.

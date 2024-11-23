@@ -319,6 +319,7 @@ class _Solution (_NodeContainer):
         while node is not None:
             self.nodes.append(node)
             node = node.parent
+        self.nodes.pop()
         self.nodes.reverse()
 
 
