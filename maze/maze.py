@@ -15,13 +15,16 @@ Maze layout must be utf-8 text file (.txt) to be supplied as argument, where:
 ============================================================================"""
 
 import sys
+import os
+import time
+import curses
 from search import Node, SearchProblem
 
 class Maze(SearchProblem):
     """Defines a maze object to be solved by search algorithms."""
 
     def __init__(self, filename, start_char='A', goal_char='B',
-                 path_char=' ', solution_char='*', explored_char = '·'):
+                 path_char=' '):
         """Reads maze definition (including and initial and goal states) from
         utf-8 file 'filename' to initialize a maze object.
 
@@ -39,10 +42,6 @@ class Maze(SearchProblem):
         self.goal_char = goal_char  # goal_char = end point character in file
         self.path_char = path_char # path_char = open path character in file
 
-        # Solution path and explored nodes
-        self.solution_char = solution_char  # character to mark solution path
-        self.explored_char = explored_char  # character to mark explored nodes
-
         # Maze layout: (True value -> wall, False value -> open path))
         self.walls = []
 
@@ -57,6 +56,16 @@ class Maze(SearchProblem):
                         "left": (0, -1) # left
         }
 
+        # Solution and exploration layout elements for curses:
+        self.layout_elements = {
+            'walls':{'char':'█', 'color':243, 'wait':0},
+            'exploration':{'char':'·', 'color':208, 'wait':0.01},
+            'solution':{'char':'¤', 'color':118, 'wait':0.05},
+            'start_goal':{'char':'_', 'color':7, 'wait':0.1},
+            }
+
+        # dictionary to store maze exploration and solution layout for curses
+        self.maze_solution_layout = None
         self._load_maze_from_file()
 
     def _load_maze_from_file(self):
@@ -103,13 +112,151 @@ class Maze(SearchProblem):
     def show_solution(self, dynamic=False):
         """Prints the maze and its solution.
         dynamic = True if you want to see the solution step by step.
+        Returns: True if dynamic solution was shown, False otherwise.
         """
         if dynamic:
-            # Poner aqui contenido de show_solution(self) de mazecurses.py
-            pass
+            self._calculate_maze_and_solution_layout_elements()
+
+            try:
+                curses.wrapper(lambda stdscr: self._show_dynamic_solution(stdscr))
+                return True
+            except curses.error:
+                print("Error showing dynamic solution.\n")
+                self._check_terminal_size()
+                return False
         else:
             print(self._solution_summary_str())
             print(self._solution_layout_str())
+
+    def _check_terminal_size(self):
+        """ Checks terminal size fits needed space for maze and info."""
+        (term_width, term_height) = os.get_terminal_size()
+
+        display_height = 9 + self.height
+        display_width = max(self.width +6, 26, 12+ len(self.filename))
+
+        if display_height > term_height:
+            print(f"Terminal height ({term_height}) < diplay height needed ({display_height})")
+            print("Please, resize terminal, or try static solution instead.\n")
+
+        if display_width > term_width:
+            print(f"Terminal width ({term_width}) < diplay width needed ({display_width})")
+            print("Please, resize terminal, or try static solution instead.\n")
+
+    def _show_dynamic_solution(self, stdscr):
+
+        self._set_curses_settings(stdscr)
+
+        try:
+            # Print Summary:
+            stdscr.addstr(1, 2, f"- Solving: {self.filename}")
+            stdscr.addstr(2, 2, f"- Algorithm: {self.algorithm}")
+
+            # For clarity in expression
+            expl_char = self.layout_elements['exploration']['char']
+            sol_char = self.layout_elements['solution']['char']
+
+            stdscr.addstr(3, 2, str(
+                f"- Explored nodes ({expl_char}, {sol_char}): "
+                f"{len(self.explored_nodes)}"
+                ))
+
+            stdscr.addstr(4, 2, str(
+                f"- Solution nodes ({sol_char}): "
+                f"{len(self.solution) if self.solution else '-'}"
+                ))
+
+            if self.solution is None:
+                show_elements = ['walls', 'start_goal', 'exploration', 'start_goal']
+
+                stdscr.addstr(5, 2, str(
+                    "- Solution: No Solution found!"
+                    f"{len(self.solution) if self.solution else '-'}"
+                    ))
+            else:
+                show_elements = ['walls', 'start_goal', 'exploration', 'start_goal','solution', 'start_goal']
+
+                stdscr.addstr(5, 2, "- Solution:")
+                stdscr.addstr(7, 2, "")
+
+            # Print layout:
+            for element_name in show_elements:
+                for (y, x, char) in self.maze_solution_layout[element_name]:
+
+                    time.sleep(self.layout_elements[element_name]['wait'])
+
+                    color = curses.color_pair(self.layout_elements[element_name]['color'])
+
+                    stdscr.addch(y+7, x+6, char, color)
+                    stdscr.refresh()
+
+            # Print the end message
+            stdscr.addstr(8+self.height, 2, "Press any key to exit")
+            stdscr.refresh()
+            # Wait for a key press to exit
+            stdscr.getch()
+
+        except KeyboardInterrupt:
+            pass  # Handle Ctrl+C gracefully
+
+    def _set_curses_settings(self, stdscr):
+        # Disable cursor and enable instant character echoing
+        curses.curs_set(0)
+        # Blocking mode. getch() waits indefinitely for a key press.
+        stdscr.timeout(-1)
+        # Set the color pairs
+        self._set_colors()
+        stdscr.clear()
+
+    def _set_colors(self):
+        if not curses.has_colors():
+            raise RuntimeError("Your terminal does not support colors.")
+
+        curses.start_color()
+
+        try:
+            for _, components in self.layout_elements.items():
+                curses.init_pair(components['color'], components['color'], curses.COLOR_BLACK)
+        except curses.error:
+            print("Error initializing color pairs. Ensure your terminal supports colors.")
+            sys.exit(1)
+
+    def _calculate_maze_and_solution_layout_elements(self):
+
+        # Define the maze layout for curses
+        maze_walls = [
+            (x, y, self.layout_elements['walls']['char'] if brick else ' ')
+            for x, row in enumerate(self.walls)
+            for y, brick in enumerate(row)
+        ]
+
+        # Start and goal nodes for curses
+        maze_start_goal = [self.start_node.state + ('A',), self.goal_node.state + ('B',)]
+
+        # Exploration path for curses
+        maze_exploration = []
+        for record in self.algorithm_log.get_log()[1:]:
+            x, y = record['extracted'].state
+            maze_exploration.append((x, y,
+                self.layout_elements['exploration']['char']))
+
+        # Solution path for curses
+        maze_solution = []
+        if self.solution is not None:
+            for node in self.solution:
+                x, y = node.state
+                maze_solution.append((x, y,
+                    self.layout_elements['solution']['char']))
+
+        # Layout elements dict
+        maze_solution_layout = {
+            'walls': maze_walls,
+            'start_goal': maze_start_goal,
+            'exploration': maze_exploration,
+            'solution': maze_solution,
+            }
+
+        self.maze_solution_layout = maze_solution_layout
 
     def _solution_summary_str(self):
         """ Generates and returns a summary of solution data as string"""
@@ -119,11 +266,11 @@ class Maze(SearchProblem):
         string += f"- Solving: {self.filename}\n"
         string += f"- Algorithm: {self.algorithm}\n"
         string += (
-            f"- Explored nodes ({self.explored_char}, {self.solution_char}): "
+            f"- Explored nodes ({self.layout_elements['exploration']['char']}, {self.layout_elements['solution']['char']}): "
             f"{len(self.explored_nodes)}\n"
         )
         string += (
-            f"- Solution nodes ({self.solution_char}): "
+            f"- Solution nodes ({self.layout_elements['solution']['char']}): "
             f"{len(self.solution) if self.solution else '-'}\n"
         )
 
@@ -147,9 +294,9 @@ class Maze(SearchProblem):
                 elif position == self.goal_node.state:
                     string += self.goal_char
                 elif self.solution and position in self.solution:
-                    string += self.solution_char
+                    string += self.layout_elements['solution']['char']
                 elif self.solution and position in self.explored_nodes:
-                    string += self.explored_char
+                    string += self.layout_elements['exploration']['char']
                 else:
                     string += self.path_char
             string += '\n'
@@ -213,14 +360,9 @@ class MazeNode(Node):
         return f"{self.state}'{self.action}'"
 
 
-if __name__ == '__main__':
-    # Test for maze.py
-
-    if len(sys.argv) != 2:
-        sys.exit("Usage: python maze.py <path to utf-8 .txt maze layout file>")
-
-    maze_filename = sys.argv[1]
-    maze = Maze(maze_filename)
+def search_module_simple_usage_example(filename):
+    """ Simple Usage example of 'search' module (shows maze static solution)"""
+    maze = Maze(filename)
 
     maze.solve('BFS')
     maze.show_solution(dynamic=False)
@@ -229,3 +371,29 @@ if __name__ == '__main__':
     maze.solve('DFS')
     maze.show_solution(dynamic=False)
     maze.save_algorithm_steps_to_file()
+
+
+def search_module_more_complex_usage_example(filename):
+    """
+    More complex usage example of 'search' module (shows maze dynamic solution). Complexity because of use of curses Python module.
+    """
+    maze = Maze(filename)
+    maze.solve('BFS')
+
+    # To avoid same display error message showing twice
+    if maze.show_solution(dynamic=True):
+        maze.solve('DFS')
+        maze.show_solution(dynamic=True)
+
+
+if __name__ == '__main__':
+    # Test for maze.py
+
+    if len(sys.argv) != 2:
+        sys.exit("Usage: python maze.py <path to utf-8 .txt maze layout file>")
+    maze_filename = sys.argv[1]
+
+    search_module_simple_usage_example(maze_filename)
+
+    search_module_more_complex_usage_example(maze_filename)
+
