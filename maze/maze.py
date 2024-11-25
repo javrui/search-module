@@ -105,6 +105,7 @@ class Maze(SearchProblem):
         dynamic = True if you want to see the solution step by step.
         """
         if dynamic:
+            # Poner aqui contenido de show_solution(self) de mazecurses.py
             pass
         else:
             print(self._solution_summary_str())
