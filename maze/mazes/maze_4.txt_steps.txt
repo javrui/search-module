@@ -1,0 +1,102 @@
+------------------------------
+- Solving: mazes/maze_4.txt
+- Algorithm: DFS
+- Explored nodes (·, *): 6
+- Solution nodes (*): 6
+- Solution:
+
+██A██
+█** █
+█*█ █
+█** █
+██B██
+- Algorithm steps:
+[1]
+  > Explored nodes:
+  > Frontier:
+      (0, 2)
+  > Extracted node:
+      (0, 2)
+  > Node expands to:
+      (1, 2)
+[2]
+  > Explored nodes:
+      (0, 2)
+  > Frontier:
+      (1, 2)
+  > Extracted node:
+      (1, 2)
+  > Node expands to:
+      (0, 2)
+      (1, 3)
+      (1, 1)
+[3]
+  > Explored nodes:
+      (0, 2)
+      (1, 2)
+  > Frontier:
+      (1, 3)
+      (1, 1)
+  > Extracted node:
+      (1, 1)
+  > Node expands to:
+      (1, 2)
+      (2, 1)
+[4]
+  > Explored nodes:
+      (1, 1)
+      (0, 2)
+      (1, 2)
+  > Frontier:
+      (1, 3)
+      (2, 1)
+  > Extracted node:
+      (2, 1)
+  > Node expands to:
+      (1, 1)
+      (3, 1)
+[5]
+  > Explored nodes:
+      (1, 1)
+      (0, 2)
+      (1, 2)
+      (2, 1)
+  > Frontier:
+      (1, 3)
+      (3, 1)
+  > Extracted node:
+      (3, 1)
+  > Node expands to:
+      (2, 1)
+      (3, 2)
+[6]
+  > Explored nodes:
+      (0, 2)
+      (1, 2)
+      (2, 1)
+      (3, 1)
+      (1, 1)
+  > Frontier:
+      (1, 3)
+      (3, 2)
+  > Extracted node:
+      (3, 2)
+  > Node expands to:
+      (3, 3)
+      (4, 2)
+      (3, 1)
+[7]
+  > Explored nodes:
+      (0, 2)
+      (1, 2)
+      (2, 1)
+      (3, 1)
+      (1, 1)
+      (3, 2)
+  > Frontier:
+      (1, 3)
+      (3, 3)
+      (4, 2)
+  > Extracted node:
+      (4, 2)
+  > Node expands to:

@@ -25,13 +25,15 @@ class SearchProblem(ABC):
         self._initialize_search_components()
 
     def _initialize_search_components(self):
+        """ This initializations are necessary not only in __init__(), but also in solve()."""
+
         self.algorithm = None
         self.frontier = _Frontier()
         self.explored_nodes = _ExploredNodes()
         self.solution = _Solution()
         self.algorithm_log = _LogHandler()
 
-    def solve(self, search_algorithm='BFS', keep_algorithm_log=False):
+    def solve(self, search_algorithm='BFS'):
         """
         Solve the search problem using BFS or DFS algorithms.
 
@@ -43,8 +45,7 @@ class SearchProblem(ABC):
         Args:
             search_algorithm (str, optional): The search strategy to use.
                 Must be either 'BFS' or 'DFS'. Defaults to 'BFS'.
-            keep_algorithm_log (bool, optional): If True, maintains
-            detailed algorithm execution log including frontier state,
+            Maintains detailed algorithm execution log including frontier state,
             explored nodes, and node expansion sequence BEFORE each node expansion.
 
         Returns:
@@ -59,8 +60,7 @@ class SearchProblem(ABC):
         self._initialize_search_components()
         self.algorithm = search_algorithm
 
-        if keep_algorithm_log is True:
-            self.algorithm_log = _LogHandler()
+        self.algorithm_log = _LogHandler()
 
         # Initialize the frontier based on the search algorithm type
         if search_algorithm == 'BFS':
@@ -76,20 +76,20 @@ class SearchProblem(ABC):
         # Keep searching until solution is found or frontier is empty
         while self.frontier.not_empty():
 
-            self.algorithm_log.add_to_record(keep_algorithm_log,
+            self.algorithm_log.add_to_record(
                 frontier=self.frontier.copy(),
                 explored=self.explored_nodes.copy()
             )
 
             # Extract node from frontier
             extracted_node = self.frontier.extract()
-            self.algorithm_log.add_to_record(keep_algorithm_log,
+            self.algorithm_log.add_to_record(
                 extracted=extracted_node)
 
             # Finished?
             if extracted_node.state == self.goal_node.state:
                 self.solution.build(extracted_node)
-                self.algorithm_log.save_record(keep_algorithm_log)
+                self.algorithm_log.save_record()
                 return True
 
             # Mark the node as explored
@@ -98,13 +98,13 @@ class SearchProblem(ABC):
             # Expand node and add children to the frontier
             # if not already in frontier or explored set
             child_nodes = extracted_node.expand(self)
-            self.algorithm_log.add_to_record(keep_algorithm_log,
+            self.algorithm_log.add_to_record(
                 expanded=child_nodes)
             for child in child_nodes:
                 if child not in self.frontier and child not in self.explored_nodes:
                     self.frontier.add_node(child)
 
-            self.algorithm_log.save_record(keep_algorithm_log)
+            self.algorithm_log.save_record()
 
         # If no solution found
         self.solution = None
@@ -223,8 +223,8 @@ class Node(ABC):
 
 class _NodeContainer(ABC):
 
-    def __init__(self):
-        self.nodes = None
+    def __init__(self, node=None):
+        self.nodes = node
 
     def __contains__(self, element):
         if isinstance(element, Node):
@@ -252,17 +252,17 @@ class _NodeContainer(ABC):
         return copied
 
 
-
 class _ExploredNodes(_NodeContainer):
     """
     Represents the set of explored nodes in the search.
     """
 
     def __init__(self):
-        self.nodes = set()
+        super().__init__(set())
 
     def add_node(self, node):
         self.nodes.add(node)
+
 
 class _Frontier(_NodeContainer):
     """
@@ -270,7 +270,7 @@ class _Frontier(_NodeContainer):
     """
 
     def __init__(self):
-        self.nodes = []
+        super().__init__(list())
 
     def add_node(self, node):
         self.nodes.append(node)
@@ -308,7 +308,7 @@ class _Solution (_NodeContainer):
     """
 
     def __init__(self):
-        self.nodes = []
+        super().__init__(list())
 
     def build (self, goal_node):
         """Builds the solution path from the goal node back to the start node.
@@ -330,10 +330,7 @@ class _LogHandler():
         self.log = []
         self.current_record = {}
 
-    def add_to_record(self, generate_logs, frontier=None, explored=None, extracted=None, expanded=None):
-
-        if generate_logs is False:
-            return
+    def add_to_record(self, frontier=None, explored=None, extracted=None, expanded=None):
 
         # Define a dictionary mapping parameter names to expected types
         params = {
@@ -352,10 +349,8 @@ class _LogHandler():
                     raise ValueError(f"Invalid {key}: {value}. "
                         f"Must be an instance of {expected_type.__name__}.")
 
-    def save_record(self, generate_logs):
+    def save_record(self):
 
-        if generate_logs is False:
-            return
         # Add a copy of the current record to the log
         self.log.append(self.current_record.copy())
 
@@ -366,28 +361,28 @@ class _LogHandler():
         # Optional: Provide a method to access the entire log
         return self.log
 
-    def not_empty(self):
-        return len(self.log) > 0
+    def save_log(self, log_filename):
+        with open(log_filename, 'a', encoding='utf-8') as file:
+            file.write("- Algorithm steps:\n")
 
-    def show_log(self):
-        for step_nr, record in enumerate(self.log, start=1):
-            print(f"[{step_nr}]")
-            # Shows explored set:
-            print("  > Explored nodes:")
-            if record.get('explored'):
-                for nd in record['explored']:
-                    print(f"      {nd.node_state()}")
-            # Shows frontier:
-            print("  > Frontier:")
-            for nd in record.get('frontier', []):
-                print(f"      {nd.node_state()}")
+            for step_nr, record in enumerate(self.log, start=1):
+                file.write(f"[{step_nr}]\n")
 
-            # Shows extracted node:
-            if record.get('extracted'):
-                print(f"  > Extracted node:\n      {record['extracted'].node_state()}")
+                # Writes explored set:
+                file.write("  > Explored nodes:\n")
+                if record.get('explored'):
+                    for nd in record['explored']:
+                        file.write(f"      {nd.node_state()}\n")
+                # Writes frontier:
+                file.write("  > Frontier:\n")
+                for nd in record.get('frontier', []):
+                    file.write(f"      {nd.node_state()}\n")
 
-            # Shows nodes expanded from extracted node:
-            print("  > Node expands to:")
-            for nd in record.get('expanded', []):
-                print(f"      {nd.node_state()}")
+                # Writes extracted node:
+                if record.get('extracted'):
+                    file.write(f"  > Extracted node:\n      {record['extracted'].node_state()}\n")
 
+                # Writes nodes expanded from extracted node:
+                file.write("  > Node expands to:\n")
+                for nd in record.get('expanded', []):
+                    file.write(f"      {nd.node_state()}\n")

@@ -1,0 +1,318 @@
+------------------------------
+- Solving: mazes/maze_3.txt
+- Algorithm: DFS
+- Explored nodes (·, *): 16
+- Solution nodes (*): 15
+- Solution:
+
+███████
+█·****█
+██*██*█
+█B*█**█
+█ ██*██
+█****██
+█A█████
+- Algorithm steps:
+[1]
+  > Explored nodes:
+  > Frontier:
+      (6, 1)
+  > Extracted node:
+      (6, 1)
+  > Node expands to:
+      (5, 1)
+[2]
+  > Explored nodes:
+      (6, 1)
+  > Frontier:
+      (5, 1)
+  > Extracted node:
+      (5, 1)
+  > Node expands to:
+      (4, 1)
+      (5, 2)
+      (6, 1)
+[3]
+  > Explored nodes:
+      (6, 1)
+      (5, 1)
+  > Frontier:
+      (4, 1)
+      (5, 2)
+  > Extracted node:
+      (5, 2)
+  > Node expands to:
+      (5, 3)
+      (5, 1)
+[4]
+  > Explored nodes:
+      (6, 1)
+      (5, 1)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (5, 3)
+  > Extracted node:
+      (5, 3)
+  > Node expands to:
+      (5, 4)
+      (5, 2)
+[5]
+  > Explored nodes:
+      (5, 3)
+      (6, 1)
+      (5, 1)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (5, 4)
+  > Extracted node:
+      (5, 4)
+  > Node expands to:
+      (4, 4)
+      (5, 3)
+[6]
+  > Explored nodes:
+      (5, 3)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (4, 4)
+  > Extracted node:
+      (4, 4)
+  > Node expands to:
+      (3, 4)
+      (5, 4)
+[7]
+  > Explored nodes:
+      (4, 4)
+      (5, 3)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (3, 4)
+  > Extracted node:
+      (3, 4)
+  > Node expands to:
+      (3, 5)
+      (4, 4)
+[8]
+  > Explored nodes:
+      (4, 4)
+      (3, 4)
+      (5, 3)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (3, 5)
+  > Extracted node:
+      (3, 5)
+  > Node expands to:
+      (2, 5)
+      (3, 4)
+[9]
+  > Explored nodes:
+      (4, 4)
+      (3, 4)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (5, 3)
+      (3, 5)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (2, 5)
+  > Extracted node:
+      (2, 5)
+  > Node expands to:
+      (1, 5)
+      (3, 5)
+[10]
+  > Explored nodes:
+      (4, 4)
+      (3, 4)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (5, 3)
+      (2, 5)
+      (3, 5)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (1, 5)
+  > Extracted node:
+      (1, 5)
+  > Node expands to:
+      (2, 5)
+      (1, 4)
+[11]
+  > Explored nodes:
+      (4, 4)
+      (3, 4)
+      (1, 5)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (5, 3)
+      (2, 5)
+      (3, 5)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (1, 4)
+  > Extracted node:
+      (1, 4)
+  > Node expands to:
+      (1, 5)
+      (1, 3)
+[12]
+  > Explored nodes:
+      (4, 4)
+      (3, 4)
+      (1, 5)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (1, 4)
+      (5, 3)
+      (2, 5)
+      (3, 5)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (1, 3)
+  > Extracted node:
+      (1, 3)
+  > Node expands to:
+      (1, 4)
+      (1, 2)
+[13]
+  > Explored nodes:
+      (4, 4)
+      (3, 4)
+      (1, 5)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (1, 4)
+      (5, 3)
+      (2, 5)
+      (1, 3)
+      (3, 5)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (1, 2)
+  > Extracted node:
+      (1, 2)
+  > Node expands to:
+      (1, 3)
+      (2, 2)
+      (1, 1)
+[14]
+  > Explored nodes:
+      (4, 4)
+      (1, 2)
+      (3, 4)
+      (1, 5)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (1, 4)
+      (5, 3)
+      (2, 5)
+      (1, 3)
+      (3, 5)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (2, 2)
+      (1, 1)
+  > Extracted node:
+      (1, 1)
+  > Node expands to:
+      (1, 2)
+[15]
+  > Explored nodes:
+      (4, 4)
+      (1, 2)
+      (3, 4)
+      (1, 5)
+      (6, 1)
+      (5, 4)
+      (1, 1)
+      (5, 1)
+      (1, 4)
+      (5, 3)
+      (2, 5)
+      (1, 3)
+      (3, 5)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (2, 2)
+  > Extracted node:
+      (2, 2)
+  > Node expands to:
+      (1, 2)
+      (3, 2)
+[16]
+  > Explored nodes:
+      (4, 4)
+      (1, 2)
+      (3, 4)
+      (1, 5)
+      (6, 1)
+      (5, 4)
+      (1, 1)
+      (5, 1)
+      (1, 4)
+      (2, 2)
+      (5, 3)
+      (2, 5)
+      (1, 3)
+      (3, 5)
+      (5, 2)
+  > Frontier:
+      (4, 1)
+      (3, 2)
+  > Extracted node:
+      (3, 2)
+  > Node expands to:
+      (2, 2)
+      (3, 1)
+[17]
+  > Explored nodes:
+      (1, 2)
+      (3, 4)
+      (1, 5)
+      (6, 1)
+      (5, 4)
+      (5, 1)
+      (2, 2)
+      (3, 2)
+      (2, 5)
+      (1, 3)
+      (3, 5)
+      (5, 2)
+      (4, 4)
+      (1, 1)
+      (1, 4)
+      (5, 3)
+  > Frontier:
+      (4, 1)
+      (3, 1)
+  > Extracted node:
+      (3, 1)
+  > Node expands to:

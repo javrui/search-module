@@ -1,3 +1,12 @@
 __pycache__/
 .pytest_cache/
 .gitignore
+
+
+
+# editor temp files:
+*~
+
+# Algorithm steps log:
+*_steps.txt
+
