@@ -15,6 +15,7 @@ Maze layout must be utf-8 text file (.txt) to be supplied as argument, where:
 ============================================================================"""
 
 import sys
+import os
 import time
 import curses
 from search import Node, SearchProblem
@@ -112,34 +113,76 @@ class Maze(SearchProblem):
 
     def show_solution(self):
         self._calculate_maze_and_solution_layout_elements()
-        curses.wrapper(lambda stdscr: self._show_dynamic_solution(stdscr))
+
+        try:
+            curses.wrapper(lambda stdscr: self._show_dynamic_solution(stdscr))
+            return True
+        except Exception:
+            print("Error showing dynamic solution.\n")
+            # Checks terminal size fits needed space for maze and info:
+            (term_width, term_height) = os.get_terminal_size()
+
+            display_height = 9 + self.height
+            display_width = max(self.width +6, 26, 12+ len(self.filename))
+
+            if display_height > term_height:
+                print(f"Terminal height ({term_height}) < diplay height needed ({display_height})")
+                print("Please, resize terminal, or try static solution instead.\n")
+
+            if display_width > term_width:
+                print(f"Terminal width ({term_width}) < diplay width needed ({display_width})")
+                print("Please, resize terminal, or try static solution instead.\n")
+
+            return False
 
     def _show_dynamic_solution(self, stdscr):
 
         self._set_curses_settings(stdscr)
 
         try:
-            # Print the tittle
-            stdscr.addstr(0, 2, str(f"Solving: {sys.argv[1]}"))
+            # Print Summary:
+            stdscr.addstr(1, 2, f"- Solving: {self.filename}")
+            stdscr.addstr(2, 2, f"- Algorithm: {self.algorithm}")
+
+            expl_char = self.layout_elements['exploration']['char']
+            sol_char = self.layout_elements['solution']['char']
+
+            stdscr.addstr(3, 2, str(
+                f"- Explored nodes ({expl_char}, {sol_char}): "
+                f"{len(self.explored_nodes)}"
+                ))
+
+            stdscr.addstr(4, 2, str(
+                f"- Solution nodes ({sol_char}): "
+                f"{len(self.solution) if self.solution else '-'}"
+                ))
 
             if self.solution is None:
                 show_elements = ['walls', 'start_goal', 'exploration', 'start_goal']
-                stdscr.addstr(1, 2, str("No solution found!"))
+
+                stdscr.addstr(5, 2, str(
+                    "- Solution: No Solution found!"
+                    f"{len(self.solution) if self.solution else '-'}"
+                    ))
             else:
                 show_elements = ['walls', 'start_goal', 'exploration', 'start_goal','solution', 'start_goal']
-                stdscr.addstr(1, 2, str("Solution:"))
+
+                stdscr.addstr(5, 2, "- Solution:")
+                stdscr.addstr(7, 2, "")
 
             # Print layout:
             for element_name in show_elements:
-                for (x, y, char) in self.maze_solution_layout[element_name]:
+                for (y, x, char) in self.maze_solution_layout[element_name]:
+
                     time.sleep(self.layout_elements[element_name]['wait'])
+
                     color = curses.color_pair(self.layout_elements[element_name]['color'])
-                    stdscr.addch(2+x, 5+y, char, color)
+
+                    stdscr.addch(y+7, x+6, char, color)
                     stdscr.refresh()
 
             # Print the end message
-            end_message_vertical_offset = self.height
-            stdscr.addstr(3+end_message_vertical_offset, 2, str("Press any key to exit"))
+            stdscr.addstr(8+self.height, 2, "Press any key to exit")
             stdscr.refresh()
             # Wait for a key press to exit
             stdscr.getch()
@@ -259,10 +302,9 @@ if __name__ == '__main__':
     maze_filename = sys.argv[1]
 
     maze = Maze(maze_filename)
-
     maze.solve('BFS')
-    maze.show_solution()
 
-    maze.solve('DFS')
-    maze.show_solution()
+    if maze.show_solution():
+        maze.solve('DFS')
+        maze.show_solution()
 
