@@ -1,13 +1,15 @@
+
 ------------------------------
 - Solving: mazes/maze_4.txt
 - Algorithm: BFS
-- Explored nodes (·, *): 9
-- Solution nodes (*): 6
-- Solution:
+- Explored nodes (·, ¤): 9
+- Solution nodes (¤): 6
+- Solution: 
+
 ██A██
-█·**█
-█·█*█
-█·**█
+█·¤¤█
+█·█¤█
+█·¤¤█
 ██B██
 - Algorithm steps:
 [1]

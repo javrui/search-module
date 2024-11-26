@@ -56,7 +56,10 @@ class Maze(SearchProblem):
                         "left": (0, -1) # left
         }
 
-        # Solution and exploration layout elements for curses:
+        # For dynamic solutions, if the first solution has been shown
+        self.first_dynamic_solution_shown = False
+
+        # Solution and exploration layout elements:
         self.layout_elements = {
             'walls':{'char':'█', 'color':243, 'wait':0},
             'exploration':{'char':'·', 'color':208, 'wait':0.01},
@@ -112,92 +115,109 @@ class Maze(SearchProblem):
     def show_solution(self, dynamic=False):
         """Prints the maze and its solution.
         dynamic = True if you want to see the solution step by step.
-        Returns: True if dynamic solution was shown, False otherwise.
+        Returns: True if solution was shown, False otherwise.
         """
         if dynamic:
             self._calculate_maze_and_solution_layout_elements()
 
+            offset = self._check_terminal_size()
+            if offset is (0, 0):
+                return False
             try:
-                curses.wrapper(lambda stdscr: self._show_dynamic_solution(stdscr))
+                curses.wrapper(lambda stdscr:
+                    self._show_dynamic_solution(stdscr, offset))
                 return True
             except curses.error:
                 print("Error showing dynamic solution.\n")
-                self._check_terminal_size()
                 return False
         else:
-            print(self._solution_summary_str())
+            for line in self._solution_summary_str():
+                print(line)
+            #print(self._solution_summary_str())
             print(self._solution_layout_str())
+            return True
 
     def _check_terminal_size(self):
-        """ Checks terminal size fits needed space for maze and info."""
+        """ Checks terminal space size needed to fit space for maze solution display.
+
+        Display of two maze solutions (BFS and DFS) can be: "side to side" or "one below the other".
+        Returns:
+            (horizontal_offset, vertical_offset), where:
+                horizontal_offset: minimum terminal width needed to display the two maze solutions.
+                vertical_offset: minimum terminal height needed to display the two maze solutions.
+            if terminal size is not enough, prints a message and returns (0, 0).
+
+        """
         (term_width, term_height) = os.get_terminal_size()
 
-        display_height = 9 + self.height
-        display_width = max(self.width +6, 26, 12+ len(self.filename))
+        display_width = 2 + 2* max(self.width + 6, 29, 12 + len(self.filename))
+        display_height = 1 + 2 * (9 + self.height)
 
-        if display_height > term_height:
-            print(f"Terminal height ({term_height}) < diplay height needed ({display_height})")
+        # Side to side layout if possible, otherwise one below the other
+        if display_width < term_width:
+            return (2 + max(self.width + 6, 29, 12 + len(self.filename)), 1)
+        elif display_height < term_height:
+            return (0, 1 + 9 * self.height)
+        else:
+            print(f"Terminal width ({term_width}) < display width needed ({display_width}) and" f"Terminal height ({term_height}) < display height needed ({display_height}).")
             print("Please, resize terminal, or try static solution instead.\n")
+            return (0, 0)
 
-        if display_width > term_width:
-            print(f"Terminal width ({term_width}) < diplay width needed ({display_width})")
-            print("Please, resize terminal, or try static solution instead.\n")
-
-    def _show_dynamic_solution(self, stdscr):
+    def _show_dynamic_solution(self, stdscr, offset):
+        """ This method shows the maze solution step by step.
+        Will be called twice (for BFS and DFS solutions). Second will be shown at right or below first, so that we need to know if the first solution has been shown (= this method has been called). Offset tells how much we need to move the second solution to the right or below the first one in terminal screen.
+        """
 
         self._set_curses_settings(stdscr)
 
-        try:
-            # Print Summary:
-            stdscr.addstr(1, 2, f"- Solving: {self.filename}")
-            stdscr.addstr(2, 2, f"- Algorithm: {self.algorithm}")
+        # Offset in terminal display of solution to be printed
 
-            # For clarity in expression
-            expl_char = self.layout_elements['exploration']['char']
-            sol_char = self.layout_elements['solution']['char']
+        if self.first_dynamic_solution_shown is False:
+            offset = (0, 0)
 
-            stdscr.addstr(3, 2, str(
-                f"- Explored nodes ({expl_char}, {sol_char}): "
-                f"{len(self.explored_nodes)}"
-                ))
+        h_offs, v_offs = offset
 
-            stdscr.addstr(4, 2, str(
-                f"- Solution nodes ({sol_char}): "
-                f"{len(self.solution) if self.solution else '-'}"
-                ))
+        # To clarify expressions in .addch() and .addstr()
+        # where blank lines are added
+        BLANK_LINE = 1
 
-            if self.solution is None:
-                show_elements = ['walls', 'start_goal', 'exploration', 'start_goal']
+        # Print Summary:
+        start = 3 if self.first_dynamic_solution_shown else 2
+        for line_count, line in enumerate(self._solution_summary_str()[start:], BLANK_LINE):
+            stdscr.addstr(line_count + v_offs, 2 + h_offs, line)
 
-                stdscr.addstr(5, 2, str(
-                    "- Solution: No Solution found!"
-                    f"{len(self.solution) if self.solution else '-'}"
-                    ))
-            else:
-                show_elements = ['walls', 'start_goal', 'exploration', 'start_goal','solution', 'start_goal']
+        # Elements to show in layout:
+        show_elements = ['walls', 'start_goal', 'exploration', 'start_goal']
+        if self.solution is not None:
+            show_elements += ['solution', 'start_goal']
 
-                stdscr.addstr(5, 2, "- Solution:")
-                stdscr.addstr(7, 2, "")
+        # Print layout:
+        for element_name in show_elements:
+            for (y, x, char) in self.maze_solution_layout[element_name]:
 
-            # Print layout:
-            for element_name in show_elements:
-                for (y, x, char) in self.maze_solution_layout[element_name]:
+                time.sleep(self.layout_elements[element_name]['wait'])
 
-                    time.sleep(self.layout_elements[element_name]['wait'])
+                color = curses.color_pair(self.layout_elements[element_name]['color'])
 
-                    color = curses.color_pair(self.layout_elements[element_name]['color'])
+                stdscr.addch(y + line_count + 2*BLANK_LINE + v_offs,
+                                x + 6 + h_offs, char, color)
+                stdscr.refresh()
 
-                    stdscr.addch(y+7, x+6, char, color)
-                    stdscr.refresh()
 
-            # Print the end message
-            stdscr.addstr(8+self.height, 2, "Press any key to exit")
-            stdscr.refresh()
-            # Wait for a key press to exit
-            stdscr.getch()
+        # Print "press key"
+        if self.first_dynamic_solution_shown is True:
+            line_count +=1
 
-        except KeyboardInterrupt:
-            pass  # Handle Ctrl+C gracefully
+        stdscr.addstr(3*BLANK_LINE + line_count + self.height, 2 + h_offs, "Press any key.")
+        stdscr.refresh()
+
+        # Wait for a key press to exit
+        stdscr.getch()
+        # Delete "press key"
+        stdscr.addstr(3*BLANK_LINE + line_count + self.height, 2 + h_offs, "              ")
+        stdscr.refresh()
+
+        self.first_dynamic_solution_shown = True
 
     def _set_curses_settings(self, stdscr):
         # Disable cursor and enable instant character echoing
@@ -206,20 +226,18 @@ class Maze(SearchProblem):
         stdscr.timeout(-1)
         # Set the color pairs
         self._set_colors()
-        stdscr.clear()
+        #stdscr.clear()
 
     def _set_colors(self):
         if not curses.has_colors():
             raise RuntimeError("Your terminal does not support colors.")
 
-        curses.start_color()
-
         try:
+            curses.start_color()
             for _, components in self.layout_elements.items():
                 curses.init_pair(components['color'], components['color'], curses.COLOR_BLACK)
         except curses.error:
-            print("Error initializing color pairs. Ensure your terminal supports colors.")
-            sys.exit(1)
+            raise RuntimeError("Error initializing color pairs. Ensure your terminal supports colors.")
 
     def _calculate_maze_and_solution_layout_elements(self):
 
@@ -261,25 +279,19 @@ class Maze(SearchProblem):
     def _solution_summary_str(self):
         """ Generates and returns a summary of solution data as string"""
 
-        string = ""
-        string += 30*'-' + '\n'
-        string += f"- Solving: {self.filename}\n"
-        string += f"- Algorithm: {self.algorithm}\n"
-        string += (
-            f"- Explored nodes ({self.layout_elements['exploration']['char']}, {self.layout_elements['solution']['char']}): "
-            f"{len(self.explored_nodes)}\n"
-        )
-        string += (
-            f"- Solution nodes ({self.layout_elements['solution']['char']}): "
-            f"{len(self.solution) if self.solution else '-'}\n"
-        )
+        sol = " No Solution found!" if self.solution is None else ""
 
-        if self.solution is None:
-            string += "- Solution: No Solution found!\n"
-        else:
-            string += "- Solution:"
+        lines=[
+            "",
+            f"{30*'-'}",
+            f"- Solving: {self.filename}",
+            f"- Algorithm: {self.algorithm}",
+            f"- Explored nodes ({self.layout_elements['exploration']['char']}, {self.layout_elements['solution']['char']}): {len(self.explored_nodes)}",
+            f"- Solution nodes ({self.layout_elements['solution']['char']}): {len(self.solution) if self.solution else '-'}",
+            f"- Solution: {sol}"
+            ]
 
-        return string
+        return lines
 
     def _solution_layout_str(self):
         # Generate maze layout, with solution path if exists
@@ -308,7 +320,9 @@ class Maze(SearchProblem):
         log_filename=f"{self.filename}_{self.algorithm}_steps.txt"
 
         with open(log_filename, 'w', encoding="utf-8") as file:
-            file.write(self._solution_summary_str())
+
+            file.writelines(line + "\n" for line in self._solution_summary_str())
+            #file.write(self._solution_summary_str())
             file.write(self._solution_layout_str())
 
         self.algorithm_log.save_log(log_filename)
@@ -373,15 +387,17 @@ def search_module_simple_usage_example(filename):
     maze.save_algorithm_steps_to_file()
 
 
-def search_module_more_complex_usage_example(filename):
+def dynamic_solution_display_search_usage_example(filename):
     """
-    More complex usage example of 'search' module (shows maze dynamic solution). Complexity because of use of curses Python module.
+    Search module usage example.
+    With 'curses' Python module, a dynamic display of both BFS and DFS solutions is shown together (if terminal size allows it)).
     """
     maze = Maze(filename)
     maze.solve('BFS')
+    success = maze.show_solution(dynamic=True)
 
-    # To avoid same display error message showing twice
-    if maze.show_solution(dynamic=True):
+    # To avoid repeating error:
+    if success:
         maze.solve('DFS')
         maze.show_solution(dynamic=True)
 
@@ -395,5 +411,5 @@ if __name__ == '__main__':
 
     search_module_simple_usage_example(maze_filename)
 
-    search_module_more_complex_usage_example(maze_filename)
+    dynamic_solution_display_search_usage_example(maze_filename)
 

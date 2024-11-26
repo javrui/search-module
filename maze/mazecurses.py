@@ -119,21 +119,24 @@ class Maze(SearchProblem):
             return True
         except Exception:
             print("Error showing dynamic solution.\n")
-            # Checks terminal size fits needed space for maze and info:
-            (term_width, term_height) = os.get_terminal_size()
-
-            display_height = 9 + self.height
-            display_width = max(self.width +6, 26, 12+ len(self.filename))
-
-            if display_height > term_height:
-                print(f"Terminal height ({term_height}) < diplay height needed ({display_height})")
-                print("Please, resize terminal, or try static solution instead.\n")
-
-            if display_width > term_width:
-                print(f"Terminal width ({term_width}) < diplay width needed ({display_width})")
-                print("Please, resize terminal, or try static solution instead.\n")
-
+            self._check_terminal_size()
             return False
+
+    def _check_terminal_size(self):
+        """ Checks terminal size fits needed space for maze and info."""
+        (term_width, term_height) = os.get_terminal_size()
+
+        display_height = 9 + self.height
+        display_width = max(self.width +6, 26, 12+ len(self.filename))
+
+        if display_height > term_height:
+            print(f"Terminal height ({term_height}) < diplay height needed ({display_height})")
+            print("Please, resize terminal, or try static solution instead.\n")
+
+        if display_width > term_width:
+            print(f"Terminal width ({term_width}) < diplay width needed ({display_width})")
+            print("Please, resize terminal, or try static solution instead.\n")
+
 
     def _show_dynamic_solution(self, stdscr):
 
@@ -304,6 +307,7 @@ if __name__ == '__main__':
     maze = Maze(maze_filename)
     maze.solve('BFS')
 
+    # To avoid same display error message showing twice
     if maze.show_solution():
         maze.solve('DFS')
         maze.show_solution()
