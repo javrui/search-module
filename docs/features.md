@@ -2,6 +2,7 @@
 
 📌 TO DO: REVISAR BIEN!!!, incluso quizás rehacer con chat GPT
 
+
 1. **Object-Oriented Design**:
    - The module is structured around object-oriented principles, encapsulating problem-solving elements into classes such as `SearchProblem`, `Node`, and `_Frontier`. Each class has a specific responsibility within the search problem framework, promoting modularity and reusability.
 

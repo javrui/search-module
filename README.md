@@ -4,10 +4,8 @@ This module solves search (path finding) problems using uninformed search algori
 
 ![Python](https://img.shields.io/badge/python-3.6%2B-blue)
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg)
-![Dependencies](https://img.shields.io/librariesio/github/username/repo-name)
-![GitHub issues](https://img.shields.io/github/issues/username/repo-name)
+[![Documentation Status](https://readthedocs.org/projects/mymodule/badge/?version=latest)](https://mymodule.readthedocs.io/en/latest/?badge=latest)
 
-📌 TO DO: links in badges
 
 ## ✨Overview
 
@@ -32,7 +30,7 @@ No installation required; simply clone the repository and import search.py into 
 
 ```bash
 # Clone the repo
-git clone https://github.com/jjavrui/search-module.git
+git clone https://github.com/javrui/search-module.git
 cd my_module
 ```
 
@@ -43,47 +41,44 @@ from search import SearchProblem, Node
 
 
 ## 🚀 Basic usage
-Example of using 'searc' for maze solving script:
+Import the search module base clases
+```bash
+from search import Node, SearchProblem
+```
 
-Once abstract methods of derived classes (Maze and MazeNode) are defined, maze solving is just calling **solve()** on MazeNode object.
-Show result with **show_solution()** method, and get a detailed log of algorithm steps for that maze calling **save_algorithm_steps_to_file()**.
+Define abstract methods of derived classes (Maze and MazeNode in this example):
+```bash
+class Maze(SearchProblem):
+   def __init__():
+      # Maze specific implementation here
 
-    from search import Node, SearchProblem
+   def show_solution():
+      # Maze specific implementation here
 
-    class Maze(SearchProblem):
-         def __init__():
-            # Maze specific implementation here
+class MazeNode(Node)
+   def __init__():
+      # Maze specific implementation here
 
-         def show_solution():
-            # Maze specific implementation here
+   def actions():
+      # Maze specific implementation here
 
-    class MazeNode(Node)
-         def __init__():
-            # Maze specific implementation here
+   def result():
+      # Maze specific implementation here
+```
+Solve maze just calling **solve()** on MazeNode object.
+Show solution with **show_solution()** method.
+Get a detailed log of algorithm steps for that maze solution calling **save_algorithm_steps_to_file()**.
 
-         def actions():
-            # Maze specific implementation here
+```bash
 
-         def result():
-            # Maze specific implementation here
+maze = Maze(<filename>)
 
+maze.solve('BFS')
+maze.show_solution(dynamic=False)
+maze.save_algorithm_steps_to_file()
+```
 
-    maze = Maze(<filename>)
-    maze.solve('BFS')
-    maze.show_solution(dynamic=False)
-    maze.save_algorithm_steps_to_file()
-
-
-
-
-
-## features
-- Object-Oriented Design
-- Interface Methods and Encapsulation
-- Abstract Base Classes (ABC)
-- Modularity and Extensibility to add search algorithms (e.g.: informed search algorithms)
-- Type hints and documentation
-- Container implementations
+See more advanced usage examples in documentation, with dynamic representation of algorithm steps.
 
 
 
@@ -94,25 +89,6 @@ Show result with **show_solution()** method, and get a detailed log of algorithm
 📌 TO DO: readthedocs link
 
 [Read The Docs documentation](docs/search_docs.md)
-
-
-
-## 💼 Usage complete examples
-
-The following example scripts use **search** to solve these problems:
-
-📌 TO DO: below links to GitHub directory, that shoul have a readme ¿refering to readthedocs or just explaining in README.md?
-
-- [maze](https://github.com/javrui/search-maze-puzzle/blob/main/maze.md): Maze solver.
-
-
-- [puzzle](https://github.com/javrui/search-maze-puzzle/blob/main/puzzle.md): Puzzle solver.
-
-## dependencies
-none
-
-
-
 
 
 ## 🧪 Testing
