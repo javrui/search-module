@@ -81,7 +81,6 @@ maze.save_algorithm_steps_to_file()
 See more advanced usage examples in documentation, with dynamic representation of algorithm steps.
 
 
-
 [enhanced in documentation](docs/features.md)
 
 
