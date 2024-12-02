@@ -1,5 +1,22 @@
-"""================================================================ JRM 2024.02
+"""=================================================================== JRM 2024
 Module: search
+
+This module provides two abstract classes (SearchProblem and Node) to help you solve search problems using algorithms like Breadth-First Search (BFS) and Depth-First Search (DFS).
+
+You can extend these classes to create your own search problem by overriding the abstract methods with custom logic.
+
+Key Features:
+
+- SearchProblem and Node define the structure and methods for search problems.
+
+- Built-in support for BFS and DFS, with the option to add custom algorithms.
+
+- Detailed logging to show the frontier, explored nodes, and expanded nodes at each step, helping you understand how the search algorithm works.
+
+Usage:
+Override the abstract methods in your derived classes to define the initial state, goal state, valid actions, and transition model for your problem.
+
+"Read the docs" for details.
 ============================================================================"""
 
 from typing import Optional
@@ -42,11 +59,12 @@ class SearchProblem(ABC):
         Depth-First Search (DFS) to find a path from the initial state to
         the goal state.
 
+        Maintains detailed algorithm execution log including frontier state,
+        explored nodes, and node expansion sequence BEFORE each node expansion.
+
         Args:
             search_algorithm (str, optional): The search strategy to use.
                 Must be either 'BFS' or 'DFS'. Defaults to 'BFS'.
-            Maintains detailed algorithm execution log including frontier state,
-            explored nodes, and node expansion sequence BEFORE each node expansion.
 
         Returns:
             bool: True if a solution is found, False otherwise.
@@ -112,7 +130,7 @@ class SearchProblem(ABC):
 
     def show_solution(self):
         """
-        Print the solution, if one exists, along with the number of nodes explored.
+        Basic print of solution, if one exists, along with the number of nodes explored.
         """
         print(f"Initial state:\n{self.start_node}")
         print(f"\nGoal state:\n{self.goal_node}")

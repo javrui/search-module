@@ -121,7 +121,7 @@ class Maze(SearchProblem):
             self._calculate_maze_and_solution_layout_elements()
 
             offset = self._check_terminal_size()
-            if offset is (0, 0):
+            if offset == (0, 0):
                 return False
             try:
                 curses.wrapper(lambda stdscr:
@@ -208,7 +208,7 @@ class Maze(SearchProblem):
         if self.first_dynamic_solution_shown is True:
             line_count +=1
 
-        stdscr.addstr(3*BLANK_LINE + line_count + self.height, 2 + h_offs, "Press any key.")
+        stdscr.addstr(3*BLANK_LINE + line_count + self.height, 2, "Press any key.")
         stdscr.refresh()
 
         # Wait for a key press to exit
@@ -236,8 +236,9 @@ class Maze(SearchProblem):
             curses.start_color()
             for _, components in self.layout_elements.items():
                 curses.init_pair(components['color'], components['color'], curses.COLOR_BLACK)
-        except curses.error:
-            raise RuntimeError("Error initializing color pairs. Ensure your terminal supports colors.")
+        except curses.error as exc:
+            raise RuntimeError("Error initializing color pairs. Ensure your terminal supports colors.") from exc
+
 
     def _calculate_maze_and_solution_layout_elements(self):
 

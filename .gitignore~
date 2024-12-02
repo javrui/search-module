@@ -1,25 +1,27 @@
 explaining search/
-old/
+BKP/
 Original code/
 __pycache__/
 aux_notes/
 
-# Para los temporales/backup del editor:
+# editor temp files:
 *~
+
+# Algorithm steps log:
+*_steps.txt
 
 .vscode/
 .venv/
 
-# Los incluyo de momento por si hay textos útiles:
+# Keep locally in case useful:
 docs/algorithm.md
 docs/README_cd50.md
 
 
-# En este directorio voy a depurar search.py
+# Working directory to improve search.py:
 search_depuration/
 
 
-maze/dinamic_maze.py
 
 
 

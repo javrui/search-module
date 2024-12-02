@@ -1,6 +1,6 @@
 # search
 
-Solves search (path finding) problems using uninformed search algorithms Breadth-First Search (BFS) and Depth-First Search (DFS). Allows algorithm internal data structures state trace.
+This module solves search (path finding) problems using uninformed search algorithms Breadth-First Search (BFS) and Depth-First Search (DFS). Shows algorithm execution step by step for didactic  purposes.
 
 ![Python](https://img.shields.io/badge/python-3.6%2B-blue)
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg)
@@ -10,16 +10,43 @@ Solves search (path finding) problems using uninformed search algorithms Breadth
 📌 TO DO: links in badges
 
 ## ✨Overview
-📌 TO DO: esto no me gusta como queda:
 
-This Python module provides two foundational classes. You have to write derived classes to code its abstract methods according to your search problem specific logic.
+The search.py module is a Python framework designed to help solve search problems using classic search algorithms like Breadth-First Search (BFS) and Depth-First Search (DFS). The module provides two main abstract classes: SearchProblem and Node, which users can extend to create their own search implementations.
 
-Module can optionally show frontier, explored nodes and expanded nodes at each algorithm step, allowing a complete understanding of algorithm.
+This module is particularly useful for anyone working with problem-solving techniques involving state-space search, such as pathfinding, game solving, or any domain that requires intelligent exploration of states.
+
+
+## Key Features
+
+- Abstract Classes for Custom Problems: SearchProblem and Node provide a structured way to define custom search problems by overriding their abstract methods.
+
+- Built-In Support for BFS and DFS: The solve() method supports both BFS and DFS, with flexible components like QueueFrontier and StackFrontier for implementing different search strategies.
+
+- Detailed Logging: The module logs the search progress, showing the state of the frontier, the explored nodes, and expanded nodes at each step, enabling users to analyze the search behavior thoroughly.
+
+
+
+## 📥 Installation
+No installation required; simply clone the repository and import search.py into your Python project.
+
+
+```bash
+# Clone the repo
+git clone https://github.com/jjavrui/search-module.git
+cd my_module
+```
+
+Or add search.py to your project folder and import it.
+```bash
+from search import SearchProblem, Node
+```
 
 
 ## 🚀 Basic usage
-Example of basic maze solving script.
-Once abstract methods of derived classes (Maze and MazeNode) are defined, maze solving is just calling **solve()** and showing result with **show_solution()** methods:
+Example of using 'searc' for maze solving script:
+
+Once abstract methods of derived classes (Maze and MazeNode) are defined, maze solving is just calling **solve()** on MazeNode object.
+Show result with **show_solution()** method, and get a detailed log of algorithm steps for that maze calling **save_algorithm_steps_to_file()**.
 
     from search import Node, SearchProblem
 
@@ -41,10 +68,13 @@ Once abstract methods of derived classes (Maze and MazeNode) are defined, maze s
             # Maze specific implementation here
 
 
-    maze = Maze(<maze_file_path>)
-    maze.solve('BFS', record_algorithm_steps=True)
-    maze.show_solution()
-    maze.show_algorithm_steps()
+    maze = Maze(<filename>)
+    maze.solve('BFS')
+    maze.show_solution(dynamic=False)
+    maze.save_algorithm_steps_to_file()
+
+
+
 
 
 ## features
@@ -52,7 +82,6 @@ Once abstract methods of derived classes (Maze and MazeNode) are defined, maze s
 - Interface Methods and Encapsulation
 - Abstract Base Classes (ABC)
 - Modularity and Extensibility to add search algorithms (e.g.: informed search algorithms)
-- Didactic approach allowing trace of algorithm steps.
 - Type hints and documentation
 - Container implementations
 
@@ -83,20 +112,7 @@ The following example scripts use **search** to solve these problems:
 none
 
 
-## 📥 Installation
-Step-by-step guide to install your module.
 
-```bash
-# Clone the repo
-git clone https://github.com/yourusername/my_module.git
-cd my_module
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Install the module
-pip install .
-```
 
 
 ## 🧪 Testing
