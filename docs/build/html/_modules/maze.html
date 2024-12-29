@@ -1,0 +1,895 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>maze &mdash; search module 1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=56dcb7b8"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            search module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">INTRODUCTION:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../AI_intro.html">Introduction to search problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#search-problem-and-ai">Search problem and AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#generic-uninformed-search-algorithm">Generic uninformed search algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#search-algorithm-key-concepts">Search algorithm key concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#algorithm-pseudocode">Algorithm pseudocode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#algorithm-steps-log-in-search-module">Algorithm steps log in <em>search</em> module</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">USER GUIDE:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#usage-basic-concepts">Usage: basic concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#usage-basic-example">Usage: basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#instructions-to-override-methods-in-subclass">Instructions to override methods in subclass</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide.html#searchproblem-methods">SearchProblem methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-searchproblem-init">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.\_\_init\_\_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-searchproblem-show-solution">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.show_solution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-searchproblem-save-algorithm-steps-to-file">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.save_algorithm_steps_to_file</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide.html#node-methods">Node methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-node-init">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.\_\_init\_\_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-node-action">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.action</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-node-result">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.result</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../search_api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem"><code class="docutils literal notranslate"><span class="pre">SearchProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.start_node"><code class="docutils literal notranslate"><span class="pre">SearchProblem.start_node</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.goal_node"><code class="docutils literal notranslate"><span class="pre">SearchProblem.goal_node</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.algorithm"><code class="docutils literal notranslate"><span class="pre">SearchProblem.algorithm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.frontier"><code class="docutils literal notranslate"><span class="pre">SearchProblem.frontier</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.explored_nodes"><code class="docutils literal notranslate"><span class="pre">SearchProblem.explored_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.solution"><code class="docutils literal notranslate"><span class="pre">SearchProblem.solution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.algorithm_log"><code class="docutils literal notranslate"><span class="pre">SearchProblem.algorithm_log</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.__init__"><code class="docutils literal notranslate"><span class="pre">SearchProblem.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.solve"><code class="docutils literal notranslate"><span class="pre">SearchProblem.solve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.show_solution"><code class="docutils literal notranslate"><span class="pre">SearchProblem.show_solution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.save_algorithm_steps_to_file"><code class="docutils literal notranslate"><span class="pre">SearchProblem.save_algorithm_steps_to_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../search_api_reference.html#search.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.state"><code class="docutils literal notranslate"><span class="pre">Node.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.parent"><code class="docutils literal notranslate"><span class="pre">Node.parent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.action"><code class="docutils literal notranslate"><span class="pre">Node.action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.__init__"><code class="docutils literal notranslate"><span class="pre">Node.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.actions"><code class="docutils literal notranslate"><span class="pre">Node.actions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.result"><code class="docutils literal notranslate"><span class="pre">Node.result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.node_action"><code class="docutils literal notranslate"><span class="pre">Node.node_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.node_state"><code class="docutils literal notranslate"><span class="pre">Node.node_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.expand"><code class="docutils literal notranslate"><span class="pre">Node.expand()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">USAGE EXAMPLE:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../maze/usage_example_maze.html">maze.py script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-script-explained">maze.py script explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-overview">maze.py overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-input-maze-layout-file">maze.py input: maze layout file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-output-static-representation">maze.py output: static representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-output-dynamic-representation">maze.py output: dynamic representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-output-algorithm-steps-data-files">maze.py output: algorithm steps data files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../maze/usage_example_maze.html#how-does-maze-py-use-search">How does <em>maze.py</em> use <em>search</em></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#basic-search-usage-in-maze-py-script">Basic <em>search</em> usage in <em>maze.py</em> script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../maze/usage_example_maze.html#import-interface-classes-node-and-searchproblem">1. Import interface classes Node and SearchProblem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../maze/usage_example_maze.html#create-its-own-maze-problem-specific-derived-classes-maze-and-mazenode">2. Create its own maze problem specific derived classes: Maze and MazeNode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../maze/usage_example_maze.html#write-override-methods-that-implement-maze-specific-problem-environment">3. Write/override methods that implement maze specific problem environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../maze/usage_example_maze.html#call-search-module-interface-methods">4. Call <em>search</em> module interface methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-code">maze.py code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ALL THE REST:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Key Features of <em>search</em> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credits_license.html">Credits and license</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../credits_license.html#credits">🙏 Credits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../credits_license.html#license">⚖️ License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">search module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">maze</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for maze</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Python script that finds and prints 2 dimension&#39;s maze solution.</span>
+
+<span class="sd">It is an usage example of &#39;search&#39; module, which provides classes and functions</span>
+<span class="sd">for solving search problems.</span>
+
+<span class="sd">Usage:</span>
+<span class="sd">    python3 maze.py &lt;maze layout .txt utf-8 file path&gt;</span>
+
+<span class="sd">Dependencies:</span>
+<span class="sd">    search module</span>
+
+<span class="sd">Author:</span>
+<span class="sd">    JRM 2024.02</span>
+
+<span class="sd">Credits:</span>
+<span class="sd">    Based on code from HarvardX:CS50’s Introduction to Artificial Intelligence</span>
+<span class="sd">    with Python course.</span>
+
+<span class="sd">License:</span>
+<span class="sd">    Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</span>
+<span class="sd">    (CC BY-NC-SA 4.0)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">curses</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="n">parent_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+<span class="n">search_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">,</span> <span class="s1">&#39;search&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">search_dir</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">search</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">SearchProblem</span> <span class="c1"># pylint: disable=C0413</span>
+
+
+<div class="viewcode-block" id="Maze">
+<a class="viewcode-back" href="../maze/usage_example_maze.html#maze.Maze">[docs]</a>
+<span class="k">class</span> <span class="nc">Maze</span><span class="p">(</span><span class="n">SearchProblem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Defines a maze object to be solved with &#39;search&#39; module.</span>
+
+<span class="sd">    Subclasses SearchProblem class, to:</span>
+<span class="sd">        Implement __init__() with attributes that define maze layout</span>
+
+<span class="sd">        Override show_solution() to print static maze layout with solution</span>
+<span class="sd">        and dynamic maze path forming</span>
+
+<span class="sd">        Override save_algorithm_steps_to_file() to add static maze print</span>
+<span class="sd">        to file.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        filename (str): Name of the UTF-8 text file defining the maze.</span>
+<span class="sd">        start_char (str): Character representing the start point in maze file.</span>
+<span class="sd">        goal_char (str): Character representing the goal point in maze file.</span>
+<span class="sd">        path_char (str): Character representing the open path in maze file.</span>
+<span class="sd">        walls (list of list of bool): Boolean grid representing walls (True)</span>
+<span class="sd">            and open paths (False) in maze.</span>
+<span class="sd">        height (int): Number of rows in the maze.</span>
+<span class="sd">        width (int): Number of columns in the maze.</span>
+<span class="sd">        offset (dict): Directional offsets (horizontal, vertical) for movement.</span>
+<span class="sd">        first_dynamic_solution_shown (bool): Tracks if a dynamic solution was</span>
+<span class="sd">            displayed.</span>
+<span class="sd">        layout_elements (dict): Styling for maze components during visualization.</span>
+<span class="sd">        maze_solution_layout (dict): Stores elements for dynamic maze display.</span>
+<span class="sd">        start_node (MazeNode): Node object for the maze start position.</span>
+<span class="sd">        goal_node (MazeNode): Node object for the maze goal position.</span>
+
+<span class="sd">    Notes on maze layout definition file:</span>
+<span class="sd">        Maze layout is defined in an utf-8 encoded text file. Each character in</span>
+<span class="sd">        file represents a cell in maze grid. Cells can be:</span>
+
+<span class="sd">            * starting cell (default character is ‘A’)</span>
+<span class="sd">            * goal cell (default character is ‘B’)</span>
+<span class="sd">            * path (default character is ‘ ‘)</span>
+<span class="sd">            * wall (any other character)</span>
+
+<span class="sd">        Maze layout file content example:</span>
+<span class="sd">            &#39;###########&#39;</span>
+<span class="sd">            &#39;#         #&#39;</span>
+<span class="sd">            &#39;#### #### #&#39;</span>
+<span class="sd">            &#39;#B   #    #&#39;</span>
+<span class="sd">            &#39;# #### ####&#39;</span>
+<span class="sd">            &#39;#         #&#39;</span>
+<span class="sd">            &#39;#A#########&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Maze.__init__">
+<a class="viewcode-back" href="../maze/usage_example_maze.html#maze.Maze.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_char</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+                 <span class="n">goal_char</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">path_char</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads maze layout from &#39;filename&#39; to initialize a maze object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename (str): name of utf-8 text file .txt defining maze layout.</span>
+<span class="sd">            start_char (str, optional): The character representing the start</span>
+<span class="sd">                position in the maze. Defaults to &#39;A&#39;.</span>
+<span class="sd">            goal_char (str, optional): The character representing the goal</span>
+<span class="sd">                position in the maze. Defaults to &#39;B&#39;.</span>
+<span class="sd">            path_char (str, optional): The character representing the path in</span>
+<span class="sd">                the maze. Defaults to &#39; &#39;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_char</span> <span class="o">=</span> <span class="n">start_char</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goal_char</span> <span class="o">=</span> <span class="n">goal_char</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_char</span> <span class="o">=</span> <span class="n">path_char</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;up&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;down&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_dynamic_solution_shown</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;walls&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;█&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">243</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+            <span class="s1">&#39;exploration&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;·&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">208</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
+            <span class="s1">&#39;solution&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;¤&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">118</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
+            <span class="s1">&#39;start_goal&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maze_solution_layout</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_maze_from_file</span><span class="p">()</span></div>
+
+
+
+    <span class="k">def</span> <span class="nf">_load_maze_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads the maze configuration from a file.</span>
+
+<span class="sd">        This method reads the maze configuration from a file specified by `self.filename`.</span>
+<span class="sd">        It ensures that the file contains exactly one start point and one goal point.</span>
+<span class="sd">        It also initializes the maze&#39;s dimensions and wall configuration.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            SystemExit: If the file is not found, permission is denied, or an</span>
+<span class="sd">                I/O error occurs.</span>
+<span class="sd">            ValueError: If the maze does not contain exactly one start point or</span>
+<span class="sd">                one goal point.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Read file and check start and goal points exist</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: Permission denied for accessing file &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: Unable to read file &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="s2">&#39;. Details: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Ensure start and goal points are present</span>
+        <span class="k">if</span> <span class="n">contents</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_char</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;maze must have exactly one start point&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">contents</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">goal_char</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;maze must have exactly one goal&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Define height and width of maze (ignores empty lines)</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">)</span>
+
+        <span class="c1"># Creates wall values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">walls</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">):</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">contents</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_char</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">start_node</span> <span class="o">=</span> <span class="n">MazeNode</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+                        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">contents</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_char</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">goal_node</span> <span class="o">=</span> <span class="n">MazeNode</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+                        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">contents</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">path_char</span><span class="p">:</span>
+                        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                    <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">walls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Maze.show_solution">
+<a class="viewcode-back" href="../maze/usage_example_maze.html#maze.Maze.show_solution">[docs]</a>
+    <span class="k">def</span> <span class="nf">show_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prints the maze and its solution.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dynamic (bool): If True, shows the solution step by step dynamically.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the solution was shown successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            curses.error: If there is an error showing the dynamic solution.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">dynamic</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_maze_and_solution_layout_elements</span><span class="p">()</span>
+
+            <span class="n">offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_display_offsets</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">offset</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">curses</span><span class="o">.</span><span class="n">wrapper</span><span class="p">(</span><span class="k">lambda</span> <span class="n">stdscr</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_show_dynamic_solution</span><span class="p">(</span><span class="n">stdscr</span><span class="p">,</span> <span class="n">offset</span><span class="p">))</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="n">curses</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error showing dynamic solution. Check terminal size.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solution_summary_str</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="c1">#print(self._solution_summary_str())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solution_layout_str</span><span class="p">())</span>
+            <span class="k">return</span> <span class="kc">True</span></div>
+
+
+
+    <span class="k">def</span> <span class="nf">_calculate_maze_and_solution_layout_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates and sets the layout elements for the maze and its solution.</span>
+
+<span class="sd">        This method prepares the layout elements required for displaying the</span>
+<span class="sd">        maze, including walls, start and goal nodes, exploration path, and</span>
+<span class="sd">        solution path. The layout elements are stored in the</span>
+<span class="sd">        `self.maze_solution_layout` attribute.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Define the maze layout for curses</span>
+        <span class="n">maze_walls</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="s1">&#39;walls&#39;</span><span class="p">][</span><span class="s1">&#39;char&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">brick</span> <span class="k">else</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">walls</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">brick</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Define start and goal nodes for curses</span>
+        <span class="n">maze_start_goal</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_node</span><span class="o">.</span><span class="n">state</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,),</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_node</span><span class="o">.</span><span class="n">state</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,)]</span>
+
+        <span class="c1"># Define exploration path for curses</span>
+        <span class="n">maze_exploration</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">get_log</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;extracted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">state</span>
+            <span class="n">maze_exploration</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="s1">&#39;exploration&#39;</span><span class="p">][</span><span class="s1">&#39;char&#39;</span><span class="p">]))</span>
+
+        <span class="c1"># Define solution path for curses</span>
+        <span class="n">maze_solution</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">:</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">state</span>
+                <span class="n">maze_solution</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="s1">&#39;solution&#39;</span><span class="p">][</span><span class="s1">&#39;char&#39;</span><span class="p">]))</span>
+
+        <span class="c1"># Create layout elements dictionary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maze_solution_layout</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;walls&#39;</span><span class="p">:</span> <span class="n">maze_walls</span><span class="p">,</span>
+            <span class="s1">&#39;start_goal&#39;</span><span class="p">:</span> <span class="n">maze_start_goal</span><span class="p">,</span>
+            <span class="s1">&#39;exploration&#39;</span><span class="p">:</span> <span class="n">maze_exploration</span><span class="p">,</span>
+            <span class="s1">&#39;solution&#39;</span><span class="p">:</span> <span class="n">maze_solution</span><span class="p">,</span>
+            <span class="p">}</span>
+
+
+    <span class="k">def</span> <span class="nf">_calculate_display_offsets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Calculates dynamic display elements offsets and checks terminal</span>
+<span class="sd">        size needed to fit space for maze solution display.</span>
+
+<span class="sd">        Display of two maze solutions (BFS and DFS) can be: &quot;side to side&quot; or</span>
+<span class="sd">        &quot;one below the other&quot;. Offsets will be aimed at side to side layout</span>
+<span class="sd">        (vertical_offset = 1). If not possible, tries vertical layout</span>
+<span class="sd">        (horizontal_offset will be 0).</span>
+<span class="sd">        If terminal size is not enough, prints a warning message and</span>
+<span class="sd">        returns (0, 0).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: (horizontal_offset, vertical_offset), where curses library</span>
+<span class="sd">                will print the second solution.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="p">(</span><span class="n">term_width</span><span class="p">,</span> <span class="n">term_height</span><span class="p">)</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">get_terminal_size</span><span class="p">()</span>
+
+        <span class="n">h_title_indent</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">v_title_indent</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">title_width</span> <span class="o">=</span> <span class="mi">29</span>
+        <span class="n">h_layout_indent</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">v_layout_indent</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">v_press_key_lines</span> <span class="o">=</span> <span class="mi">2</span>
+
+
+        <span class="n">element_width_needed</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">h_title_indent</span> <span class="o">+</span> <span class="n">title_width</span><span class="p">,</span>
+                                    <span class="n">h_layout_indent</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+        <span class="n">element_heigh_needed</span> <span class="o">=</span> <span class="p">(</span><span class="n">v_title_indent</span> <span class="o">+</span> <span class="n">v_layout_indent</span> <span class="o">+</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">v_press_key_lines</span><span class="p">)</span>
+
+        <span class="c1"># Side to side layout if possible, otherwise one below the other</span>
+        <span class="k">if</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">element_width_needed</span> <span class="o">&lt;=</span> <span class="n">term_width</span> <span class="ow">and</span> <span class="n">element_heigh_needed</span> <span class="o">&lt;=</span> <span class="n">term_height</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">element_width_needed</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">element_heigh_needed</span> <span class="o">&lt;=</span> <span class="n">term_height</span> <span class="ow">and</span> <span class="n">element_width_needed</span> <span class="o">&lt;=</span> <span class="n">term_width</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">element_heigh_needed</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Error trying to show dynamic solution:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Terminal width = </span><span class="si">{</span><span class="n">term_width</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Display width needed = </span><span class="si">{</span><span class="mi">2</span><span class="o">*</span><span class="n">element_width_needed</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Terminal height = </span><span class="si">{</span><span class="n">term_height</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Display height needed = </span><span class="si">{</span><span class="mi">2</span><span class="o">*</span><span class="n">element_heigh_needed</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please, resize terminal to fit maze layout display size.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Press Key to continue...&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_show_dynamic_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stdscr</span><span class="p">:</span> <span class="n">curses</span><span class="o">.</span><span class="n">window</span><span class="p">,</span>
+                               <span class="n">offset</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Shows the maze solution step by step dynamically.</span>
+
+<span class="sd">        This method displays the maze solution step by step using the curses</span>
+<span class="sd">        library.</span>
+<span class="sd">        It is called twice (for BFS and DFS solutions). The second solution is</span>
+<span class="sd">        shown either to the right or below the first one, so the offset</span>
+<span class="sd">        parameter indicates where &#39;curses&#39; has to locate second solution.</span>
+
+<span class="sd">        Display of two maze solutions (BFS and DFS) can be: &quot;side to side&quot; or</span>
+<span class="sd">        &quot;one below the other&quot;. Offsets will be aimed at side to side layout</span>
+<span class="sd">        vertical_offset = 1 if &quot;side to side&quot; display is to be shown.</span>
+<span class="sd">        horizontal_offset = 0 if &quot;one below the other&quot; display is to be shown.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stdscr (curses.window): The curses window object.</span>
+<span class="sd">            offset (tuple): A tuple (horizontal_offset, vertical_offset)</span>
+<span class="sd">                indicating the offset for displaying the second solution.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            curses.error: If there is an error displaying the solution</span>
+<span class="sd">                dynamically.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_curses_settings</span><span class="p">(</span><span class="n">stdscr</span><span class="p">)</span>
+
+        <span class="c1"># Offset in terminal display of solution to be printed</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_dynamic_solution_shown</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">h_offs</span><span class="p">,</span> <span class="n">v_offs</span> <span class="o">=</span> <span class="n">offset</span>
+
+        <span class="n">blank_line</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># To clarify expressions in curses.addch() and curses.addstr()</span>
+
+        <span class="c1"># Print Summary:s</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_dynamic_solution_shown</span> <span class="k">else</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">line_count</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solution_summary_str</span><span class="p">()[</span><span class="n">start</span><span class="p">:],</span> <span class="n">blank_line</span><span class="p">):</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">line_count</span> <span class="o">+</span> <span class="n">v_offs</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">h_offs</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+
+        <span class="c1"># Elements to show in layout:</span>
+        <span class="n">show_elements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;walls&#39;</span><span class="p">,</span> <span class="s1">&#39;start_goal&#39;</span><span class="p">,</span> <span class="s1">&#39;exploration&#39;</span><span class="p">,</span> <span class="s1">&#39;start_goal&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">show_elements</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;solution&#39;</span><span class="p">,</span> <span class="s1">&#39;start_goal&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Print layout:</span>
+        <span class="k">for</span> <span class="n">element_name</span> <span class="ow">in</span> <span class="n">show_elements</span><span class="p">:</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">char</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">maze_solution_layout</span><span class="p">[</span><span class="n">element_name</span><span class="p">]:</span>
+
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="n">element_name</span><span class="p">][</span><span class="s1">&#39;wait&#39;</span><span class="p">])</span>
+
+                <span class="n">color</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">color_pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="n">element_name</span><span class="p">][</span><span class="s1">&#39;color&#39;</span><span class="p">])</span>
+
+                <span class="n">stdscr</span><span class="o">.</span><span class="n">addch</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">line_count</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">blank_line</span> <span class="o">+</span> <span class="n">v_offs</span><span class="p">,</span>
+                                <span class="n">x</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">+</span> <span class="n">h_offs</span><span class="p">,</span> <span class="n">char</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+                <span class="n">stdscr</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+        <span class="c1"># Print &quot;press key&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_dynamic_solution_shown</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">line_count</span> <span class="o">+=</span><span class="mi">1</span>
+            <span class="n">factor</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">h_offs</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="n">press_key_v_offset</span> <span class="o">=</span> <span class="n">factor</span><span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">blank_line</span> <span class="o">+</span> <span class="n">line_count</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">press_key_v_offset</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">blank_line</span> <span class="o">+</span> <span class="n">line_count</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">press_key_v_offset</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Press any key.&quot;</span><span class="p">)</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+        <span class="c1"># Wait for a key press to exit</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">getch</span><span class="p">()</span>
+        <span class="c1"># Delete &quot;press key&quot;</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">press_key_v_offset</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">h_offs</span><span class="p">,</span> <span class="s2">&quot;              &quot;</span><span class="p">)</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_dynamic_solution_shown</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+    <span class="k">def</span> <span class="nf">_set_curses_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stdscr</span><span class="p">:</span> <span class="n">curses</span><span class="o">.</span><span class="n">window</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the curses settings for displaying the maze.</span>
+
+<span class="sd">        This method configures the curses library settings, such as disabling the</span>
+<span class="sd">        cursor, enabling instant character echoing, setting blocking mode for</span>
+<span class="sd">        key presses, and initializing color pairs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stdscr (curses.window): The curses window object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Disable cursor and enable instant character echoing</span>
+        <span class="n">curses</span><span class="o">.</span><span class="n">curs_set</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># Blocking mode. getch() waits indefinitely for a key press.</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Set the color pairs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_colors</span><span class="p">()</span>
+        <span class="c1">#stdscr.clear()</span>
+
+
+    <span class="k">def</span> <span class="nf">_set_colors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes color pairs for the maze display using the curses library.</span>
+
+<span class="sd">        This method checks if the terminal supports colors and initializes the</span>
+<span class="sd">        color pairs for different maze components. If the terminal does not support</span>
+<span class="sd">        colors or there is an error initializing color pairs, it raises a RuntimeError.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            RuntimeError: If the terminal does not support colors or if there is an</span>
+<span class="sd">                        error initializing color pairs.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">curses</span><span class="o">.</span><span class="n">has_colors</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Your terminal does not support colors.&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">curses</span><span class="o">.</span><span class="n">start_color</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">components</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">curses</span><span class="o">.</span><span class="n">init_pair</span><span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">curses</span><span class="o">.</span><span class="n">COLOR_BLACK</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">curses</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Error initializing color pairs.&quot;</span>
+                              <span class="s2">&quot;Ensure your terminal supports colors.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
+
+
+    <span class="k">def</span> <span class="nf">_solution_summary_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates and returns a summary of explored nodes and, if solution</span>
+<span class="sd">        exists, solution path nodes.</span>
+
+<span class="sd">        This method creates a summary string that includes information about</span>
+<span class="sd">        the maze being solved, the algorithm used, the number of explored</span>
+<span class="sd">        nodes, and the solution path nodes if a solution exists.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of strings representing the summary of the maze solution.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">expl_char</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="s1">&#39;exploration&#39;</span><span class="p">][</span><span class="s1">&#39;char&#39;</span><span class="p">]</span>
+        <span class="n">sol_char</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="s1">&#39;solution&#39;</span><span class="p">][</span><span class="s1">&#39;char&#39;</span><span class="p">]</span>
+        <span class="n">expl_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">explored_nodes</span><span class="p">)</span>
+        <span class="n">sol_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="k">else</span> <span class="s1">&#39;-&#39;</span>
+        <span class="n">sol</span> <span class="o">=</span> <span class="s2">&quot; No Solution found!&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="n">lines</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">30</span><span class="o">*</span><span class="s1">&#39;-&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;- Solving: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;- Algorithm: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;- Explored nodes (</span><span class="si">{</span><span class="n">expl_char</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">sol_char</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">expl_len</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;- Solution nodes (</span><span class="si">{</span><span class="n">sol_char</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">sol_len</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;- Solution: </span><span class="si">{</span><span class="n">sol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="k">return</span> <span class="n">lines</span>
+
+
+    <span class="k">def</span> <span class="nf">_solution_layout_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates and returns the maze layout as a string, including the</span>
+<span class="sd">        solution path if it exists.</span>
+
+<span class="sd">        This method creates a string representation of the maze layout,</span>
+<span class="sd">        marking walls, start and goal nodes, the solution path, and explored</span>
+<span class="sd">        nodes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: A string representing the maze layout with the solution path</span>
+<span class="sd">            if it exists.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">walls</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+                <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">col</span><span class="p">:</span>
+                    <span class="n">string</span> <span class="o">+=</span> <span class="s2">&quot;█&quot;</span>
+                <span class="k">elif</span> <span class="n">position</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_node</span><span class="o">.</span><span class="n">state</span><span class="p">:</span>
+                    <span class="n">string</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_char</span>
+                <span class="k">elif</span> <span class="n">position</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_node</span><span class="o">.</span><span class="n">state</span><span class="p">:</span>
+                    <span class="n">string</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_char</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="ow">and</span> <span class="n">position</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">:</span>
+                    <span class="n">string</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="s1">&#39;solution&#39;</span><span class="p">][</span><span class="s1">&#39;char&#39;</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="ow">and</span> <span class="n">position</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">explored_nodes</span><span class="p">:</span>
+                    <span class="n">string</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span><span class="p">[</span><span class="s1">&#39;exploration&#39;</span><span class="p">][</span><span class="s1">&#39;char&#39;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">string</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path_char</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+        <span class="k">return</span> <span class="n">string</span>
+
+
+<div class="viewcode-block" id="Maze.save_algorithm_steps_to_file">
+<a class="viewcode-back" href="../maze/usage_example_maze.html#maze.Maze.save_algorithm_steps_to_file">[docs]</a>
+    <span class="k">def</span> <span class="nf">save_algorithm_steps_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Saves algorithm steps to a file.</span>
+
+<span class="sd">        Overrides base method to save maze graphic solution. The file name</span>
+<span class="sd">        saved is the same as the layout filename read, ending in</span>
+<span class="sd">        _&lt;algorithm name&gt;_steps.txt.</span>
+
+<span class="sd">        The file contains a summary of the solution and the maze layout with</span>
+<span class="sd">        the solution path.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">log_filename</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s2">_steps.txt&quot;</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solution_summary_str</span><span class="p">())</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solution_layout_str</span><span class="p">())</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">save_log</span><span class="p">(</span><span class="n">log_filename</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm steps saved to file:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">log_filename</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MazeNode">
+<a class="viewcode-back" href="../maze/usage_example_maze.html#maze.MazeNode">[docs]</a>
+<span class="k">class</span> <span class="nc">MazeNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a node in the maze.</span>
+
+<span class="sd">    A MazeNode is mainly the position in the maze. It also includes the</span>
+<span class="sd">    previous position and the direction taken to get there, although these are</span>
+<span class="sd">    used sparsely.</span>
+
+<span class="sd">    Subclasses Node class, to implement actions() and result() methods</span>
+<span class="sd">    according to a maze layout. It also overrides __repr__ to be used in Maze</span>
+<span class="sd">    methods printing nodes.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        state (tuple): The current position in the maze as a tuple (row, column).</span>
+<span class="sd">        parent (MazeNode): The parent node from which this node was reached.</span>
+<span class="sd">        action (str): The action taken to reach this node from the parent node.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MazeNode.actions">
+<a class="viewcode-back" href="../maze/usage_example_maze.html#maze.MazeNode.actions">[docs]</a>
+    <span class="k">def</span> <span class="nf">actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_problem</span><span class="p">:</span> <span class="n">SearchProblem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List of valid movements (actions) to occupy contiguous cells.</span>
+
+<span class="sd">        This method determines the valid actions that can be performed from the</span>
+<span class="sd">        current position in the maze, considering the maze boundaries and walls.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            search_problem (SearchProblem): The search problem instance</span>
+<span class="sd">                containing the maze layout, including the offset information,</span>
+<span class="sd">                dimensions, and wall positions.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of valid actions (str) that can be performed from the</span>
+<span class="sd">            current position.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">valid_actions</span> <span class="o">=</span> <span class="p">[]</span>      <span class="c1"># directions blank cell can &#39;move&#39; to</span>
+
+        <span class="c1"># these are all possible movements regardless of actual position</span>
+        <span class="n">initial_row</span><span class="p">,</span> <span class="n">initial_col</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+        <span class="n">moved</span> <span class="o">=</span> <span class="p">{</span><span class="n">action</span><span class="p">:</span> <span class="n">search_problem</span><span class="o">.</span><span class="n">offset</span> <span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">search_problem</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+
+        <span class="c1"># we choose the ones really possible considering position</span>
+        <span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="p">(</span><span class="n">row_offset</span><span class="p">,</span> <span class="n">col_offset</span><span class="p">)</span> <span class="ow">in</span> <span class="n">moved</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">new_row</span> <span class="o">=</span> <span class="n">initial_row</span> <span class="o">+</span> <span class="n">row_offset</span>
+            <span class="n">new_col</span> <span class="o">=</span> <span class="n">initial_col</span> <span class="o">+</span> <span class="n">col_offset</span>
+            <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">new_row</span> <span class="o">&lt;</span> <span class="n">search_problem</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> \
+                <span class="ow">and</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">new_col</span> <span class="o">&lt;</span> <span class="n">search_problem</span><span class="o">.</span><span class="n">width</span><span class="p">)</span> \
+                <span class="ow">and</span> <span class="ow">not</span> <span class="n">search_problem</span><span class="o">.</span><span class="n">walls</span><span class="p">[</span><span class="n">new_row</span><span class="p">][</span><span class="n">new_col</span><span class="p">]:</span>
+                <span class="n">valid_actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">valid_actions</span></div>
+
+
+
+<div class="viewcode-block" id="MazeNode.result">
+<a class="viewcode-back" href="../maze/usage_example_maze.html#maze.MazeNode.result">[docs]</a>
+    <span class="k">def</span> <span class="nf">result</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">search_problem</span><span class="p">:</span> <span class="n">SearchProblem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;MazeNode&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the node that results from performing &#39;action&#39; on self.</span>
+
+<span class="sd">        Calculates the new position in the maze based on the given action and</span>
+<span class="sd">        the search problem&#39;s offset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            action (str): The action to be performed.</span>
+<span class="sd">            search_problem (SearchProblem): The search problem instance</span>
+<span class="sd">                containing the offset information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            MazeNode: A new MazeNode instance representing the new position</span>
+<span class="sd">            in the maze.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the action is not valid.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">initial_row</span><span class="p">,</span> <span class="n">initial_col</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+        <span class="k">if</span> <span class="n">action</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">search_problem</span><span class="o">.</span><span class="n">offset</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid action: </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">new_position</span> <span class="o">=</span> <span class="p">(</span><span class="n">initial_row</span> <span class="o">+</span> <span class="n">search_problem</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="n">action</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="c1"># row</span>
+                        <span class="n">initial_col</span> <span class="o">+</span> <span class="n">search_problem</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="n">action</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span><span class="c1"># column</span>
+
+        <span class="k">return</span> <span class="n">MazeNode</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">new_position</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="MazeNode.__repr__">
+<a class="viewcode-back" href="../maze/usage_example_maze.html#maze.MazeNode.__repr__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a string representation of the object.</span>
+
+<span class="sd">        This method provides a simple view of the object, omitting details.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: A string representation of the object, including its state and</span>
+<span class="sd">            action.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="si">}</span><span class="s2">&#39;&quot;</span></div>
+</div>
+
+
+
+<span class="k">def</span> <span class="nf">search_module_simple_usage_example</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple usage example of the &#39;search&#39; module (shows maze static solution).</span>
+
+<span class="sd">    This function demonstrates the usage of the &#39;search&#39; module by solving the</span>
+<span class="sd">    maze using both BFS and DFS algorithms and displaying the static solutions.</span>
+<span class="sd">    It also saves the steps of each algorithm to a file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): The path to the maze layout file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">maze</span> <span class="o">=</span> <span class="n">Maze</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">maze</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="s1">&#39;BFS&#39;</span><span class="p">)</span>
+    <span class="n">maze</span><span class="o">.</span><span class="n">show_solution</span><span class="p">(</span><span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">maze</span><span class="o">.</span><span class="n">save_algorithm_steps_to_file</span><span class="p">()</span>
+
+    <span class="n">maze</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="s1">&#39;DFS&#39;</span><span class="p">)</span>
+    <span class="n">maze</span><span class="o">.</span><span class="n">show_solution</span><span class="p">(</span><span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">maze</span><span class="o">.</span><span class="n">save_algorithm_steps_to_file</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">dynamic_solution_display_search_usage_example</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Displays a dynamic solution of the maze using BFS and DFS algorithms.</span>
+
+<span class="sd">    This function uses the &#39;curses&#39; Python module to dynamically display both</span>
+<span class="sd">    BFS and DFS solutions of the maze, if the terminal size allows it. It first</span>
+<span class="sd">    solves the maze using BFS and displays the solution. If successful,</span>
+<span class="sd">    it then solves the maze using DFS and displays the solution.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): The path to the maze layout file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">maze</span> <span class="o">=</span> <span class="n">Maze</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">maze</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="s1">&#39;BFS&#39;</span><span class="p">)</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="n">maze</span><span class="o">.</span><span class="n">show_solution</span><span class="p">(</span><span class="n">dynamic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># To avoid repeating error:</span>
+    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+        <span class="n">maze</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="s1">&#39;DFS&#39;</span><span class="p">)</span>
+        <span class="n">maze</span><span class="o">.</span><span class="n">show_solution</span><span class="p">(</span><span class="n">dynamic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Test for maze.py</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Usage: python </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                 <span class="s2">&quot; &lt;path to utf-8 .txt maze layout file&gt;&quot;</span><span class="p">)</span>
+
+    <span class="n">maze_filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">search_module_simple_usage_example</span><span class="p">(</span><span class="n">maze_filename</span><span class="p">)</span>
+
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Press Enter to see dynamic steps...&quot;</span><span class="p">)</span>
+
+    <span class="n">dynamic_solution_display_search_usage_example</span><span class="p">(</span><span class="n">maze_filename</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, javrui.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

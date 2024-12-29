@@ -1,25 +1,17 @@
-explaining search/
-BKP/
-Original code/
-__pycache__/
 aux_notes/
+BKP/
+puzzle/
+__pycache__/
+
 
 # editor temp files:
 *~
 
 # Algorithm steps log:
-*_steps.txt
+mazes/*_steps.txt
 
 .vscode/
 .venv/
-
-# Keep locally in case useful:
-docs/algorithm.md
-docs/README_cd50.md
-
-
-# Working directory to improve search.py:
-search_depuration/
 
 
 

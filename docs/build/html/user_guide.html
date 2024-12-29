@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Guide &mdash; search module 1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=56dcb7b8"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="search_api_reference.html" />
+    <link rel="prev" title="Introduction to search problem" href="AI_intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            search module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">INTRODUCTION:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="AI_intro.html">Introduction to search problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#search-problem-and-ai">Search problem and AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#generic-uninformed-search-algorithm">Generic uninformed search algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#search-algorithm-key-concepts">Search algorithm key concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#algorithm-pseudocode">Algorithm pseudocode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#algorithm-steps-log-in-search-module">Algorithm steps log in <em>search</em> module</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">USER GUIDE:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-basic-concepts">Usage: basic concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-basic-example">Usage: basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instructions-to-override-methods-in-subclass">Instructions to override methods in subclass</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#searchproblem-methods">SearchProblem methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#meth-search-searchproblem-init">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.\_\_init\_\_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#meth-search-searchproblem-show-solution">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.show_solution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#meth-search-searchproblem-save-algorithm-steps-to-file">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.save_algorithm_steps_to_file</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#node-methods">Node methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#meth-search-node-init">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.\_\_init\_\_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#meth-search-node-action">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.action</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#meth-search-node-result">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.result</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="search_api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="search_api_reference.html#search.SearchProblem"><code class="docutils literal notranslate"><span class="pre">SearchProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.start_node"><code class="docutils literal notranslate"><span class="pre">SearchProblem.start_node</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.goal_node"><code class="docutils literal notranslate"><span class="pre">SearchProblem.goal_node</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.algorithm"><code class="docutils literal notranslate"><span class="pre">SearchProblem.algorithm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.frontier"><code class="docutils literal notranslate"><span class="pre">SearchProblem.frontier</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.explored_nodes"><code class="docutils literal notranslate"><span class="pre">SearchProblem.explored_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.solution"><code class="docutils literal notranslate"><span class="pre">SearchProblem.solution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.algorithm_log"><code class="docutils literal notranslate"><span class="pre">SearchProblem.algorithm_log</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.__init__"><code class="docutils literal notranslate"><span class="pre">SearchProblem.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.solve"><code class="docutils literal notranslate"><span class="pre">SearchProblem.solve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.show_solution"><code class="docutils literal notranslate"><span class="pre">SearchProblem.show_solution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.SearchProblem.save_algorithm_steps_to_file"><code class="docutils literal notranslate"><span class="pre">SearchProblem.save_algorithm_steps_to_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="search_api_reference.html#search.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.state"><code class="docutils literal notranslate"><span class="pre">Node.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.parent"><code class="docutils literal notranslate"><span class="pre">Node.parent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.action"><code class="docutils literal notranslate"><span class="pre">Node.action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.__init__"><code class="docutils literal notranslate"><span class="pre">Node.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.actions"><code class="docutils literal notranslate"><span class="pre">Node.actions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.result"><code class="docutils literal notranslate"><span class="pre">Node.result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.node_action"><code class="docutils literal notranslate"><span class="pre">Node.node_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.node_state"><code class="docutils literal notranslate"><span class="pre">Node.node_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_api_reference.html#search.Node.expand"><code class="docutils literal notranslate"><span class="pre">Node.expand()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">USAGE EXAMPLE:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="maze/usage_example_maze.html">maze.py script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-script-explained">maze.py script explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-overview">maze.py overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-input-maze-layout-file">maze.py input: maze layout file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-output-static-representation">maze.py output: static representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-output-dynamic-representation">maze.py output: dynamic representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-output-algorithm-steps-data-files">maze.py output: algorithm steps data files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="maze/usage_example_maze.html#how-does-maze-py-use-search">How does <em>maze.py</em> use <em>search</em></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#basic-search-usage-in-maze-py-script">Basic <em>search</em> usage in <em>maze.py</em> script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="maze/usage_example_maze.html#import-interface-classes-node-and-searchproblem">1. Import interface classes Node and SearchProblem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maze/usage_example_maze.html#create-its-own-maze-problem-specific-derived-classes-maze-and-mazenode">2. Create its own maze problem specific derived classes: Maze and MazeNode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maze/usage_example_maze.html#write-override-methods-that-implement-maze-specific-problem-environment">3. Write/override methods that implement maze specific problem environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maze/usage_example_maze.html#call-search-module-interface-methods">4. Call <em>search</em> module interface methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-code">maze.py code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ALL THE REST:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Key Features of <em>search</em> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits_license.html">Credits and license</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits_license.html#credits">🙏 Credits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits_license.html#license">⚖️ License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">search module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/user_guide.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading"></a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>No installation is required. Simply import the following classes from the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">search</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">SearchProblem</span>
+</pre></div>
+</div>
+</section>
+<section id="usage-basic-concepts">
+<h2>Usage: basic concepts<a class="headerlink" href="#usage-basic-concepts" title="Link to this heading"></a></h2>
+<p><em>search</em> module provides two interface classes: <strong>SearchProblem</strong> and <strong>Node</strong>.</p>
+<p>Both are abstract classes. You <strong>must</strong> subclass each one, i.e., you have to create your own two derived classes where you will write code that implements the
+following methods, specific for your problem:</p>
+<ul class="simple">
+<li><p>SearchProblem.<strong>__init__</strong>()</p></li>
+<li><p>Node.<strong>actions</strong>()</p></li>
+<li><p>Node.<strong>result</strong>()</p></li>
+</ul>
+<p>You <strong>may</strong> also want to override these methods, e.g. to adapt the solution to your specific problem graphic representation, or other needs:</p>
+<ul class="simple">
+<li><p>SearchProblem.<strong>show_solution</strong>()</p></li>
+<li><p>SearchProblem.<strong>save_algorithm_steps_to_file</strong>()</p></li>
+<li><p>Node.<strong>__init__</strong>()</p></li>
+<li><p>Node.<strong>__repr__</strong>()</p></li>
+</ul>
+<p>Once base classes have been implemented, you just call <strong>SearchProblem</strong> interface methods:</p>
+<ul class="simple">
+<li><p><strong>solve</strong>()</p></li>
+<li><p><strong>show_solution</strong>()</p></li>
+<li><p><strong>save_algorithm_steps_to_file</strong>()</p></li>
+</ul>
+</section>
+<section id="usage-basic-example">
+<h2>Usage: basic example<a class="headerlink" href="#usage-basic-example" title="Link to this heading"></a></h2>
+<p>Here is an example of using the module in a script to solve mazes. The structure of the script would look like this:</p>
+<p>First, we import interface classes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">search</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">SearchProblem</span>
+</pre></div>
+</div>
+<p>We create our own maze problem specific derived classes. In this example,
+<em>Maze</em> and <em>MazeNode</em>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Maze</span><span class="p">(</span><span class="n">SearchProblem</span><span class="p">):</span>
+   <span class="c1"># ...</span>
+
+<span class="k">class</span> <span class="nc">MazeNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+   <span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Then, we write mentioned methods that implement maze specific problem environment:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Maze</span><span class="p">(</span><span class="n">SearchProblem</span><span class="p">):</span>
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">():</span>
+      <span class="c1"># Maze specific implementation here</span>
+
+   <span class="k">def</span> <span class="nf">show_solution</span><span class="p">():</span>
+      <span class="c1"># Maze specific implementation here</span>
+
+   <span class="k">def</span> <span class="nf">save_algorithm_steps_to_file</span><span class="p">()</span>
+      <span class="c1"># Maze specific implementation here</span>
+
+
+<span class="k">class</span> <span class="nc">MazeNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">actions</span><span class="p">():</span>
+      <span class="c1"># Maze specific implementation here</span>
+
+   <span class="k">def</span> <span class="nf">result</span><span class="p">():</span>
+      <span class="c1"># Maze specific implementation here</span>
+
+   <span class="k">def</span> <span class="fm">__repr__</span><span class="p">():</span>
+      <span class="c1"># Maze specific implementation here</span>
+</pre></div>
+</div>
+<p>And finally, our script would call <em>search</em> methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">maze</span> <span class="o">=</span> <span class="n">Maze</span><span class="p">(</span><span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span><span class="p">)</span>
+
+<span class="c1"># Solve search problem with &#39;BFS&#39; or &#39;DFS&#39; algorithm:</span>
+<span class="n">maze</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="s1">&#39;BFS&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print solution found:</span>
+<span class="n">maze</span><span class="o">.</span><span class="n">show_solution</span><span class="p">()</span>
+
+<span class="c1"># Save to file a detailed log of algorithm steps</span>
+<span class="n">maze</span><span class="o">.</span><span class="n">save_algorithm_steps_to_file</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The former code skeleton gives an overview of the process to use this module.
+To see a complete example of script using <em>search</em> for maze solving, please visit <a class="reference internal" href="maze/usage_example_maze.html"><span class="std std-doc">Maze.py script</span></a>.</p>
+</section>
+<section id="instructions-to-override-methods-in-subclass">
+<h2>Instructions to override methods in subclass<a class="headerlink" href="#instructions-to-override-methods-in-subclass" title="Link to this heading"></a></h2>
+<p>As shown above, you have to override a few methods of interface classes :class:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem</span></code> and :class:<code class="docutils literal notranslate"><span class="pre">search.Node</span></code>. You may also want to override other methods, as well.</p>
+<p>Lets see requirements for that overriding, for each method:</p>
+<section id="searchproblem-methods">
+<h3>SearchProblem methods<a class="headerlink" href="#searchproblem-methods" title="Link to this heading"></a></h3>
+<section id="meth-search-searchproblem-init">
+<h4>:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.\_\_init\_\_</span></code><a class="headerlink" href="#meth-search-searchproblem-init" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>This method MUST be overridden.</p></li>
+<li><p>Redefined method in subclass:</p>
+<ul>
+<li><p>MUST call <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> (generally as first statement)</p></li>
+<li><p>MUST at least assign ‘start_node’ and ‘goal_node’ attributes with appropriate values.</p></li>
+<li><p>MAY define other attributes relevant to the specific search problem, if needed by actions() or result() methods in ‘Node’ derived class.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="meth-search-searchproblem-show-solution">
+<h4>:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.show_solution</span></code><a class="headerlink" href="#meth-search-searchproblem-show-solution" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>This method MAY be overridden to customize the output format or content to specific search problem.</p></li>
+<li><p>Base class method (“default” method) prints the nodes sequence that form the solution path if one exists,along with the number of nodes explored.</p></li>
+</ul>
+</section>
+<section id="meth-search-searchproblem-save-algorithm-steps-to-file">
+<h4>:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.save_algorithm_steps_to_file</span></code><a class="headerlink" href="#meth-search-searchproblem-save-algorithm-steps-to-file" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>This method MAY be overridden to customize the output format or content of solution to search problem.</p></li>
+<li><p>Base class method (“default” method) details algorithm name, number of explored and solution nodes, and for each algorithm step, the current state of explored nodes, frontier, extracted nodes, and expanded nodes.</p></li>
+</ul>
+</section>
+</section>
+<section id="node-methods">
+<h3>Node methods<a class="headerlink" href="#node-methods" title="Link to this heading"></a></h3>
+<section id="meth-search-node-init">
+<h4>:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.\_\_init\_\_</span></code><a class="headerlink" href="#meth-search-node-init" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>This method MAY be overridden.</p></li>
+<li><p>Redefined method in subclass:</p>
+<ul>
+<li><p>MUST call <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> (generally as first statement)</p></li>
+<li><p>MAY define other attributes relevant to the specific search problem, if needed by actions() or result() methods.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="meth-search-node-action">
+<h4>:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.action</span></code><a class="headerlink" href="#meth-search-node-action" title="Link to this heading"></a></h4>
+<ul>
+<li><p>This method MUST be overridden.</p></li>
+<li><p>Redefined method in subclass MUST return a list of the possible actions that can be taken from the current node state in  the context of the search problem.</p>
+<p>Example: If your search problem is path finding in a maze, this method should return all valid moves that can be taken from the current state. E.g.: selecting valid ones among ‘up’, ‘down’, ‘left’, ‘right’ in a two-dimension maze.</p>
+</li>
+</ul>
+</section>
+<section id="meth-search-node-result">
+<h4>:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.result</span></code><a class="headerlink" href="#meth-search-node-result" title="Link to this heading"></a></h4>
+<ul>
+<li><p>This method MUST be overridden.</p></li>
+<li><p>Redefined method in subclass MUST return the node that results from performing ‘action’ on (self) node.</p>
+<p>Example in maze path finding: method would return the node representing new position in maze after movement provided by ‘action()’</p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="AI_intro.html" class="btn btn-neutral float-left" title="Introduction to search problem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="search_api_reference.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, javrui.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

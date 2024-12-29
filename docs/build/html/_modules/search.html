@@ -1,0 +1,958 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>search &mdash; search module 1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=56dcb7b8"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            search module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">INTRODUCTION:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../AI_intro.html">Introduction to search problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#search-problem-and-ai">Search problem and AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#generic-uninformed-search-algorithm">Generic uninformed search algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#search-algorithm-key-concepts">Search algorithm key concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#algorithm-pseudocode">Algorithm pseudocode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#algorithm-steps-log-in-search-module">Algorithm steps log in <em>search</em> module</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">USER GUIDE:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#usage-basic-concepts">Usage: basic concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#usage-basic-example">Usage: basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#instructions-to-override-methods-in-subclass">Instructions to override methods in subclass</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide.html#searchproblem-methods">SearchProblem methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-searchproblem-init">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.\_\_init\_\_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-searchproblem-show-solution">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.show_solution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-searchproblem-save-algorithm-steps-to-file">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.save_algorithm_steps_to_file</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide.html#node-methods">Node methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-node-init">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.\_\_init\_\_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-node-action">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.action</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide.html#meth-search-node-result">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.result</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../search_api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem"><code class="docutils literal notranslate"><span class="pre">SearchProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.start_node"><code class="docutils literal notranslate"><span class="pre">SearchProblem.start_node</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.goal_node"><code class="docutils literal notranslate"><span class="pre">SearchProblem.goal_node</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.algorithm"><code class="docutils literal notranslate"><span class="pre">SearchProblem.algorithm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.frontier"><code class="docutils literal notranslate"><span class="pre">SearchProblem.frontier</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.explored_nodes"><code class="docutils literal notranslate"><span class="pre">SearchProblem.explored_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.solution"><code class="docutils literal notranslate"><span class="pre">SearchProblem.solution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.algorithm_log"><code class="docutils literal notranslate"><span class="pre">SearchProblem.algorithm_log</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.__init__"><code class="docutils literal notranslate"><span class="pre">SearchProblem.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.solve"><code class="docutils literal notranslate"><span class="pre">SearchProblem.solve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.show_solution"><code class="docutils literal notranslate"><span class="pre">SearchProblem.show_solution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.SearchProblem.save_algorithm_steps_to_file"><code class="docutils literal notranslate"><span class="pre">SearchProblem.save_algorithm_steps_to_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../search_api_reference.html#search.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.state"><code class="docutils literal notranslate"><span class="pre">Node.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.parent"><code class="docutils literal notranslate"><span class="pre">Node.parent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.action"><code class="docutils literal notranslate"><span class="pre">Node.action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.__init__"><code class="docutils literal notranslate"><span class="pre">Node.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.actions"><code class="docutils literal notranslate"><span class="pre">Node.actions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.result"><code class="docutils literal notranslate"><span class="pre">Node.result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.node_action"><code class="docutils literal notranslate"><span class="pre">Node.node_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.node_state"><code class="docutils literal notranslate"><span class="pre">Node.node_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../search_api_reference.html#search.Node.expand"><code class="docutils literal notranslate"><span class="pre">Node.expand()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">USAGE EXAMPLE:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../maze/usage_example_maze.html">maze.py script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-script-explained">maze.py script explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-overview">maze.py overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-input-maze-layout-file">maze.py input: maze layout file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-output-static-representation">maze.py output: static representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-output-dynamic-representation">maze.py output: dynamic representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-output-algorithm-steps-data-files">maze.py output: algorithm steps data files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../maze/usage_example_maze.html#how-does-maze-py-use-search">How does <em>maze.py</em> use <em>search</em></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#basic-search-usage-in-maze-py-script">Basic <em>search</em> usage in <em>maze.py</em> script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../maze/usage_example_maze.html#import-interface-classes-node-and-searchproblem">1. Import interface classes Node and SearchProblem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../maze/usage_example_maze.html#create-its-own-maze-problem-specific-derived-classes-maze-and-mazenode">2. Create its own maze problem specific derived classes: Maze and MazeNode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../maze/usage_example_maze.html#write-override-methods-that-implement-maze-specific-problem-environment">3. Write/override methods that implement maze specific problem environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../maze/usage_example_maze.html#call-search-module-interface-methods">4. Call <em>search</em> module interface methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-code">maze.py code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ALL THE REST:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Key Features of <em>search</em> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credits_license.html">Credits and license</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../credits_license.html#credits">🙏 Credits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../credits_license.html#license">⚖️ License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">search module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">search</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for search</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This module provides a framework for solving path finding problems using</span>
+<span class="sd">    common search algorithms like Breadth-First Search (BFS) and</span>
+<span class="sd">    Depth-First Search (DFS).</span>
+
+<span class="sd">    It presents two interface classes: &#39;SearchProblem&#39; and &#39;Node&#39;. Both are</span>
+<span class="sd">    abstract classes. You must subclass each one. Create your own two derived</span>
+<span class="sd">    classes where you will write code to implement the following methods,</span>
+<span class="sd">    specific for your problem:</span>
+
+<span class="sd">        SearchProblem.__init__()</span>
+<span class="sd">        Node.actions()</span>
+<span class="sd">        Node.result()</span>
+
+<span class="sd">    You may also want to override the following methods, if necessary for your problem:</span>
+
+<span class="sd">        Node.__init__()</span>
+<span class="sd">        Node.__repr__()</span>
+
+<span class="sd">    To achieve a solution representation adapted to your specific problem, you</span>
+<span class="sd">    may also want to override this methods:</span>
+
+<span class="sd">        SearchProblem.show_solution()</span>
+<span class="sd">        SearchProblem.save_algorithm_steps_to_file()</span>
+
+<span class="sd">    Once base classes have been implemented, you just call SearchProblem</span>
+<span class="sd">    interface methods:</span>
+
+<span class="sd">        solve()</span>
+<span class="sd">        show_solution()</span>
+<span class="sd">        save_algorithm_steps_to_file()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<div class="viewcode-block" id="SearchProblem">
+<a class="viewcode-back" href="../search_api_reference.html#search.SearchProblem">[docs]</a>
+<span class="k">class</span> <span class="nc">SearchProblem</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents an abstract search problem.</span>
+
+<span class="sd">    It defines the common methods and properties needed for implementing</span>
+<span class="sd">    search algorithms.</span>
+
+<span class="sd">    Derived classes need to override the `__init__()` method to include</span>
+<span class="sd">    problem-specific attributes. show_solution() and</span>
+<span class="sd">    save_algorithm_steps_to_file() methods are usual candidates for override.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        start_node (Optional[Node]): The initial state of the search problem.</span>
+<span class="sd">        goal_node (Optional[Node]): The goal state of the search problem.</span>
+<span class="sd">        algorithm (Optional[str]): The search algorithm to use (e.g., &#39;BFS&#39;,</span>
+<span class="sd">            &#39;DFS&#39;).</span>
+<span class="sd">        frontier (_Frontier): The frontier used in the search algorithm.</span>
+<span class="sd">        explored_nodes (_ExploredNodes): The set of nodes that have been</span>
+<span class="sd">            explored.</span>
+<span class="sd">        solution (_Solution): The solution path from the start node to the</span>
+<span class="sd">            goal node.</span>
+<span class="sd">        algorithm_log (_LogHandler): A handler for recording algorithm</span>
+<span class="sd">            execution steps.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SearchProblem.__init__">
+<a class="viewcode-back" href="../search_api_reference.html#search.SearchProblem.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the SearchProblem object.</span>
+
+<span class="sd">        This method sets up the &#39;start_node&#39; and &#39;goal_node&#39; attributes,</span>
+<span class="sd">        both initially assigned as `None`. It also initializes other attributes</span>
+<span class="sd">        (e.g., frontier, explored nodes, solution) by calling</span>
+<span class="sd">        `_initialize_search_components()`.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method MUST be overridden. Redefined method in subclass:</span>
+
+<span class="sd">            - MUST assign &#39;start_node&#39; and &#39;goal_node&#39; attributes with</span>
+<span class="sd">              appropriate values.</span>
+<span class="sd">            - MUST call `super().__init__()` (generally as first statement)</span>
+<span class="sd">            - MAY define other attributes relevant to the specific search</span>
+<span class="sd">              problem, if needed by actions() or result() methods in &#39;Node&#39;</span>
+<span class="sd">              derived class.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_node</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goal_node</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_search_components</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_initialize_search_components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes components required for the search.</span>
+
+<span class="sd">        This method is responsible for initializing the search attributes,</span>
+<span class="sd">        such as the algorithm type, frontier, explored nodes, solution, and log</span>
+<span class="sd">        handler.</span>
+<span class="sd">        It is called during both initialization of class object, and</span>
+<span class="sd">        at the start of the solve process, that is why it is apart from __init__() method.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frontier</span> <span class="o">=</span> <span class="n">_Frontier</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">explored_nodes</span> <span class="o">=</span> <span class="n">_ExploredNodes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="o">=</span> <span class="n">_Solution</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span> <span class="o">=</span> <span class="n">_LogHandler</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SearchProblem.solve">
+<a class="viewcode-back" href="../search_api_reference.html#search.SearchProblem.solve">[docs]</a>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;BFS&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solves the search problem using BFS or DFS algorithms.</span>
+
+<span class="sd">        This method initializes the search components (frontier, explored</span>
+<span class="sd">        nodes, solution) and executes either Breadth-First Search (BFS) or</span>
+<span class="sd">        Depth-First Search (DFS) to find a path from the initial state to</span>
+<span class="sd">        the goal state.</span>
+
+<span class="sd">        Breadth-First Search (BFS) explores nodes level by level, whereas</span>
+<span class="sd">        Depth-First Search (DFS) explores nodes as far as possible along each</span>
+<span class="sd">        branch.</span>
+
+<span class="sd">        Maintains detailed algorithm execution log including frontier state,</span>
+<span class="sd">        explored nodes, and node expansion sequence BEFORE each node expansion.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            search_algorithm (str): The search strategy to use. Must be either</span>
+<span class="sd">                &#39;BFS&#39; or &#39;DFS&#39;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if a solution is found, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If search_algorithm is not &#39;BFS&#39; or &#39;DFS&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_search_components</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">search_algorithm</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span> <span class="o">=</span> <span class="n">_LogHandler</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">search_algorithm</span> <span class="o">==</span> <span class="s1">&#39;BFS&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frontier</span> <span class="o">=</span> <span class="n">_QueueFrontier</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">search_algorithm</span> <span class="o">==</span> <span class="s1">&#39;DFS&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frontier</span> <span class="o">=</span> <span class="n">_StackFrontier</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown search algorithm: </span><span class="si">{</span><span class="n">search_algorithm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">frontier</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_node</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">frontier</span><span class="o">.</span><span class="n">not_empty</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">add_to_record</span><span class="p">(</span>
+                <span class="n">frontier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">frontier</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="n">explored</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">explored_nodes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="p">)</span>
+
+            <span class="n">extracted_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frontier</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">add_to_record</span><span class="p">(</span><span class="n">extracted</span><span class="o">=</span><span class="n">extracted_node</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">extracted_node</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_node</span><span class="o">.</span><span class="n">state</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">extracted_node</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">save_record</span><span class="p">()</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">explored_nodes</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">extracted_node</span><span class="p">)</span>
+
+            <span class="n">child_nodes</span> <span class="o">=</span> <span class="n">extracted_node</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">add_to_record</span><span class="p">(</span><span class="n">expanded</span><span class="o">=</span><span class="n">child_nodes</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">child_nodes</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">child</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">frontier</span> <span class="ow">and</span> <span class="n">child</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">explored_nodes</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">frontier</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">save_record</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="SearchProblem.show_solution">
+<a class="viewcode-back" href="../search_api_reference.html#search.SearchProblem.show_solution">[docs]</a>
+    <span class="k">def</span> <span class="nf">show_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints the nodes sequence that form the solution path if one exists,</span>
+<span class="sd">        along with the number of nodes explored.</span>
+
+<span class="sd">        The solution, if found, is printed from the start node,</span>
+<span class="sd">        showing step-by-step nodes to the goal node, along with the number of</span>
+<span class="sd">        nodes explored. If no solution exists, prints &quot;No Solution found!&quot;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method MAY be overridden to customize the output format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial state:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">start_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Goal state:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">goal_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_node</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">nd</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solution steps: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span>
+                  <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">explored_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes tried)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No Solution found!&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SearchProblem.save_algorithm_steps_to_file">
+<a class="viewcode-back" href="../search_api_reference.html#search.SearchProblem.save_algorithm_steps_to_file">[docs]</a>
+    <span class="k">def</span> <span class="nf">save_algorithm_steps_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Saves algorithm steps to file.</span>
+
+<span class="sd">        Details algorithm name, number of explored and solution nodes, and for</span>
+<span class="sd">        each algorithm step, the current state of explored nodes, frontier,</span>
+<span class="sd">        extracted nodes, and expanded nodes.</span>
+<span class="sd">        If no solution exists, prints &quot;No Solution found!&quot;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method MAY be overridden to customize the output format or</span>
+<span class="sd">            include additional information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">lines</span><span class="o">=</span><span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;- Algorithm: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;- Explored nodes: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">explored_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;- Solution nodes: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">save_log</span><span class="p">(</span><span class="n">log_filename</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm steps saved to file: </span><span class="si">{</span><span class="n">log_filename</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Node">
+<a class="viewcode-back" href="../search_api_reference.html#search.Node">[docs]</a>
+<span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a node in the search tree.</span>
+
+<span class="sd">    Derived classes need to override actions() and result() methods to include</span>
+<span class="sd">    problem-specific logic. __init__() is likely to be overridden as well.</span>
+
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        state (Optional[object]): The state represented by this node.</span>
+<span class="sd">        parent (Optional[Node]): The parent node from which this node was generated.</span>
+<span class="sd">        action (Optional[object]): The action taken to reach this node from its parent.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Node.__init__">
+<a class="viewcode-back" href="../search_api_reference.html#search.Node.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">action</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a Node object in the search tree.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state (Optional[object]): The state represented by this node.</span>
+<span class="sd">                Default is None.</span>
+<span class="sd">            parent (Optional[Node]): The parent node from which this node was</span>
+<span class="sd">                generated. Default is None.</span>
+<span class="sd">            action (Optional[object]): The action that was taken to reach</span>
+<span class="sd">                this node from its parent. Default is None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method MAY be overridden. Redefined method in subclass:</span>
+
+<span class="sd">            - MUST call `super().__init__()` (generally as first statement)</span>
+<span class="sd">            - MAY define other attributes relevant to the specific search</span>
+<span class="sd">              problem, if needed by actions() or result() methods</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">action</span></div>
+
+
+<div class="viewcode-block" id="Node.actions">
+<a class="viewcode-back" href="../search_api_reference.html#search.Node.actions">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_problem</span><span class="p">:</span> <span class="n">SearchProblem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a list of valid actions for this node.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method MUST be implemented in a subclass.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            search_problem (SearchProblem): The problem being solved, which</span>
+<span class="sd">                provides the context and constraints for determining valid</span>
+<span class="sd">                actions.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of actions available from this node. If no actions are</span>
+<span class="sd">            available, an empty list should be returned.</span>
+
+<span class="sd">            Example: If your search problem is to find a path in a maze,</span>
+<span class="sd">            this method should return all valid moves (e.g., &#39;up&#39;, &#39;down&#39;,</span>
+<span class="sd">            &#39;left&#39;, &#39;right&#39;) that can be taken from the current state.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NotImplementedError: If the method is not implemented by a subclass.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Node.result">
+<a class="viewcode-back" href="../search_api_reference.html#search.Node.result">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">search_problem</span><span class="p">:</span> <span class="n">SearchProblem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Node&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the resulting node from performing the given action.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method MUST be implemented in a subclass.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            action (object): The action to be performed.</span>
+<span class="sd">            search_problem (SearchProblem): The problem being solved.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Node: The resulting node after &#39;action&#39; is performed.</span>
+
+<span class="sd">            Example: returns node representing new position in a maze after a</span>
+<span class="sd">            movement (&#39;action&#39;) provided by &#39;actions()&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Node.node_action">
+<a class="viewcode-back" href="../search_api_reference.html#search.Node.node_action">[docs]</a>
+    <span class="k">def</span> <span class="nf">node_action</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the action that was taken to reach this node from its parent.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Optional[object]: The action that was taken to reach this node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">action</span></div>
+
+
+<div class="viewcode-block" id="Node.node_state">
+<a class="viewcode-back" href="../search_api_reference.html#search.Node.node_state">[docs]</a>
+    <span class="k">def</span> <span class="nf">node_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the state represented by this node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Optional[object]: The state represented by this node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span></div>
+
+
+<div class="viewcode-block" id="Node.expand">
+<a class="viewcode-back" href="../search_api_reference.html#search.Node.expand">[docs]</a>
+    <span class="k">def</span> <span class="nf">expand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_problem</span><span class="p">:</span> <span class="n">SearchProblem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expands the current node by generating all possible child nodes.</span>
+
+<span class="sd">        This method uses the node&#39;s actions() method to get valid actions</span>
+<span class="sd">        and result() method to generate child nodes for each action.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            search_problem (SearchProblem): The search problem instance</span>
+<span class="sd">                providing the context for expanding this node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of child Node objects resulting from applying all</span>
+<span class="sd">                valid actions to the current node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">child_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">valid_actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actions</span><span class="p">(</span><span class="n">search_problem</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">valid_actions</span><span class="p">:</span>
+            <span class="n">expanded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">search_problem</span><span class="p">)</span>
+            <span class="n">child_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expanded</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">child_nodes</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">state</span>
+
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">_NodeContainer</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a generic container for storing nodes.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        nodes (Union[List[Node], set]): The container to store nodes, which can</span>
+<span class="sd">            be either a list or a set, depending on the container type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">],</span> <span class="nb">set</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the _NodeContainer object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Optional[Union[List[Node], set]]): The initial node or nodes</span>
+<span class="sd">            to be added to the container. Default is None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="n">node</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the container contains the given element.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            element (Union[Node, tuple]): The element to check for. Must be a</span>
+<span class="sd">                Node or a tuple representing a state.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the element is in the container, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the element is not a Node or a tuple.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">element</span> <span class="o">==</span> <span class="n">nd</span><span class="o">.</span><span class="n">state</span> <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Element must be a Node or a tuple (state)&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns an iterator over the nodes in the container.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Iterator: An iterator over the nodes in the container.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a string representation of the container.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: A string representation of the container.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">state</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the number of nodes in the container.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The number of nodes in the container.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">not_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the container is not empty.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the container is not empty, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;_NodeContainer&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a copy of the container.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            _NodeContainer: A copy of the container.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">copied</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>  <span class="c1"># Create a new instance of the same class</span>
+        <span class="n">copied</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Copy the nodes</span>
+        <span class="k">return</span> <span class="n">copied</span>
+
+
+<span class="k">class</span> <span class="nc">_ExploredNodes</span><span class="p">(</span><span class="n">_NodeContainer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents the set of explored nodes in the search.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        nodes (set): The set of nodes that have been explored during the</span>
+<span class="sd">            search.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the _ExploredNodes object as an empty set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">set</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a node to the explored nodes set.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): The node to be added.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_Frontier</span><span class="p">(</span><span class="n">_NodeContainer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents the frontier in a search, i.e., nodes yet to be explored.</span>
+
+<span class="sd">    This is an abstract class and must be subclassed to implement the extract()</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        nodes (list): The list of nodes in the frontier.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the _Frontier object as an empty list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">list</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a node to the frontier.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): The node to be added.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extracts a node from the frontier.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Node: The extracted node.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NotImplementedError: If the method is not implemented by a subclass.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Subclasses (_StackFrontier, _QueueFrontier) must implement this method.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+<span class="k">class</span> <span class="nc">_StackFrontier</span><span class="p">(</span><span class="n">_Frontier</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements a stack-based frontier (LIFO) for depth-first search (DFS).</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        nodes (list): The list of nodes in the stack-based frontier.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extracts a node from the stack-based frontier, using Last-In-First-Out</span>
+<span class="sd">        (LIFO) extraction (suitable for depth-first search).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Node: The extracted node.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            RuntimeError: If trying to extract from an empty frontier.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">not_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Trying to extract node from an empty frontier&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_QueueFrontier</span><span class="p">(</span><span class="n">_Frontier</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements a queue-based frontier (FIFO) for breadth-first search (BFS).</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        nodes (list): The list of nodes in the queue-based frontier.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extracts a node from the queue-based frontier, using First-In-First-Out</span>
+<span class="sd">        (FIFO) extraction (suitable for breadth-first search).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Node: The extracted node.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            RuntimeError: If trying to extract from an empty frontier.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">not_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Trying to extract node from an empty frontier&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_Solution</span><span class="p">(</span><span class="n">_NodeContainer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents the solution path as a list of nodes.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        nodes (list): The list of nodes that form the solution path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the _Solution object as an empty list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">list</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds the solution path from the goal node back to the start node.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            goal_node (Node): The goal node from which to build the solution path.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">goal_node</span>
+        <span class="k">while</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">_LogHandler</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Handles logging of the search algorithm&#39;s execution steps.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        log (List[dict]): The complete log of all algorithm steps.</span>
+<span class="sd">        current_record (dict): The current log record being assembled.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the _LogHandler object.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_record</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">add_to_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frontier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_Frontier</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                      <span class="n">explored</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_ExploredNodes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                      <span class="n">extracted</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Node</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                      <span class="n">expanded</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds information to the current log record.</span>
+
+<span class="sd">        Parameters are optional depending on which part of the algorithm is</span>
+<span class="sd">        being logged.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            frontier (Optional[_Frontier]): The current state of the frontier.</span>
+<span class="sd">            explored (Optional[_ExploredNodes]): The current state of the explored nodes.</span>
+<span class="sd">            extracted (Optional[Node]): The node that was extracted.</span>
+<span class="sd">            expanded (Optional[List[Node]]): The nodes that were expanded.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If any of the provided values are not of the expected</span>
+<span class="sd">                types (e.g., _Frontier, _ExploredNodes, Node, List[Node]).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;frontier&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">frontier</span><span class="p">,</span> <span class="n">_Frontier</span><span class="p">),</span>
+            <span class="s1">&#39;explored&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">explored</span><span class="p">,</span> <span class="n">_ExploredNodes</span><span class="p">),</span>
+            <span class="s1">&#39;extracted&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">extracted</span><span class="p">,</span> <span class="n">Node</span><span class="p">),</span>
+            <span class="s1">&#39;expanded&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">expanded</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">expected_type</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">expected_type</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">current_record</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">. &quot;</span>
+                                     <span class="sa">f</span><span class="s2">&quot;Must be an instance of </span><span class="si">{</span><span class="n">expected_type</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">save_record</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Saves the current log record.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_record</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_record</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the entire log.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: The entire log.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span>
+
+    <span class="k">def</span> <span class="nf">save_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Saves the log of algorithm steps to a file.</span>
+
+<span class="sd">        Logs are saved in a structured format with each step showing the</span>
+<span class="sd">        current state of the explored nodes, frontier, extracted nodes, and</span>
+<span class="sd">        expanded nodes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            log_filename (str): The name of the file to save the log to.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- Algorithm steps:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">step_nr</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">step_nr</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;  &gt; Explored nodes:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;explored&#39;</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;explored&#39;</span><span class="p">]:</span>
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      </span><span class="si">{</span><span class="n">nd</span><span class="o">.</span><span class="n">node_state</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;  &gt; Frontier:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;frontier&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      </span><span class="si">{</span><span class="n">nd</span><span class="o">.</span><span class="n">node_state</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;extracted&#39;</span><span class="p">):</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  &gt; Extracted node:</span><span class="se">\n</span><span class="s2">      </span><span class="si">{</span><span class="n">record</span><span class="p">[</span><span class="s1">&#39;extracted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">node_state</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;  &gt; Node expands to:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;expanded&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      </span><span class="si">{</span><span class="n">nd</span><span class="o">.</span><span class="n">node_state</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, javrui.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

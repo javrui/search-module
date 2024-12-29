@@ -1,0 +1,625 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; search module 1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=56dcb7b8"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="maze.py script" href="maze/usage_example_maze.html" />
+    <link rel="prev" title="User Guide" href="user_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            search module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">INTRODUCTION:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="AI_intro.html">Introduction to search problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#search-problem-and-ai">Search problem and AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#generic-uninformed-search-algorithm">Generic uninformed search algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#search-algorithm-key-concepts">Search algorithm key concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#algorithm-pseudocode">Algorithm pseudocode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AI_intro.html#algorithm-steps-log-in-search-module">Algorithm steps log in <em>search</em> module</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">USER GUIDE:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#usage-basic-concepts">Usage: basic concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#usage-basic-example">Usage: basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#instructions-to-override-methods-in-subclass">Instructions to override methods in subclass</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide.html#searchproblem-methods">SearchProblem methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide.html#meth-search-searchproblem-init">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.\_\_init\_\_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide.html#meth-search-searchproblem-show-solution">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.show_solution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide.html#meth-search-searchproblem-save-algorithm-steps-to-file">:meth:<code class="docutils literal notranslate"><span class="pre">search.SearchProblem.save_algorithm_steps_to_file</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide.html#node-methods">Node methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide.html#meth-search-node-init">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.\_\_init\_\_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide.html#meth-search-node-action">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.action</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide.html#meth-search-node-result">:meth:<code class="docutils literal notranslate"><span class="pre">search.Node.result</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#search.SearchProblem"><code class="docutils literal notranslate"><span class="pre">SearchProblem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.start_node"><code class="docutils literal notranslate"><span class="pre">SearchProblem.start_node</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.goal_node"><code class="docutils literal notranslate"><span class="pre">SearchProblem.goal_node</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.algorithm"><code class="docutils literal notranslate"><span class="pre">SearchProblem.algorithm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.frontier"><code class="docutils literal notranslate"><span class="pre">SearchProblem.frontier</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.explored_nodes"><code class="docutils literal notranslate"><span class="pre">SearchProblem.explored_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.solution"><code class="docutils literal notranslate"><span class="pre">SearchProblem.solution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.algorithm_log"><code class="docutils literal notranslate"><span class="pre">SearchProblem.algorithm_log</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.__init__"><code class="docutils literal notranslate"><span class="pre">SearchProblem.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.solve"><code class="docutils literal notranslate"><span class="pre">SearchProblem.solve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.show_solution"><code class="docutils literal notranslate"><span class="pre">SearchProblem.show_solution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.SearchProblem.save_algorithm_steps_to_file"><code class="docutils literal notranslate"><span class="pre">SearchProblem.save_algorithm_steps_to_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#search.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.state"><code class="docutils literal notranslate"><span class="pre">Node.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.parent"><code class="docutils literal notranslate"><span class="pre">Node.parent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.action"><code class="docutils literal notranslate"><span class="pre">Node.action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.__init__"><code class="docutils literal notranslate"><span class="pre">Node.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.actions"><code class="docutils literal notranslate"><span class="pre">Node.actions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.result"><code class="docutils literal notranslate"><span class="pre">Node.result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.node_action"><code class="docutils literal notranslate"><span class="pre">Node.node_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.node_state"><code class="docutils literal notranslate"><span class="pre">Node.node_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search.Node.expand"><code class="docutils literal notranslate"><span class="pre">Node.expand()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">USAGE EXAMPLE:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="maze/usage_example_maze.html">maze.py script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-script-explained">maze.py script explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-overview">maze.py overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-input-maze-layout-file">maze.py input: maze layout file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-output-static-representation">maze.py output: static representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-output-dynamic-representation">maze.py output: dynamic representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-output-algorithm-steps-data-files">maze.py output: algorithm steps data files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="maze/usage_example_maze.html#how-does-maze-py-use-search">How does <em>maze.py</em> use <em>search</em></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#basic-search-usage-in-maze-py-script">Basic <em>search</em> usage in <em>maze.py</em> script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="maze/usage_example_maze.html#import-interface-classes-node-and-searchproblem">1. Import interface classes Node and SearchProblem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maze/usage_example_maze.html#create-its-own-maze-problem-specific-derived-classes-maze-and-mazenode">2. Create its own maze problem specific derived classes: Maze and MazeNode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maze/usage_example_maze.html#write-override-methods-that-implement-maze-specific-problem-environment">3. Write/override methods that implement maze specific problem environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maze/usage_example_maze.html#call-search-module-interface-methods">4. Call <em>search</em> module interface methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-code">maze.py code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ALL THE REST:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Key Features of <em>search</em> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits_license.html">Credits and license</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="credits_license.html#credits">🙏 Credits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits_license.html#license">⚖️ License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">search module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/search_api_reference.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-search">
+<span id="api-reference"></span><h1>API Reference<a class="headerlink" href="#module-search" title="Link to this heading"></a></h1>
+<p>This module provides a framework for solving path finding problems using
+common search algorithms like Breadth-First Search (BFS) and
+Depth-First Search (DFS).</p>
+<p>It presents two interface classes: ‘SearchProblem’ and ‘Node’. Both are
+abstract classes. You must subclass each one. Create your own two derived
+classes where you will write code to implement the following methods,
+specific for your problem:</p>
+<blockquote>
+<div><p>SearchProblem.__init__()
+Node.actions()
+Node.result()</p>
+</div></blockquote>
+<p>You may also want to override the following methods, if necessary for your problem:</p>
+<blockquote>
+<div><p>Node.__init__()
+Node.__repr__()</p>
+</div></blockquote>
+<p>To achieve a solution representation adapted to your specific problem, you
+may also want to override this methods:</p>
+<blockquote>
+<div><p>SearchProblem.show_solution()
+SearchProblem.save_algorithm_steps_to_file()</p>
+</div></blockquote>
+<p>Once base classes have been implemented, you just call SearchProblem
+interface methods:</p>
+<blockquote>
+<div><p>solve()
+show_solution()
+save_algorithm_steps_to_file()</p>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="search.SearchProblem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">search.</span></span><span class="sig-name descname"><span class="pre">SearchProblem</span></span><a class="reference internal" href="_modules/search.html#SearchProblem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.SearchProblem" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Represents an abstract search problem.</p>
+<p>It defines the common methods and properties needed for implementing
+search algorithms.</p>
+<p>Derived classes need to override the <cite>__init__()</cite> method to include
+problem-specific attributes. show_solution() and
+save_algorithm_steps_to_file() methods are usual candidates for override.</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.SearchProblem.start_node">
+<span class="sig-name descname"><span class="pre">start_node</span></span><a class="headerlink" href="#search.SearchProblem.start_node" title="Link to this definition"></a></dt>
+<dd><p>The initial state of the search problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Node]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.SearchProblem.goal_node">
+<span class="sig-name descname"><span class="pre">goal_node</span></span><a class="headerlink" href="#search.SearchProblem.goal_node" title="Link to this definition"></a></dt>
+<dd><p>The goal state of the search problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Node]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.SearchProblem.algorithm">
+<span class="sig-name descname"><span class="pre">algorithm</span></span><a class="headerlink" href="#search.SearchProblem.algorithm" title="Link to this definition"></a></dt>
+<dd><p>The search algorithm to use (e.g., ‘BFS’,
+‘DFS’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[str]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.SearchProblem.frontier">
+<span class="sig-name descname"><span class="pre">frontier</span></span><a class="headerlink" href="#search.SearchProblem.frontier" title="Link to this definition"></a></dt>
+<dd><p>The frontier used in the search algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">_Frontier</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.SearchProblem.explored_nodes">
+<span class="sig-name descname"><span class="pre">explored_nodes</span></span><a class="headerlink" href="#search.SearchProblem.explored_nodes" title="Link to this definition"></a></dt>
+<dd><p>The set of nodes that have been
+explored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">_ExploredNodes</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.SearchProblem.solution">
+<span class="sig-name descname"><span class="pre">solution</span></span><a class="headerlink" href="#search.SearchProblem.solution" title="Link to this definition"></a></dt>
+<dd><p>The solution path from the start node to the
+goal node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">_Solution</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.SearchProblem.algorithm_log">
+<span class="sig-name descname"><span class="pre">algorithm_log</span></span><a class="headerlink" href="#search.SearchProblem.algorithm_log" title="Link to this definition"></a></dt>
+<dd><p>A handler for recording algorithm
+execution steps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">_LogHandler</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.SearchProblem.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#SearchProblem.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.SearchProblem.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the SearchProblem object.</p>
+<p>This method sets up the ‘start_node’ and ‘goal_node’ attributes,
+both initially assigned as <cite>None</cite>. It also initializes other attributes
+(e.g., frontier, explored nodes, solution) by calling
+<cite>_initialize_search_components()</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method MUST be overridden. Redefined method in subclass:</p>
+<ul class="simple">
+<li><p>MUST assign ‘start_node’ and ‘goal_node’ attributes with
+appropriate values.</p></li>
+<li><p>MUST call <cite>super().__init__()</cite> (generally as first statement)</p></li>
+<li><p>MAY define other attributes relevant to the specific search
+problem, if needed by actions() or result() methods in ‘Node’
+derived class.</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.SearchProblem.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'BFS'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#SearchProblem.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.SearchProblem.solve" title="Link to this definition"></a></dt>
+<dd><p>Solves the search problem using BFS or DFS algorithms.</p>
+<p>This method initializes the search components (frontier, explored
+nodes, solution) and executes either Breadth-First Search (BFS) or
+Depth-First Search (DFS) to find a path from the initial state to
+the goal state.</p>
+<p>Breadth-First Search (BFS) explores nodes level by level, whereas
+Depth-First Search (DFS) explores nodes as far as possible along each
+branch.</p>
+<p>Maintains detailed algorithm execution log including frontier state,
+explored nodes, and node expansion sequence BEFORE each node expansion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>search_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The search strategy to use. Must be either
+‘BFS’ or ‘DFS’.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if a solution is found, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If search_algorithm is not ‘BFS’ or ‘DFS’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.SearchProblem.show_solution">
+<span class="sig-name descname"><span class="pre">show_solution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#SearchProblem.show_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.SearchProblem.show_solution" title="Link to this definition"></a></dt>
+<dd><p>Prints the nodes sequence that form the solution path if one exists,
+along with the number of nodes explored.</p>
+<p>The solution, if found, is printed from the start node,
+showing step-by-step nodes to the goal node, along with the number of
+nodes explored. If no solution exists, prints “No Solution found!”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method MAY be overridden to customize the output format.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.SearchProblem.save_algorithm_steps_to_file">
+<span class="sig-name descname"><span class="pre">save_algorithm_steps_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#SearchProblem.save_algorithm_steps_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.SearchProblem.save_algorithm_steps_to_file" title="Link to this definition"></a></dt>
+<dd><p>Saves algorithm steps to file.</p>
+<p>Details algorithm name, number of explored and solution nodes, and for
+each algorithm step, the current state of explored nodes, frontier,
+extracted nodes, and expanded nodes.
+If no solution exists, prints “No Solution found!”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method MAY be overridden to customize the output format or
+include additional information.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="search.Node">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">search.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#Node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.Node" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Represents a node in the search tree.</p>
+<p>Derived classes need to override actions() and result() methods to include
+problem-specific logic. __init__() is likely to be overridden as well.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<em>object</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#search.Node" title="search.Node"><em>Node</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>action</strong> (<em>object</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.Node.state">
+<span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#search.Node.state" title="Link to this definition"></a></dt>
+<dd><p>The state represented by this node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[object]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.Node.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><a class="headerlink" href="#search.Node.parent" title="Link to this definition"></a></dt>
+<dd><p>The parent node from which this node was generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Node]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="search.Node.action">
+<span class="sig-name descname"><span class="pre">action</span></span><a class="headerlink" href="#search.Node.action" title="Link to this definition"></a></dt>
+<dd><p>The action taken to reach this node from its parent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[object]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.Node.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#Node.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.Node.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a Node object in the search tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[object]</span></code>) – The state represented by this node.
+Default is None.</p></li>
+<li><p><strong>parent</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Node]</span></code>) – The parent node from which this node was
+generated. Default is None.</p></li>
+<li><p><strong>action</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[object]</span></code>) – The action that was taken to reach
+this node from its parent. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method MAY be overridden. Redefined method in subclass:</p>
+<ul class="simple">
+<li><p>MUST call <cite>super().__init__()</cite> (generally as first statement)</p></li>
+<li><p>MAY define other attributes relevant to the specific search
+problem, if needed by actions() or result() methods</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.Node.actions">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_problem</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#Node.actions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.Node.actions" title="Link to this definition"></a></dt>
+<dd><p>Return a list of valid actions for this node.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method MUST be implemented in a subclass.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>search_problem</strong> (<a class="reference internal" href="#search.SearchProblem" title="search.SearchProblem"><code class="xref py py-class docutils literal notranslate"><span class="pre">SearchProblem</span></code></a>) – The problem being solved, which
+provides the context and constraints for determining valid
+actions.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>A list of actions available from this node. If no actions are
+available, an empty list should be returned.</p>
+<p>Example: If your search problem is to find a path in a maze,
+this method should return all valid moves (e.g., ‘up’, ‘down’,
+‘left’, ‘right’) that can be taken from the current state.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – If the method is not implemented by a subclass.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.Node.result">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_problem</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#Node.result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.Node.result" title="Link to this definition"></a></dt>
+<dd><p>Return the resulting node from performing the given action.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method MUST be implemented in a subclass.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code>) – The action to be performed.</p></li>
+<li><p><strong>search_problem</strong> (<a class="reference internal" href="#search.SearchProblem" title="search.SearchProblem"><code class="xref py py-class docutils literal notranslate"><span class="pre">SearchProblem</span></code></a>) – The problem being solved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>The resulting node after ‘action’ is performed.</p>
+<p>Example: returns node representing new position in a maze after a
+movement (‘action’) provided by ‘actions()’</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#search.Node" title="search.Node">Node</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.Node.node_action">
+<span class="sig-name descname"><span class="pre">node_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#Node.node_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.Node.node_action" title="Link to this definition"></a></dt>
+<dd><p>Returns the action that was taken to reach this node from its parent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The action that was taken to reach this node.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optional[object]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.Node.node_state">
+<span class="sig-name descname"><span class="pre">node_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#Node.node_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.Node.node_state" title="Link to this definition"></a></dt>
+<dd><p>Returns the state represented by this node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The state represented by this node.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optional[object]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="search.Node.expand">
+<span class="sig-name descname"><span class="pre">expand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_problem</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/search.html#Node.expand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#search.Node.expand" title="Link to this definition"></a></dt>
+<dd><p>Expands the current node by generating all possible child nodes.</p>
+<p>This method uses the node’s actions() method to get valid actions
+and result() method to generate child nodes for each action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>search_problem</strong> (<a class="reference internal" href="#search.SearchProblem" title="search.SearchProblem"><code class="xref py py-class docutils literal notranslate"><span class="pre">SearchProblem</span></code></a>) – The search problem instance
+providing the context for expanding this node.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A list of child Node objects resulting from applying all</dt><dd><p>valid actions to the current node.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user_guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="maze/usage_example_maze.html" class="btn btn-neutral float-right" title="maze.py script" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, javrui.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

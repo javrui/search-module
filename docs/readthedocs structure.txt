@@ -1,7 +1,0 @@
-Documentation (e.g., Read the Docs):
-
-    Home Page: A detailed introduction, what problems it solves, and key features.
-    Getting Started: Installation, setup, configuration.
-    User Guide: In-depth examples, common workflows, different usage scenarios.
-    API Reference: Detailed documentation of each class, method, function, including arguments, types, return values, etc.
-    FAQ/Troubleshooting: Answers to common questions and common issues users may encounter.
