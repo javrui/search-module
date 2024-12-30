@@ -1,31 +1,19 @@
 # search
 
-This module solves search (path finding) problems using uninformed search algorithms Breadth-First Search (BFS) and Depth-First Search (DFS). Shows algorithm execution step by step for didactic  purposes.
-
-![Python](https://img.shields.io/badge/python-3.6%2B-blue)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+[![Documentation Status](https://readthedocs.org/projects/search-module/badge/?version=latest)](https://search-module.readthedocs.io/en/latest/)
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg)
-[![Documentation Status](https://readthedocs.org/projects/mymodule/badge/?version=latest)](https://mymodule.readthedocs.io/en/latest/?badge=latest)
-
 
 ## ✨Overview
 
-The search.py module is a Python framework designed to help solve search problems using classic search algorithms like Breadth-First Search (BFS) and Depth-First Search (DFS). The module provides two main abstract classes: SearchProblem and Node, which users can extend to create their own search implementations.
+The *search* module is a Python framework designed to solve search problems using classic algorithms such as Breadth-First Search (BFS) and Depth-First Search (DFS).
 
-This module is particularly useful for anyone working with problem-solving techniques involving state-space search, such as pathfinding, game solving, or any domain that requires intelligent exploration of states.
+It demonstrates step-by-step algorithm execution and logs internal data structures for educational purposes.
 
-
-## Key Features
-
-- Abstract Classes for Custom Problems: SearchProblem and Node provide a structured way to define custom search problems by overriding their abstract methods.
-
-- Built-In Support for BFS and DFS: The solve() method supports both BFS and DFS, with flexible components like QueueFrontier and StackFrontier for implementing different search strategies.
-
-- Detailed Logging: The module logs the search progress, showing the state of the frontier, the explored nodes, and expanded nodes at each step, enabling users to analyze the search behavior thoroughly.
-
-
+This module is especially useful for tasks involving state-space search, such as pathfinding, game solving, or any scenario that requires systematic exploration of states.
 
 ## 📥 Installation
-No installation required; simply add *search.py* to your project folder and import:
+No installation is required; simply add *search.py* to your project folder and import the necessary classes:
 
 ```python
 from search import SearchProblem, Node
@@ -33,9 +21,9 @@ from search import SearchProblem, Node
 
 ## 🚀 Basic usage
 
-Create your own problem specific classes derived from *search* abstract base classes **SearchProblem** and **Node**.
+The module provides two core abstract classes, *SearchProblem* and *Node*, which can be extended to implement custom search solutions.
 
-In this example, your own classes are: *Maze* and *MazeNode*
+Create problem-specific classes by inheriting from *SearchProblem* and *Node*. In this example, the classes *Maze* and *MazeNode* handle maze-related logic.
 
 ```python
 class Maze(SearchProblem):
@@ -45,7 +33,7 @@ class MazeNode(Node):
    # ...
 ```
 
-Define base abstract methods in your classes, to implement specific problem environment (detailed explanations in documentation)
+Implement the required abstract methods in your subclasses to define your specific problem environment (refer to the documentation for more details).
 
 ```python
 class Maze(SearchProblem):
@@ -66,51 +54,83 @@ class MazeNode(Node)
       # Maze specific implementation here
 ```
 
-Instantiate an object:
+Instantiate a Maze object:
 
 ```python
 maze = Maze()
 ```
 
-Solve search problem with 'BFS' or 'DFS' algorithm:
+Solve the search problem using BFS or DFS:
 
 ```python
 maze.solve('BFS')
 ```
 
-Print solution found:
+Print the discovered solution:
 
 ```python
 maze.show_solution('BFS')
 ```
 
-Get a detailed log of algorithm steps:
+Obtain a detailed log of algorithmic steps:
 
 ```python
 maze.save_algorithm_steps_to_file()
 ```
 
+## 📝 Documentation
+
+Full documentation, including the API specification and a working example that solves mazes, is available on [Read The Docs](https://search-module.readthedocs.io/en/latest/)
+
+## 💡 Key Features
+
+### Object-Oriented Design
+
+The module follows OOP principles, encapsulating problem-solving elements into classes such as *SearchProblem*, *Node*, and various internal classes. Each class is responsible for specific functionality, ensuring modularity and reusability.
+
+### Abstract Classes
+
+**Abstract Base Classes (ABC)**
+
+The *SearchProblem* and *Node* classes are defined as abstract using Python’s ABC module. This forces any concrete subclass to implement critical methods, like *actions()*, *result()*, and *\_\_init\_\_()*, maintaining a consistent interface.
 
 
-## 📚 Documentation
-📌 TO DO: readthedocs link
+**Protected Methods and Attributes**
 
-[Read The Docs documentation](docs/search_docs.md)
+Methods and attributes prefixed with an underscore (_) are intended for internal use, keeping users focused on essential interfaces and abstracting lower-level details.
 
+**Explicit Subclassing Requirements**
+
+Marking methods such as *actions()* and *result()* as abstract in *Node* and **SearchProblem** ensures subclasses provide the necessary implementations, promoting a controlled interface tailored to each search scenario.
+
+### Modularity and Extensibility
+
+**Pluggable Search Algorithms**
+
+The *solve()* method in *SearchProblem* supports different search strategies (BFS, DFS) by selecting the type of frontier (*_StackFrontier* for BFS, *_QueueFrontier* for DFS). This design simplifies adding or modifying search algorithms without changing the overall structure.
+
+**Separate Components for State Tracking**
+
+Classes like *_Frontier*, *_ExploredNodes*, and *_Solution* manage distinct concerns such as the frontier, explored nodes, and the final solution. This separation of responsibilities makes it easy to modify or extend each component independently.
+
+### Audit Trail and Algorithm Steps Log
+
+The *AuditTrail* class captures each step of the search process, including frontier and explored-node states. This comprehensive record aids in debugging and provides transparent insight into how the search progresses.
+
+### Customizable Output
+
+The *show_solution()* method can be used directly or overridden in subclasses to customize the solution's presentation format, allowing for flexible output that meets domain-specific or user-defined requirements.
 
 ## 🧪 Testing
 
-Instructions for running the test
+To run tests, execute:
 
-    pytest tests/
+   pytest tests/
 
+## 🙏 Credits
 
-##  🙏 Credits:
-
-This project is a based on code from [HarvardX:CS50’s Introduction to Artificial Intelligence with Python course](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python) refactored to use object-oriented design and abstract base clases.
-
+This project is a based on code from [HarvardX:CS50’s Introduction to Artificial Intelligence with Python course](https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python) refactored to achieve mentioned key features.
 
 ## ⚖️ License
 
-Mentioned Harvard course code is published under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) [license](LICENSE.md)
-
+The Harvard course code is published under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) [license](LICENSE.md)

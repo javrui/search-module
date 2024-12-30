@@ -75,13 +75,13 @@ class Maze(SearchProblem):
             * wall (any other character)
 
         Maze layout file content example:
-            '###########'
-            '#         #'
-            '#### #### #'
-            '#B   #    #'
-            '# #### ####'
-            '#         #'
-            '#A#########'
+            '███████████'
+            '█         █'
+            '████ ████ █'
+            '█B   █    █'
+            '█ ████ ████'
+            '█         █'
+            '█A█████████'
 
         """
 

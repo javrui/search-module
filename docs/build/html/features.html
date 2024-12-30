@@ -185,51 +185,36 @@
 <p>Design notes on <em>search</em> module.</p>
 <ol class="arabic">
 <li><p><strong>Object-Oriented Design</strong></p>
-<p>The module is structured around object-oriented principles, encapsulating problem-solving elements into classes such as <em>SearchProblem</em> and <em>Node</em>, as well as several internal classes. Each class is designed with a specific responsibility within the search framework, promoting modularity and reusability.</p>
+<p>The module follows OOP principles, encapsulating problem-solving elements into classes such as <em>SearchProblem</em>, <em>Node</em>, and various internal classes. Each class is responsible for specific functionality, ensuring modularity and reusability.</p>
 </li>
 <li><p><strong>Abstract Classes</strong></p>
-<ul class="simple">
-<li><p><strong>Abstract Base Classes (ABC)</strong></p></li>
+<ul>
+<li><p><strong>Abstract Base Classes (ABC)</strong></p>
+<p>The <em>SearchProblem</em> and <em>Node</em> classes are defined as abstract using Python’s ABC module. This forces any concrete subclass to implement critical methods, like <em>actions()</em>, <em>result()</em>, and <em>__init__()</em>, maintaining a consistent interface.</p>
+</li>
+<li><p><strong>Protected Methods and Attributes</strong></p>
+<p>Methods and attributes prefixed with an underscore (_) are intended for internal use, keeping users focused on essential interfaces and abstracting lower-level details.</p>
+</li>
+<li><p><strong>Explicit Subclassing Requirements</strong></p>
+<p>Marking methods such as <em>actions()</em> and <em>result()</em> as abstract in <em>Node</em> and <strong>SearchProblem</strong> ensures subclasses provide the necessary implementations, promoting a controlled interface tailored to each search scenario.</p>
+</li>
 </ul>
-<blockquote>
-<div><p>The <em>SearchProblem</em> and <em>Node</em> classes are defined as abstract using Python’s ABC module. This ensures that critical methods such as <strong>actions()</strong>, <strong>result()</strong>, and <strong>init()</strong> must be implemented by any concrete subclass, maintaining a consistent interface across implementations.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><strong>Protected Methods and Attributes</strong></p></li>
-</ul>
-<blockquote>
-<div><p>Methods and attributes prefixed with an underscore (_) are intended for internal use and not part of the public API. This design choice ensures users focus on relevant interfaces while abstracting internal details.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><strong>Explicit Subclassing Requirements</strong></p></li>
-</ul>
-<blockquote>
-<div><p>Marking specific methods (<strong>actions()</strong>, <strong>result()</strong>) as abstract in <em>Node</em> and <em>SearchProblem</em> enforces that subclasses provide appropriate implementations, thereby creating a controlled interface tailored to each search problem.</p>
-</div></blockquote>
 </li>
 <li><p><strong>Modularity and Extensibility</strong></p>
-<ul class="simple">
-<li><p><strong>Pluggable Search Algorithms</strong></p></li>
+<ul>
+<li><p><strong>Pluggable Search Algorithms</strong></p>
+<p>The <em>solve()</em> method in <em>SearchProblem</em> supports different search strategies (BFS, DFS) by selecting the type of frontier (<em>_StackFrontier</em> for BFS, <em>_QueueFrontier</em> for DFS). This design simplifies adding or modifying search algorithms without changing the overall structure.</p>
+</li>
+<li><p><strong>Separate Components for State Tracking</strong></p>
+<p>Classes like <em>_Frontier</em>, <em>_ExploredNodes</em>, and <em>_Solution</em> manage distinct concerns such as the frontier, explored nodes, and the final solution. This separation of responsibilities makes it easy to modify or extend each component independently.</p>
+</li>
 </ul>
-<blockquote>
-<div><p>The <strong>solve()</strong> method in <em>SearchProblem</em> supports different search strategies (BFS, DFS) by managing the type of frontier used (<em>_StackFrontier</em> for BFS and <em>_QueueFrontier</em> for DFS). This design allows easy addition or modification of search algorithms without altering the broader code structure.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><strong>Separate Components for State Tracking</strong></p></li>
-</ul>
-<blockquote>
-<div><p>Classes like <em>_Frontier</em>, <em>_ExploredNodes</em>, and <em>_Solution</em> encapsulate specific responsibilities for managing states, frontiers, and solutions, making it easier to modify or extend these functionalities independently.</p>
-</div></blockquote>
 </li>
 <li><p><strong>Audit Trail and Algorithm Steps Log</strong></p>
-<ul class="simple">
-<li><p>The <em>AuditTrail</em> class records every step of the search process, including the states of the frontier and explored nodes. This feature facilitates debugging and offers transparency, enabling users to track and analyze the search process comprehensively.</p></li>
-</ul>
+<p>The <em>AuditTrail</em> class captures each step of the search process, including frontier and explored-node states. This comprehensive record aids in debugging and provides transparent insight into how the search progresses.</p>
 </li>
 <li><p><strong>Customizable Output</strong></p>
-<ul class="simple">
-<li><p>The <strong>show_solution()</strong> method can be used as-is or overridden in subclasses to customize the solution output format. This provides flexibility for displaying results in a manner suitable for specific problem domains or user requirements</p></li>
-</ul>
+<p>The <em>show_solution()</em> method can be used directly or overridden in subclasses to customize the solution’s presentation format, allowing for flexible output that meets domain-specific or user-defined requirements.</p>
 </li>
 </ol>
 </section>
