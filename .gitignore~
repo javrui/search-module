@@ -3,12 +3,14 @@ BKP/
 puzzle/
 __pycache__/
 maze/other mazes/
+
 **/._vscode/
+.vscode/
 **/.venv/
 
-
 # editor temp files:
-**/*~
+**/*.rst~
+**/*.*~
 
 # Algorithm steps log:
 mazes/*_steps.txt
