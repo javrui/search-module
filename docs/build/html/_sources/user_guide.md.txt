@@ -1,5 +1,7 @@
 # User Guide
 
+We will cover the fundamental concepts you need to understand to effectively use the search module. We will examine a basic example script utilizing the search structure, and then, we will delve deeper into adapting search to address your specific problem.
+
 ## Installation
 
 No installation is required. Simply import the following classes from the module:

@@ -9,6 +9,7 @@
   <title>search module documentation &mdash; search module 1.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/my_blue.css?v=834c50f7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -19,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction to search problem" href="AI_intro.html" /> 
+    <link rel="next" title="What is search module?" href="wellcome.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,7 +42,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">INTRODUCTION:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">WELLCOME:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wellcome.html">What is <em>search</em> module?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wellcome.html#watch-search-in-action-maze-solving">Watch <em>search</em> in action: maze solving</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wellcome.html#static-representation">Static representation:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wellcome.html#dynamic-representation">Dynamic representation:</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">INTRODUCTION:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="AI_intro.html">Introduction to search problem</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="AI_intro.html#search-problem-and-ai">Search problem and AI</a></li>
@@ -110,6 +120,7 @@
 <li class="toctree-l1"><a class="reference internal" href="maze/usage_example_maze.html">maze.py script</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-script-explained">maze.py script explained</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-overview">maze.py overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-dependencies-curses">maze.py dependencies: curses</a></li>
 <li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-input-maze-layout-file">maze.py input: maze layout file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-output-static-representation">maze.py output: static representation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="maze/usage_example_maze.html#maze-py-output-dynamic-representation">maze.py output: dynamic representation</a></li>
@@ -135,7 +146,10 @@
 <li class="toctree-l1"><a class="reference internal" href="features.html">Key Features of <em>search</em> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits_license.html">Credits and license</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="credits_license.html#credits">🙏 Credits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="credits_license.html#license">⚖️ License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="credits_license.html#license">⚖️ License</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="credits_license.html#original-code-license">Original code license</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
@@ -168,35 +182,33 @@
   <section id="search-module-documentation">
 <h1><em>search</em> module documentation<a class="headerlink" href="#search-module-documentation" title="Link to this heading"></a></h1>
 <p>Welcome to <em>search</em> documentation!</p>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
 <section id="what-is-search-module">
 <h2>What is <em>search</em> module?<a class="headerlink" href="#what-is-search-module" title="Link to this heading"></a></h2>
-<p>Python <em>search</em> module is a tool for solving problems involving state-space search, such as pathfinding or any domain requiring intelligent exploration of states.</p>
-<p>This module includes implementations of two fundamental search algorithms: Breadth-First Search (BFS) and Depth-First Search (DFS).</p>
+<p>The Python <em>search</em> module is a versatile tool designed for solving problems involving state-space search, such as pathfinding or any scenario that requires intelligent exploration of states.</p>
+<p>This module provides implementations of two fundamental search algorithms: Breadth-First Search (BFS) and Depth-First Search (DFS).</p>
 </section>
 <section id="watch-search-in-action-maze-solving">
 <h2>Watch <em>search</em> in action: maze solving<a class="headerlink" href="#watch-search-in-action-maze-solving" title="Link to this heading"></a></h2>
-<p>In <a class="reference internal" href="maze/usage_example_maze.html"><span class="doc">Usage example</span></a> you will find a complete Python script that solves mazes using <em>search</em> module.
-This is just a glance of its outputs:</p>
+<p>An illustrative example of the <em>search</em> module is its application to maze solving. In <a class="reference internal" href="maze/usage_example_maze.html"><span class="doc">Usage example</span></a>, you can find a complete Python script demonstrating how to solve mazes using the <em>search</em> module. Below is a preview of the script’s output:</p>
 <section id="static-representation">
 <h3>Static representation:<a class="headerlink" href="#static-representation" title="Link to this heading"></a></h3>
+<p>First, a static representation of the maze, the search path, and the solution is presented for each algorithm: Breadth-First Search (BFS) and Depth-First Search (DFS).</p>
 <img alt="_images/maze_static_solution.png" src="_images/maze_static_solution.png" />
 </section>
 <section id="dynamic-representation">
 <h3>Dynamic representation:<a class="headerlink" href="#dynamic-representation" title="Link to this heading"></a></h3>
-<div align="center">
-    <video width="700" controls>
-        <source src="maze_dynamic_solution.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div></section>
+<p>Next, a dynamic visualization of the search processes is provided. The accompanying video demonstrates how the search algorithms explore the maze step by step until a solution is found. Click the image below to watch the video.</p>
+<video autoplay="True" controls="True" preload="auto"><source src="_images/maze_dynamic_solution.mp4" type="video/mp4">maze_dynamic_solution</video><div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
 </section>
 </section>
 
@@ -204,7 +216,7 @@ This is just a glance of its outputs:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="AI_intro.html" class="btn btn-neutral float-right" title="Introduction to search problem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="wellcome.html" class="btn btn-neutral float-right" title="What is search module?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

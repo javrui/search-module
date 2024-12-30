@@ -29,6 +29,9 @@
         solve()
         show_solution()
         save_algorithm_steps_to_file()
+
+    Dependencies:
+        - Python 3.6 or higher
 """
 
 from typing import Optional, List, Union

@@ -8,7 +8,9 @@ Usage:
     python3 maze.py <maze layout .txt utf-8 file path>
 
 Dependencies:
+    Python 3.6 or higher
     search module
+    curses library ('pip install windows-curses' for Windows)
 
 Author:
     JRM 2024.02
@@ -108,9 +110,14 @@ class Maze(SearchProblem):
         self.offset = {"up": (-1, 0), "right": (0, 1), "down": (1, 0), "left": (0, -1)}
         self.first_dynamic_solution_shown = False
         self.layout_elements = {
-            'walls': {'char': '█', 'color': 243, 'wait': 0},
-            'exploration': {'char': '·', 'color': 208, 'wait': 0.01},
-            'solution': {'char': '¤', 'color': 118, 'wait': 0.05},
+        #    'walls': {'char': '█', 'color': 243, 'wait': 0},
+            'walls': {'char': '█', 'color': 108, 'wait': 0},
+        #    'exploration': {'char': '·', 'color': 208, 'wait': 0.01}, #, gray
+        #    'exploration': {'char': '·', 'color': 198, 'wait': 0.01}, # Quick
+        #    'solution': {'char': '¤', 'color': 118, 'wait': 0.05}, # Quick
+             'exploration': {'char': '·', 'color': 198, 'wait': 0.15}, # Slow
+             'solution': {'char': '¤', 'color': 118, 'wait': 0.1}, # Slow
+
             'start_goal': {'char': '_', 'color': 7, 'wait': 0.1},
         }
         self.maze_solution_layout = None
@@ -327,6 +334,7 @@ class Maze(SearchProblem):
 
         """
         self._set_curses_settings(stdscr)
+        #time.sleep(1)
 
         # Offset in terminal display of solution to be printed
         if self.first_dynamic_solution_shown is False:
@@ -440,7 +448,7 @@ class Maze(SearchProblem):
 
         lines=[
             "",
-            f"{30*'-'}",
+            f"{28*'-'}",
             f"- Solving: {self.filename}",
             f"- Algorithm: {self.algorithm}",
             f"- Explored nodes ({expl_char}, {sol_char}): {expl_len}",
@@ -503,7 +511,7 @@ class Maze(SearchProblem):
             file.write(self._solution_layout_str())
 
         self.algorithm_log.save_log(log_filename)
-        print(f"Algorithm steps saved to file:\n {log_filename}\n")
+        print(f"Algorithm steps saved to file:\n {log_filename}")
 
 
 class MazeNode(Node):
@@ -670,6 +678,6 @@ if __name__ == '__main__':
 
     search_module_simple_usage_example(maze_filename)
 
-    input("Press Enter to see dynamic steps...")
+    input("\nPress Enter to see dynamic steps...")
 
     dynamic_solution_display_search_usage_example(maze_filename)

@@ -2,6 +2,9 @@ aux_notes/
 BKP/
 puzzle/
 __pycache__/
+maze/other mazes/
+.vscode/
+.venv/
 
 
 # editor temp files:
@@ -10,8 +13,6 @@ __pycache__/
 # Algorithm steps log:
 mazes/*_steps.txt
 
-.vscode/
-.venv/
 
 
 

@@ -8,6 +8,7 @@
   <title>maze &mdash; search module 1.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/my_blue.css?v=834c50f7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -39,7 +40,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">INTRODUCTION:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">WELLCOME:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../wellcome.html">What is <em>search</em> module?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wellcome.html#watch-search-in-action-maze-solving">Watch <em>search</em> in action: maze solving</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../wellcome.html#static-representation">Static representation:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wellcome.html#dynamic-representation">Dynamic representation:</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">INTRODUCTION:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../AI_intro.html">Introduction to search problem</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../AI_intro.html#search-problem-and-ai">Search problem and AI</a></li>
@@ -108,6 +118,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../maze/usage_example_maze.html">maze.py script</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-script-explained">maze.py script explained</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-overview">maze.py overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-dependencies-curses">maze.py dependencies: curses</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-input-maze-layout-file">maze.py input: maze layout file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-output-static-representation">maze.py output: static representation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../maze/usage_example_maze.html#maze-py-output-dynamic-representation">maze.py output: dynamic representation</a></li>
@@ -133,7 +144,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../features.html">Key Features of <em>search</em> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../credits_license.html">Credits and license</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../credits_license.html#credits">🙏 Credits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../credits_license.html#license">⚖️ License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../credits_license.html#license">⚖️ License</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../credits_license.html#original-code-license">Original code license</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing</a></li>
@@ -174,7 +188,9 @@
 <span class="sd">    python3 maze.py &lt;maze layout .txt utf-8 file path&gt;</span>
 
 <span class="sd">Dependencies:</span>
+<span class="sd">    Python 3.6 or higher</span>
 <span class="sd">    search module</span>
+<span class="sd">    curses library (&#39;pip install windows-curses&#39; for Windows)</span>
 
 <span class="sd">Author:</span>
 <span class="sd">    JRM 2024.02</span>
@@ -278,9 +294,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;up&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;down&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">first_dynamic_solution_shown</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layout_elements</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;walls&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;█&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">243</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
-            <span class="s1">&#39;exploration&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;·&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">208</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
-            <span class="s1">&#39;solution&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;¤&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">118</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
+        <span class="c1">#    &#39;walls&#39;: {&#39;char&#39;: &#39;█&#39;, &#39;color&#39;: 243, &#39;wait&#39;: 0},</span>
+            <span class="s1">&#39;walls&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;█&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">108</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="c1">#    &#39;exploration&#39;: {&#39;char&#39;: &#39;·&#39;, &#39;color&#39;: 208, &#39;wait&#39;: 0.01}, #, gray</span>
+        <span class="c1">#    &#39;exploration&#39;: {&#39;char&#39;: &#39;·&#39;, &#39;color&#39;: 198, &#39;wait&#39;: 0.01}, # Quick</span>
+        <span class="c1">#    &#39;solution&#39;: {&#39;char&#39;: &#39;¤&#39;, &#39;color&#39;: 118, &#39;wait&#39;: 0.05}, # Quick</span>
+             <span class="s1">&#39;exploration&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;·&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">198</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">},</span> <span class="c1"># Slow</span>
+             <span class="s1">&#39;solution&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;¤&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">118</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span> <span class="c1"># Slow</span>
+
             <span class="s1">&#39;start_goal&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;char&#39;</span><span class="p">:</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">maze_solution_layout</span> <span class="o">=</span> <span class="kc">None</span>
@@ -501,6 +522,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_curses_settings</span><span class="p">(</span><span class="n">stdscr</span><span class="p">)</span>
+        <span class="c1">#time.sleep(1)</span>
 
         <span class="c1"># Offset in terminal display of solution to be printed</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_dynamic_solution_shown</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
@@ -614,7 +636,7 @@
 
         <span class="n">lines</span><span class="o">=</span><span class="p">[</span>
             <span class="s2">&quot;&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">30</span><span class="o">*</span><span class="s1">&#39;-&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">28</span><span class="o">*</span><span class="s1">&#39;-&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="sa">f</span><span class="s2">&quot;- Solving: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="sa">f</span><span class="s2">&quot;- Algorithm: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="sa">f</span><span class="s2">&quot;- Explored nodes (</span><span class="si">{</span><span class="n">expl_char</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">sol_char</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">expl_len</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -679,7 +701,7 @@
             <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solution_layout_str</span><span class="p">())</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">algorithm_log</span><span class="o">.</span><span class="n">save_log</span><span class="p">(</span><span class="n">log_filename</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm steps saved to file:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">log_filename</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm steps saved to file:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">log_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 </div>
 
 
@@ -860,7 +882,7 @@
 
     <span class="n">search_module_simple_usage_example</span><span class="p">(</span><span class="n">maze_filename</span><span class="p">)</span>
 
-    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Press Enter to see dynamic steps...&quot;</span><span class="p">)</span>
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Press Enter to see dynamic steps...&quot;</span><span class="p">)</span>
 
     <span class="n">dynamic_solution_display_search_usage_example</span><span class="p">(</span><span class="n">maze_filename</span><span class="p">)</span>
 </pre></div>

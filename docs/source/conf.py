@@ -47,6 +47,8 @@ html_theme_options = {
     "sticky_navigation": True,     # Keep the sidebar visible while scrolling
 }
 html_static_path = ['_static']
+html_css_files = ['my_blue.css']
+
 
 
 # This disables the module index in the HTML output.
