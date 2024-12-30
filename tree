@@ -1,0 +1,33 @@
+.
+├── docs
+│   ├── build
+│   │   ├── doctrees
+│   │   └── html
+│   ├── Makefile
+│   └── source
+│       ├── AI_intro.md
+│       ├── conf.py
+│       ├── credits_license.md
+│       ├── features.rst
+│       ├── index.rst
+│       ├── maze
+│       ├── search_api_reference.rst
+│       ├── _static
+│       ├── _templates
+│       ├── testing.md
+│       ├── user_guide.md
+│       └── wellcome.rst
+├── LICENSE.md
+├── maze
+│   ├── maze.py
+│   ├── mazes
+│   │   ├── maze_layout.txt
+│   │   ├── maze_layout.txt_BFS_steps.txt
+│   │   └── maze_layout.txt_DFS_steps.txt
+├── README.md
+├── requirements.txt
+├── search
+│   └── search.py
+└── tree
+
+
