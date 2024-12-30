@@ -4,5 +4,9 @@ build:
   tools:
     python: "3.10"  # Python version for the build environment
 
+python:
+  install:
+    - requirements: requirements.txt  # Ensure dependencies are installed from this file
+
 sphinx:
   configuration: docs/source/conf.py  # Path to the Sphinx `conf.py` file
