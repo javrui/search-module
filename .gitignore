@@ -4,7 +4,7 @@ puzzle/
 __pycache__/
 maze/other mazes/
 
-**/._vscode/
+**/._vscode
 .vscode/
 **/.venv/
 
