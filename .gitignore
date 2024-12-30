@@ -9,8 +9,9 @@ maze/other mazes/
 **/.venv/
 
 # editor temp files:
-**/*.rst~
-**/*.*~
+*~
+
+
 
 
 

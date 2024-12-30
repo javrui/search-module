@@ -9,11 +9,8 @@ maze/other mazes/
 **/.venv/
 
 # editor temp files:
-**/*.rst~
+*~
 **/*.*~
-
-# Algorithm steps log:
-mazes/*_steps.txt
 
 
 
