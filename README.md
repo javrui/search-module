@@ -146,7 +146,9 @@ TOC:
 
 To run tests, execute:
 
+```bash
    pytest tests/
+```
 
 ## 🙏 Credits
 
