@@ -116,13 +116,13 @@ The module follows OOP principles, encapsulating problem-solving elements into c
 
 ### Abstract Classes
 
-#### Abstract Base Classes (ABC)
+* Abstract Base Classes (ABC)
 
-Interface classes are defined as abstract using Python’s ABC module. This forces any concrete subclass to implement critical methods.
+  Interface classes are defined as abstract using Python’s ABC module. This forces any concrete subclass to implement critical methods.
 
-#### Protected Methods and Attributes
+* Protected Methods and Attributes
 
-Methods and attributes prefixed with an underscore (_) are intended for internal use, keeping users focused on essential interfaces and abstracting lower-level details.
+  Methods and attributes prefixed with an underscore (_) are intended for internal use, keeping users focused on essential interfaces and abstracting lower-level details.
 
 #### Explicit Subclassing Requirements
 
