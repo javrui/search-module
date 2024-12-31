@@ -84,25 +84,25 @@ Full documentation, including the API specification and a working example that s
 
 TOC:
 
-* WELLCOME:
+* WELLCOME
+*
+  * [What is search module?](https://search-module.readthedocs.io/en/latest/wellcome.html)
+  * [Watch search in action: maze solving](https://search-module.readthedocs.io/en/latest/wellcome.html#watch-search-in-action-maze-solving)
 
-  *[What is search module?](https://search-module.readthedocs.io/en/latest/wellcome.html)
-  *[Watch search in action: maze solving](https://search-module.readthedocs.io/en/latest/wellcome.html#watch-search-in-action-maze-solving)
-
-* INTRODUCTION:
+* INTRODUCTION
 
   * [Introduction to search problem](https://search-module.readthedocs.io/en/latest/AI_intro.html)
 
-* USER GUIDE:
+* USER GUIDE
 
   * [User Guide](https://search-module.readthedocs.io/en/latest/user_guide.html)
   * [API Reference](https://search-module.readthedocs.io/en/latest/search_api_reference.html)
 
-* USAGE EXAMPLE:
+* USAGE EXAMPLE
 
   * [maze.py script](https://search-module.readthedocs.io/en/latest/maze/usage_example_maze.html)
 
-* ALL THE REST:
+* ALL THE REST
 
   * [Key Features of search module](https://search-module.readthedocs.io/en/latest/features.html)
   * [Credits and license](https://search-module.readthedocs.io/en/latest/credits_license.html)
