@@ -85,7 +85,7 @@ Full documentation, including the API specification and a working example that s
 TOC:
 
 * WELLCOME
-*
+
   * [What is search module?](https://search-module.readthedocs.io/en/latest/wellcome.html)
   * [Watch search in action: maze solving](https://search-module.readthedocs.io/en/latest/wellcome.html#watch-search-in-action-maze-solving)
 
