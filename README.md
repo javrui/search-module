@@ -112,7 +112,7 @@ TOC:
 
 ### Object-Oriented Design
 
-The module follows OOP principles, encapsulating problem-solving elements into classes. Each class is responsible for specific functionality, ensuring modularity and reusability.
+  The module follows OOP principles, encapsulating problem-solving elements into classes. Each class is responsible for specific functionality, ensuring modularity and reusability.
 
 ### Abstract Classes
 
@@ -124,23 +124,23 @@ The module follows OOP principles, encapsulating problem-solving elements into c
 
   Methods and attributes prefixed with an underscore (_) are intended for internal use, keeping users focused on essential interfaces and abstracting lower-level details.
 
-#### Explicit Subclassing Requirements
+* Explicit Subclassing Requirements
 
-Marking methods as abstract in interface classes ensures subclasses provide the necessary implementations, promoting a controlled interface tailored to each search scenario.
+  Marking methods as abstract in interface classes ensures subclasses provide the necessary implementations, promoting a controlled interface tailored to each search scenario.
 
 ### Modularity and Extensibility
 
-#### Pluggable Search Algorithms
+* Pluggable Search Algorithms
 
-Different search strategies (BFS, DFS) are supported by selecting the type of frontier (stack, queue). This design simplifies adding or modifying search algorithms without changing the overall structure.
+  Different search strategies (BFS, DFS) are supported by selecting the type of frontier (stack, queue). This design simplifies adding or modifying search algorithms without changing the overall structure.
 
-### Audit Trail and Algorithm Steps Log
+* Audit Trail and Algorithm Steps Log
 
-Dedicated class captures each step of the search process, including frontier and explored-node states. This comprehensive record aids in debugging and provides transparent insight into how the search progresses.
+  Dedicated class captures each step of the search process, including frontier and explored-node states. This comprehensive record aids in debugging and provides transparent insight into how the search progresses.
 
 ### Customizable Output
 
-Method that prints solution can be used directly or overridden in subclasses to customize the solution's presentation format, allowing for flexible output that meets domain-specific or user-defined requirements.
+  Method that prints solution can be used directly or overridden in subclasses to customize the solution's presentation format, allowing for flexible output that meets domain-specific or user-defined requirements.
 
 ## 🧪 Testing
 
