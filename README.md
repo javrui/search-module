@@ -1,4 +1,4 @@
-# search
+# *search* module
 
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 [![Documentation Status](https://readthedocs.org/projects/search-module/badge/?version=latest)](https://search-module.readthedocs.io/en/latest/)
@@ -8,9 +8,9 @@
 
 The *search* module is a Python framework designed to solve search problems using classic algorithms such as Breadth-First Search (BFS) and Depth-First Search (DFS).
 
-It demonstrates step-by-step algorithm execution and logs internal data structures for educational purposes.
+This module is especially useful for tasks involving state-space search, such as path finding, game solving, or any scenario that requires systematic exploration of states.
 
-This module is especially useful for tasks involving state-space search, such as pathfinding, game solving, or any scenario that requires systematic exploration of states.
+It demonstrates step-by-step algorithm execution and logs internal data structures for educational purposes.
 
 ## 📥 Installation
 No installation is required; simply add *search.py* to your project folder and import the necessary classes:
@@ -21,9 +21,9 @@ from search import SearchProblem, Node
 
 ## 🚀 Basic usage
 
-The module provides two core abstract classes, *SearchProblem* and *Node*, which can be extended to implement custom search solutions.
+The module provides two core abstract classes, *SearchProblem* and *Node*, to  be extended to implement custom search solutions. You have to create problem-specific classes by inheriting from *SearchProblem* and *Node*.
 
-Create problem-specific classes by inheriting from *SearchProblem* and *Node*. In this example, the classes *Maze* and *MazeNode* handle maze-related logic.
+In this basic usage example, the classes *Maze* and *MazeNode* handle maze-related logic in a maze solving script:
 
 ```python
 class Maze(SearchProblem):
