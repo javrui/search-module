@@ -144,11 +144,7 @@ TOC:
 
 ## 🧪 Testing
 
-To run tests, execute:
-
-```bash
-   pytest tests/
-```
+(Not released in current version)
 
 ## 🙏 Credits
 
