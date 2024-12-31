@@ -82,6 +82,32 @@ maze.save_algorithm_steps_to_file()
 
 Full documentation, including the API specification and a working example that solves mazes, is available on [Read The Docs](https://search-module.readthedocs.io/en/latest/)
 
+TOC:
+
+WELLCOME:
+
+   [What is search module?](https://search-module.readthedocs.io/en/latest/wellcome.html)
+   [Watch search in action: maze solving](https://search-module.readthedocs.io/en/latest/wellcome.html#watch-search-in-action-maze-solving)
+
+INTRODUCTION:
+
+   [Introduction to search problem](https://search-module.readthedocs.io/en/latest/AI_intro.html)
+
+USER GUIDE:
+
+   [User Guide](https://search-module.readthedocs.io/en/latest/user_guide.html)
+   [API Reference](https://search-module.readthedocs.io/en/latest/search_api_reference.html)
+
+USAGE EXAMPLE:
+
+   [maze.py script](https://search-module.readthedocs.io/en/latest/maze/usage_example_maze.html)
+
+ALL THE REST:
+
+   [Key Features of search module](https://search-module.readthedocs.io/en/latest/features.html)
+   [Credits and license](https://search-module.readthedocs.io/en/latest/credits_license.html)
+   [Testing](https://search-module.readthedocs.io/en/latest/testing.html)
+
 ## 💡 Key Features
 
 ### Object-Oriented Design
