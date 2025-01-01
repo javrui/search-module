@@ -1,5 +1,6 @@
 aux_notes/
 BKP/
+docs/build/
 puzzle/
 __pycache__/
 maze/other mazes/
@@ -11,6 +12,8 @@ maze/other mazes/
 # editor temp files:
 *~
 
+
+Que hay aqui.txt
 
 
 
