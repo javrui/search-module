@@ -29,10 +29,6 @@ import os
 import time
 import curses
 from typing import List, Tuple
-
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-search_dir = os.path.join(parent_dir, 'search')
-sys.path.append(search_dir)
 from search import Node, SearchProblem # pylint: disable=C0413
 
 
