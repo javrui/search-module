@@ -10,7 +10,7 @@ maze.py script
 maze.py code
 ============
 
-For the complete implementation, see the full `maze.py file  <../../../../maze/maze.py>`_
+For the complete implementation, see the full `maze.py file  <../../../maze/maze.py>`_
 
 
 .. literalinclude:: ../../../maze/maze.py
