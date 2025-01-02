@@ -5,6 +5,11 @@ puzzle/
 __pycache__/
 maze/other mazes/
 
+# Not to be uploaded
+maze/search.py
+maze/to add maze_py path to search
+
+
 **/._vscode
 .vscode/
 **/.venv/
