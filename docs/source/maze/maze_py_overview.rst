@@ -42,8 +42,8 @@ The Maze.py script dynamically displays the explored and solution nodes on the m
 * Linux/Unix/macOS: The curses module is included in the standard Python distribution and works out of the box.
 
 * Windows: The curses module is not natively available on Windows. However, you can install a Windows-compatible implementation, such as:
-   * UniCurses
    * windows-curses
+   * UniCurses
 
 To install windows-curses:
 
