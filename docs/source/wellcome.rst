@@ -1,3 +1,9 @@
+#############################################
+Welcome to *search* documentation
+#############################################
+
+Explore Python's *search* Module: Features, Examples, and Usage
+
 ========================
 What is *search* module?
 ========================
